@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
-let dotfolder = "/home/jan/Projects/dotfiles";
+let
+  project_root = "/home/jan/Projects";
+in let
+  dotfiles = project_root + "/dotfiles";
+  awesome-widgets = project_root + "/awesome-wm-widgets";
 in
 {
   # Let Home Manager install and manage itself.
@@ -53,7 +57,7 @@ EDITOR=vim
     oh-my-zsh = {
       enable = true;
       plugins = [ "gitfast" ];
-      custom = "${dotfolder}/zsh";
+      custom = "${dotfiles}/zsh";
       theme = "polygon";
     };
   };
@@ -78,6 +82,13 @@ set-option -g status-fg black
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  # Awesome config
+  home.file.".config/awesome/rc.lua".source = dotfiles + "/awesome/rc.lua";
+  home.file.".config/awesome/theme.lua".source = dotfiles + "/awesome/theme.lua";
+  home.file.".config/awesome/awesome-wm-widgets".source = builtins.filterSource 
+    (path: type: type != "directory" || baseNameOf path != ".git")
+    awesome-widgets;
 
   home.packages = with pkgs; [
     direnv
