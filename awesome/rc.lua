@@ -48,7 +48,7 @@ end
 beautiful.init("/home/jan/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "mate-terminal"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -103,7 +103,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -114,19 +114,40 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local batteryarc_widget = require('awesome-wm-widgets.batteryarc-widget.batteryarc')
 local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
 local net_widget = require('awesome-wm-widgets.net-speed-widget.net-speed')
+local touchtap_widget = require('awesome-wm-widgets.touchtaptoggle-widget.touchtaptoggle')
+local hue_widget = require('awesome-wm-widgets.hue-widget.hue')
 batteryarc = batteryarc_widget {
 	show_current_level = true,
-	font = "Play 5"
+	font = "Play 6",
+	size = 36
 }
 volume = volume_widget{
 	widget_type = 'arc',
 	mute_color = '#a00000',
-	main_color = '#00a000'
+	main_color = '#00a000',
+	size = 36
 }
 cpu = cpu_widget{
+	width = 100,
 	enable_kill_button = 1
 }
-netspeed = net_widget{}
+netspeed = net_widget{
+	width = 110
+}
+touchtap = touchtap_widget{
+	size = 36
+}
+
+local f = io.open('/home/jan/.hue-user', 'r')
+local hue_user = f:read("*all")
+f:close()
+hue = hue_widget {
+  size = 36,
+  host = "192.168.2.249",
+  user = hue_user,
+  groups = {1, 2, 3, 4, 5}
+}
+
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -234,6 +255,8 @@ awful.screen.connect_for_each_screen(function(s)
 	    batteryarc,
 	    cpu,
 	    netspeed,
+			touchtap,
+			hue,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -357,13 +380,16 @@ globalkeys = gears.table.join(
 	    volume_widget:dec() end),
     awful.key({ }, "XF86AudioMute", function ()
 	    volume_widget:toggle() end),
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn.with_shell("brightnessctl s 5%-") end),
+    awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn.with_shell("brightnessctl s +5%") end),
 
     -- Screen Locking
     awful.key({ modkey,           }, "x", function () awful.spawn.with_shell("sleep 0.5 && xtrlock-pam") end),
 
     -- Sleep
     awful.key({ }, "XF86ScreenSaver", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end),
-    awful.key({ }, "XF86Sleep", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end)
+    awful.key({ }, "XF86Sleep", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end),
+    awful.key({ }, "XF86Favorites", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end)
 )
 
 clientkeys = gears.table.join(
@@ -598,4 +624,8 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Autostart programs
+awful.spawn("xinput set-prop 12 334 0.25")
+
 -- }}}
