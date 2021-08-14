@@ -82,7 +82,7 @@ EDITOR=vim
 '';
     oh-my-zsh = {
       enable = true;
-      plugins = [ "gitfast" ];
+      plugins = [ "gitfast" "nix-zsh-completions" ];
       custom = "${dotfiles}/zsh";
       theme = "polygon";
     };
