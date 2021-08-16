@@ -380,8 +380,8 @@ globalkeys = gears.table.join(
 	    volume_widget:dec() end),
     awful.key({ }, "XF86AudioMute", function ()
 	    volume_widget:toggle() end),
-    awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn.with_shell("brightnessctl s 5%-") end),
-    awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn.with_shell("brightnessctl s +5%") end),
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn.with_shell("brightnessctl s $(( $(brightnessctl g)*0.75 - 60))") end),
+    awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn.with_shell("brightnessctl s $(( $(brightnessctl g)*1.25 + 60))") end),
 
     -- Screen Locking
     awful.key({ modkey,           }, "x", function () awful.spawn.with_shell("sleep 0.5 && xtrlock-pam") end),

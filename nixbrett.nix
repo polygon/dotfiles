@@ -76,15 +76,35 @@ syntax enable
     enable = true;
     initExtra = ''
 eval "$(direnv hook zsh)"
+unsetopt NOMATCH
 '';
     envExtra = ''
 EDITOR=vim
 '';
-    oh-my-zsh = {
+#    oh-my-zsh = {
+#      enable = true;
+#      plugins = [ "gitfast" "nix-zsh-completions" ];
+#      custom = "${dotfiles}/zsh";
+#      theme = "polygon";
+#    };
+    prezto = {
       enable = true;
-      plugins = [ "gitfast" "nix-zsh-completions" ];
-      custom = "${dotfiles}/zsh";
-      theme = "polygon";
+      pmodules = [
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "spectrum"
+        "utility"
+        "syntax-highlighting"
+        "history-substring-search"
+        "autosuggestions"
+        "git"
+        "completion"
+        "prompt"
+      ];
+      prompt.theme = "skwp";
     };
   };
 
