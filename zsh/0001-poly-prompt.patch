@@ -1,0 +1,79 @@
+diff --git a/modules/prompt/functions/prompt_poly_setup b/modules/prompt/functions/prompt_poly_setup
+new file mode 100644
+index 0000000..b84011f
+--- /dev/null
++++ b/modules/prompt/functions/prompt_poly_setup
+@@ -0,0 +1,70 @@
++#
++# A single line theme with Git information on the left and Ruby on the right.
++#
++# Authors:
++#   Steve Losh <steve@stevelosh.com>
++#   Bart Trojanowski <bart@jukie.net>
++#   Brian Carper <brian@carper.ca>
++#   steeef <steeef@gmail.com>
++#   Sorin Ionescu <sorin.ionescu@gmail.com>
++#   Yan Pritzker <yan@pritzker.ws>
++#
++# Screenshots:
++#   http://i.imgur.com/gLgVp6Y.png
++#
++
++function prompt_skwp_precmd {
++  # Get Git repository information.
++  if (( $+functions[git-info] )); then
++    git-info
++  fi
++
++  # Get Ruby information.
++  if (( $+functions[ruby-info] )); then
++    ruby-info
++  fi
++}
++
++function prompt_skwp_setup {
++  setopt LOCAL_OPTIONS
++  unsetopt XTRACE KSH_ARRAYS
++  prompt_opts=(cr percent sp subst)
++
++  # Load required functions.
++  autoload -Uz add-zsh-hook
++
++  # Add hook to set up prompt parameters before each command.
++  add-zsh-hook precmd prompt_skwp_precmd
++
++  # Tell prezto we can manage this prompt
++  zstyle ':prezto:module:prompt' managed 'yes'
++
++  _prompt_skwp_colors=(
++    "%F{cyan}"
++    "%F{blue}"
++    "%F{red}"
++    "%F{yellow}"
++    "%F{green}"
++  )
++
++  # Set git-info parameters.
++  zstyle ':prezto:module:git:info' verbose 'yes'
++  zstyle ':prezto:module:git:info:branch' format "${_prompt_skwp_colors[3]}%b%f"
++  zstyle ':prezto:module:git:info:added' format "${_prompt_skwp_colors[5]}●%f"
++  zstyle ':prezto:module:git:info:deleted' format "${_prompt_skwp_colors[2]}●%f"
++  zstyle ':prezto:module:git:info:modified' format "${_prompt_skwp_colors[4]}●%f"
++  zstyle ':prezto:module:git:info:untracked' format "${_prompt_skwp_colors[3]}●%f"
++  zstyle ':prezto:module:git:info:dirty' format "${_prompt_skwp_colors[4]} ✗%f"
++  zstyle ':prezto:module:git:info:keys' format 'prompt' ' (%b%D)'
++
++  # Set ruby-info parameters.
++  zstyle ':prezto:module:ruby:info:version' format '[%v]'
++
++  # Define prompts.
++  local ret_status="%(?:%{${_prompt_skwp_colors[5]}%}➜ :%{${_prompt_skwp_colors[3]}%}➜ )"
++  PROMPT="${_prompt_skwp_colors[1]}%m%f ${ret_status}${_prompt_skwp_colors[1]}%3~%f"'${git_info:+${(e)git_info[prompt]}} '
++  RPROMPT='%F{blue}${ruby_info[version]}'
++}
++
++prompt_skwp_setup "$@"
++# vim: ft=zsh
+--
+2.32.0
+

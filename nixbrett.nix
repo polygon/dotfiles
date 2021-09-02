@@ -29,6 +29,11 @@ in
     (self: super: {
       geeqie = unstable.geeqie;
       blender = unstable.blender;
+      zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [
+          (/. + "${dotfiles}/zsh/0001-poly-prompt.patch")
+        ];
+      });
     } )
   ];
 
@@ -71,7 +76,7 @@ nmap <F4> zM
 syntax enable
     '';
   };
-
+  
   programs.zsh = {
     enable = true;
     initExtra = ''
@@ -104,7 +109,7 @@ EDITOR=vim
         "completion"
         "prompt"
       ];
-      prompt.theme = "skwp";
+      prompt.theme = "poly";
     };
   };
 
