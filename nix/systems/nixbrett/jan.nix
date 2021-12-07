@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, aww, ... }:
 let
-  project_root = "/home/jan/Projects";
-in let
-  dotfiles = project_root + "/dotfiles";
-  awesome-widgets = project_root + "/awesome-wm-widgets";
+  json-lua = pkgs.fetchFromGitHub {
+    owner = "rxi";
+    repo = "json.lua";
+    rev = "v0.1.2";
+    sha256 = "sha256:0sgcf7x8nds3abn46p4fg687pk6nlvsi82x186vpaj2dbv28q8i5";
+  };
 in
 {
   # Let Home Manager install and manage itself.
@@ -14,12 +16,32 @@ in
   home.username = "jan";
   home.homeDirectory = "/home/jan";
 
+#  nixpkgs.overlays = [
+#    (self: super: {
+#      geeqie = unstable.geeqie;
+#      blender = unstable.blender;
+#      zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
+#        patches = (old.patches or []) ++ [
+#          ../../../zsh/0001-poly-prompt.patch
+#        ];
+#      });
+#    } )
+#  ];
+
+  services.gammastep = {
+    enable = true;
+    latitude = "51.0";
+    longitude = "13.7";
+  };
+
   programs.firefox = {
     enable = true;
     profiles.myprofile.settings = {
       "general.smoothScroll" = true;
     };
   };
+
+  programs.chromium.enable = true;
 
   programs.git = {
     enable = true;
@@ -45,20 +67,35 @@ nmap <F4> zM
 syntax enable
     '';
   };
-
+  
   programs.zsh = {
     enable = true;
     initExtra = ''
 eval "$(direnv hook zsh)"
+unsetopt NOMATCH
 '';
     envExtra = ''
 EDITOR=vim
 '';
-    oh-my-zsh = {
+#    };
+    prezto = {
       enable = true;
-      plugins = [ "gitfast" ];
-      custom = "${dotfiles}/zsh";
-      theme = "polygon";
+      pmodules = [
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "spectrum"
+        "utility"
+        "syntax-highlighting"
+        "history-substring-search"
+        "autosuggestions"
+        "git"
+        "completion"
+        "prompt"
+      ];
+      prompt.theme = "poly";
     };
   };
 
@@ -67,11 +104,11 @@ EDITOR=vim
     baseIndex = 1;
     clock24 = true;
     historyLimit = 10000;
-    prefix = "C-a";
     terminal = "tmux-256color";
     extraConfig = ''
+unbind C-b
+set-option -g prefix C-a
 bind-key C-a last-window
-bind-key a send-prefix
 set-option -g set-titles on
 set-option -g set-titles-string '#H:#S.#I.#P #W #T'
 setw -g monitor-activity on
@@ -84,21 +121,43 @@ set-option -g status-fg black
   nixpkgs.config.allowUnfree = true;
 
   # Awesome config
-  home.file.".config/awesome/rc.lua".source = dotfiles + "/awesome/rc.lua";
-  home.file.".config/awesome/theme.lua".source = dotfiles + "/awesome/theme.lua";
-  home.file.".config/awesome/awesome-wm-widgets".source = builtins.filterSource 
-    (path: type: type != "directory" || baseNameOf path != ".git")
-    awesome-widgets;
+  home.file.".config/awesome/rc.lua".source = ../../../awesome/rc.lua;
+  home.file.".config/awesome/theme.lua".source = ../../../awesome/theme.lua;
+  home.file.".config/awesome/awesome-wm-widgets".source = aww;
+  home.file.".config/awesome/json".source = json-lua;
+  home.file.".direnvrc".source = ../../../misc/direnvrc;
 
   home.packages = with pkgs; [
-    direnv
+    hueadm
     gimp
+    inkscape
+    geeqie
+    hexchat
+    dino
     pavucontrol 
+    nix-index
     steam
     acpi
     owncloud-client
     keepassx2
     xtrlock-pam
+    brightnessctl
+    gnome3.gnome-tweak-tool
+    wget
+    thunderbird
+    spotify
+    qjackctl
+    xlibs.xhost
+    htop
+    vscodium
+    mplayer
+    vlc
+    traceroute
+    zeal
+    element-desktop
+    nixpkgs-review
+    flowblade
+    blender
   ];
 
   # This value determines the Home Manager release that your
@@ -109,5 +168,5 @@ set-option -g status-fg black
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.03";
 }
