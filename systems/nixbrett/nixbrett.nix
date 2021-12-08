@@ -4,6 +4,16 @@
 
 { config, pkgs, unstable, ... }:
 {
+  # == Module Configuration ==
+
+  # General settings for all clients/workstations
+  modules.systems.client.enable = true;
+
+  # Enable Wireguard tunnels
+  modules.wireguard.mullvad.enable = true;
+  modules.wireguard.wacken.enable = true;
+
+  # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
       sof-firmware = unstable.sof-firmware; 
@@ -47,42 +57,15 @@
   networking.hostName = "nixbrett"; # Define your hostname.
   networking.wireless.iwd.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
   networking.hostId = "3ba26467";
 
   networking.firewall = {
     enable = true;
     allowPing = true;
-    allowedUDPPorts = [
-      # Wireguard
-      48573 # wacken
-      51820 # Mullvad
-    ];
     allowedTCPPorts = [
       20000
     ];
   };
-  
-  nix = {
-    trustedUsers = [ "jan" ];
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-      experimental-features = nix-command flakes
-    '';
-    package = pkgs.nixUnstable;
-  };
-  
-  systemd.network.enable = true;
-  systemd.services.systemd-networkd-wait-online.enable = false;
-  systemd.services.systemd-networkd.restartIfChanged = false;
-  networking.networkmanager.enable = false;
   
   systemd.network.networks."ethernet".extraConfig = ''
     [Match]
@@ -116,50 +99,10 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    #font = "ter-v32n";
-    keyMap = "de";
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 #  services.xserver.synaptics.enable = true;
-
-  # Mullvad
-  networking.wireguard.enable = true;
-
-  networking.wg-quick = {
-    interfaces = {
-      mullvad = {
-        address = [ "10.67.204.250/32" "fc00:bbbb:bbbb:bb01::4:ccf9/128" ];
-        privateKeyFile = "/home/jan/wg/private";
-        postUp = "systemd-resolve -i mullvad --set-dns=193.138.218.74 --set-domain=~.";
-        peers = [
-          { publicKey = "+30LcSQzgNtB01wyCyh4YPjItVyBFX5TP6Fs47AJSnA=";
-          allowedIPs = [ "0.0.0.0/0" "::0/0" ];
-          endpoint = "de10-wireguard.mullvad.net:51820";
-          persistentKeepalive = 25; }
-        ];
-      };
-      wacken = {
-        address = [ "192.168.32.3/24" ];
-        privateKeyFile = "/home/jan/wg/private";
-        peers = [
-          {
-            publicKey = "QyuTtKOx3qljMd7rMo7zFcs3rW7pU5zhMs+nUC6AnR8=";
-            allowedIPs = [ "192.168.32.0/24" "192.168.1.0/24" "192.168.2.0/24" "192.168.3.0/24" ];
-            endpoint = "wacken.matelab.de:48573";
-            persistentKeepalive = 25; 
-          }
-        ];
-      };
-    };
-  };
-
-  # Do not autostart wg-quick interfaces
-  systemd.services.wg-quick-mullvad.wantedBy = pkgs.lib.mkForce [ ];
-  systemd.services.wg-quick-wacken.wantedBy = pkgs.lib.mkForce [ ];
 
   services.resolved.enable = true;
 
@@ -199,44 +142,22 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jan = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "plugdev" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-  };
 
   users.users.dude = {
+    uid = 1001;
     isNormalUser = true;
     shell = pkgs.zsh;
   };
-
-  users.groups.plugdev = {};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    cryptsetup
-    wireguard
     sof-firmware
-    vim
-    git
-    killall
-    bind.dnsutils
-    tcpdump
-    nmap
     direnv
     (nix-direnv.override { enableFlakes = true; })
-    usbutils
     xboxdrv
   ];
 
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
-
-  environment.pathsToLink = [ "/share/zsh" "/share/nix-direnv" ];
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
@@ -254,9 +175,6 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   # ACPID
   services.acpid = {
     enable = true;
@@ -266,11 +184,6 @@
   # udev
   # Assign plugdev for radi0 users
   services.udev.packages = [ unstable.hackrf ];
-
-  programs.ssh = {
-    startAgent = true;
-    agentTimeout = null;
-  };
 
   #containers.postgres = {
   #  config = { config, pkgs, ... }: {

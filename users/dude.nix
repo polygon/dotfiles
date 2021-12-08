@@ -8,49 +8,18 @@
   home.username = "dude";
   home.homeDirectory = "/home/dude";
 
-  programs.firefox = {
-    enable = true;
-    profiles.myprofile.settings = {
-      "general.smoothScroll" = true;
-    };
-  };
-
-  programs.vim = {
-    enable = true;
-    settings = {
-      expandtab = false;
-      shiftwidth = 2;
-      tabstop = 2;
-    };
-    extraConfig = ''
-set cindent
-set smartindent
-set autoindent
-set foldmethod=syntax
-nmap <F2> zA
-nmap <F3> zR
-nmap <F4> zM
-syntax enable
-    '';
-  };
-
-  programs.zsh = {
-    enable = true;
-    envExtra = ''
-      EDITOR=vim;
-    '';
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "robbyrussell";
-    };
-  };
+  modules.desktop.firefox.enable = true;
+  modules.shell.tmux.enable = true;
+  modules.shell.zsh.enable = true;
+  modules.shell.vim.enable = true;
+  modules.shell.git.enable = true;
 
   home.packages = with pkgs; [
     geeqie
     mplayer
     filezilla
     keepassx
+    nmap
   ];
 
   # This value determines the Home Manager release that your
