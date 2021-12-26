@@ -20,5 +20,7 @@ in
     home.file.".config/awesome/awesome-wm-widgets".source = aww;
     home.file.".config/awesome/json".source = json-lua;
 
+    home.packages = [ pkgs.alsa-utils ];
+
   };
 }

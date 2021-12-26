@@ -11,9 +11,11 @@
       url = "github:polygon/awesome-wm-widgets/poly";
       flake = false;
     };
+    # TODO: Replace with github at some point
+    audio.url = "path:/home/jan/Projects/audio.nix";
   };
 
-  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, ...}:
+  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, ...}:
   fup.lib.mkFlake {
     inherit self inputs;
 
@@ -41,8 +43,8 @@
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.sharedModules = [ ./hmmodules ];
-        home-manager.extraSpecialArgs = { inherit aww self; };
+        home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
+        home-manager.extraSpecialArgs = { inherit aww self audio; };
       }
     ];
 

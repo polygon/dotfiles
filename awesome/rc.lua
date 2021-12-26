@@ -125,7 +125,8 @@ volume = volume_widget{
 	widget_type = 'arc',
 	mute_color = '#a00000',
 	main_color = '#00a000',
-	size = 36
+	size = 36,
+	step = 3
 }
 cpu = cpu_widget{
 	width = 100,

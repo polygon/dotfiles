@@ -1,4 +1,4 @@
-{ self, config, pkgs, unstable, aww, ... }:
+{ self, config, pkgs, unstable, aww, audio, ... }:
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -18,6 +18,8 @@
   modules.desktop.awesome.enable = true;
   modules.desktop.gammastep.enable = true;
   modules.desktop.firefox.enable = true;
+  audio.drumkits.shittyKit.enable = true;
+  audio.vst.rvxx.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -55,6 +57,12 @@
     nixpkgs-review
     flowblade
     blender
+    reaper
+    ripgrep
+    drumgizmo
+    patchage
+    carla
+    nixpkgs-fmt
   ];
 
   # This value determines the Home Manager release that your
