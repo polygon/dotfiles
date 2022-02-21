@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
-    unstable.url = "github:NixOS/nixpkgs";
+    unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +26,7 @@
     };
 
     channels.nixpkgs.overlaysBuilder = channels: [
-      (final: super: {
+      (final: super: {  
 	      geeqie = channels.unstable.geeqie;
   	    blender = channels.unstable.blender;
     	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {

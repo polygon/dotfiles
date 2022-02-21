@@ -10,6 +10,7 @@
 
   programs.chromium.enable = true;
   
+  modules.shell.common.enable = true;
   modules.shell.tmux.enable = true;
   modules.shell.zsh.enable = true;
   modules.shell.vim.enable = true;
@@ -24,7 +25,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Awesome config
-  home.file.".direnvrc".source = "${self}/misc/direnvrc";
+  #home.file.".direnvrc".source = "${self}/misc/direnvrc";
 
   home.packages = with pkgs; [
     hueadm
@@ -34,7 +35,6 @@
     hexchat
     dino
     pavucontrol 
-    nix-index
     steam
     acpi
     owncloud-client
@@ -42,27 +42,25 @@
     xtrlock-pam
     brightnessctl
     gnome3.gnome-tweak-tool
-    wget
     thunderbird
     spotify
     qjackctl
     xlibs.xhost
-    htop
     vscodium
     mplayer
     vlc
-    traceroute
     zeal
     element-desktop
     nixpkgs-review
     flowblade
     blender
     reaper
-    ripgrep
     drumgizmo
     patchage
     carla
     nixpkgs-fmt
+    freecad
+    prusa-slicer
   ];
 
   # This value determines the Home Manager release that your

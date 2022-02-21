@@ -45,9 +45,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_5_15;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+
+  services.fwupd.enable = true;
 
   services.zfs = {
     autoScrub.enable = true;
@@ -215,6 +217,15 @@
         { name = "libpipewire-module-adapter"; }
         { name = "libpipewire-module-link-factory"; }
         { name = "libpipewire-module-session-manager"; }
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            "server.address" = [
+              "unit.native"
+              "tcp:4713"
+            ];
+          };
+        }
       ];
     };
   };

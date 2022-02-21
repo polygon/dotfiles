@@ -16,7 +16,7 @@
 
   home.packages = with pkgs; [
     geeqie
-    mplayer
+    (mplayer.override { pulseSupport = true; })
     filezilla
     keepassx
     nmap
