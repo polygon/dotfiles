@@ -16,7 +16,7 @@
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
-      sof-firmware = unstable.sof-firmware; 
+      #sof-firmware = unstable.sof-firmware; 
       nix-direnv = unstable.nix-direnv;
     } ) 
   ];
@@ -45,7 +45,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
@@ -173,8 +173,8 @@
         "link.max-buffers" = 16;
         "log.level" = 2;
         "default.clock.rate" = 48000;
-        "default.clock.quantum" = 32;
-        "default.clock.min-quantum" = 32;
+        "default.clock.quantum" = 256;
+        "default.clock.min-quantum" = 256;
         "default.clock.max-quantum" = 1024;
         "core.daemon" = true;
         "core.name" = "pipewire-0";
