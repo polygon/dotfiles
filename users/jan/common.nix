@@ -1,7 +1,4 @@
-{ self, config, pkgs, unstable, aww, audio,
-  hi-res ? false,
-  audio-workstation ? false,
-  ...
+{ self, config, pkgs, unstable, aww, audio, ...
 }:
 {
   # Let Home Manager install and manage itself.
@@ -25,9 +22,6 @@
   modules.desktop.firefox.enable = true;
   modules.desktop.gnome-terminal.enable = true;
 
-  audio.drumkits.shittyKit.enable = hi-res;
-  audio.vst.rvxx.enable = hi-res;
-
   nixpkgs.config.allowUnfree = true;
 
   # Awesome config
@@ -41,7 +35,6 @@
     hexchat
     dino
     pavucontrol 
-    steam
     acpi
     owncloud-client
     keepassx2
@@ -59,11 +52,6 @@
     element-desktop
     nixpkgs-review
     flowblade
-    blender
-    reaper
-    drumgizmo
-    patchage
-    carla
     nixpkgs-fmt
     freecad
     prusa-slicer

@@ -54,12 +54,12 @@
       modules = [
         ./systems/nixbrett/nixbrett.nix
 				{
-          home-manager.users.jan = import ./users/jan.nix;
+          home-manager.users.jan = import ./users/jan/nixbrett.nix;
           home-manager.users.dude = import ./users/dude.nix;
         }
       ];
       
-			specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
     
     hosts.travelnix = rec {
@@ -68,7 +68,7 @@
       modules = [
         ./systems/travelnix/travelnix.nix
         {
-          home-manager.users.jan = import ./users/jan.nix;
+          home-manager.users.jan = import ./users/jan/common.nix;
         }
       ];
       
