@@ -5,7 +5,7 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "narHash": "sha256-2uTsubEOknKBnE3lli3aePeLRnv4AxZ3rbx0CNWoG80=",
+        "narHash": "sha256-/iETzbxzP1hx5egz6xQt51KtlUFyCvWJi8mI86yozIM=",
         "path": "/home/jan/Projects/audio.nix",
         "type": "path"
       },

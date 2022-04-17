@@ -1,4 +1,8 @@
-{ self, config, pkgs, unstable, aww, audio, ... }:
+{ self, config, pkgs, unstable, aww, audio,
+  hi-res ? false,
+  audio-workstation ? false,
+  ...
+}:
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -19,8 +23,10 @@
   modules.desktop.awesome.enable = true;
   modules.desktop.gammastep.enable = true;
   modules.desktop.firefox.enable = true;
-  audio.drumkits.shittyKit.enable = true;
-  audio.vst.rvxx.enable = true;
+  modules.desktop.gnome-terminal.enable = true;
+
+  audio.drumkits.shittyKit.enable = hi-res;
+  audio.vst.rvxx.enable = hi-res;
 
   nixpkgs.config.allowUnfree = true;
 
