@@ -16,6 +16,9 @@ in
       profile."b97bc9eb-ec29-4911-8daa-bff94c99278e" = {
         default = true;
         visibleName = "polygon";
+        backspaceBinding = "ascii-delete";
+        deleteBinding = "delete-sequence";
+        font = "Monospace 11";
         colors = {
           backgroundColor = "rgb(0,43,54)";
           foregroundColor = "rgb(131,148,150)";
