@@ -5,13 +5,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "narHash": "sha256-/iETzbxzP1hx5egz6xQt51KtlUFyCvWJi8mI86yozIM=",
-        "path": "/home/jan/Projects/audio.nix",
-        "type": "path"
+        "lastModified": 1651713439,
+        "narHash": "sha256-zvLQoY8AVwkqugGVWrifxx+GGtaiskXsqMG5qde9/hc=",
+        "owner": "polygon",
+        "repo": "audio.nix",
+        "rev": "7182a3da3dc49f3b371cd6837930b9e167d02bcf",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jan/Projects/audio.nix",
-        "type": "path"
+        "owner": "polygon",
+        "repo": "audio.nix",
+        "type": "github"
       }
     },
     "aww": {

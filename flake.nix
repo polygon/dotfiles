@@ -12,7 +12,7 @@
       flake = false;
     };
     # TODO: Replace with github at some point
-    audio.url = "path:/home/jan/Projects/audio.nix";
+    audio.url = "github:polygon/audio.nix";
   };
 
   outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, ...}:
@@ -69,6 +69,19 @@
         ./systems/travelnix/travelnix.nix
         {
           home-manager.users.jan = import ./users/jan/common.nix;
+        }
+      ];
+      
+      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+    };
+    
+    hosts.nixserv = rec {
+      system = "x86_64-linux";
+
+      modules = [
+        ./systems/nixserv/nixserv.nix
+        {
+          home-manager.users.admin = import ./users/admin.nix;
         }
       ];
       
