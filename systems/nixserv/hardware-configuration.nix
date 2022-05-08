@@ -22,6 +22,11 @@
     { device = "ssdpool/nixos/var";
       fsType = "zfs";
     };
+    
+  fileSystems."/nix" =
+    { device = "ssdpool/nixos/nix";
+      fsType = "zfs";
+    };
 
   fileSystems."/var/lib" =
     { device = "ssdpool/nixos/var/lib";
@@ -38,13 +43,8 @@
       fsType = "zfs";
     };
 
-  fileSystems."/nix" =
-    { device = "ssdpool/nix";
-      fsType = "zfs";
-    };
-
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BBAE-4ABF";
+    { device = "/dev/disk/by-uuid/CB47-BE69";
       fsType = "vfat";
     };
 
@@ -64,7 +64,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/c5f29fcc-0ca4-4a58-9b10-6a3365d686f5"; }
+    [ { device = "/dev/disk/by-uuid/940a48b1-4e97-40da-988b-b5b9cc742498"; }
     ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

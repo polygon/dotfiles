@@ -11,30 +11,13 @@ in
   options.modules.systems.client.enable = mkEnableOption "Client Machine";
 
   config = mkIf cfg.enable {
-    time.timeZone = "Europe/Berlin";
+    modules.systems.base.enable = true;
     
-    # Deprecated
-    networking.useDHCP = false;
-    nix = {
-      trustedUsers = [ "jan" ];
-      extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-      experimental-features = nix-command flakes
-      '';
-      package = pkgs.nixUnstable;
-    }; 
+    nix.trustedUsers = [ "jan" ];
 
-    systemd.network.enable = true;
     systemd.services.systemd-networkd-wait-online.enable = false;
     systemd.services.systemd-networkd.restartIfChanged = false;
     networking.networkmanager.enable = false;    
-
-    i18n.defaultLocale = "en_US.UTF-8";
-    console = {
-        #font = "ter-v32n"
-        keyMap = "de";
-    };    
 
     users.users.jan = {
       uid = 1000;
@@ -46,15 +29,6 @@ in
     users.groups.plugdev = {};
 
     environment.systemPackages = with pkgs; [
-      cryptsetup
-      vim
-      git
-      killall
-      bind.dnsutils
-      tcpdump
-      nmap
-      usbutils
-      wget
     ];
 
     fonts.fonts = with pkgs; [
@@ -63,11 +37,6 @@ in
       noto-fonts-emoji
     ];    
 
-    environment.pathsToLink = [ "/share/zsh" "/share/nix-direnv" ]; 
-  
-    # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
-  
     programs.ssh = {
       startAgent = true;
       agentTimeout = null;
