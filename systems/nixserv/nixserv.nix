@@ -61,11 +61,45 @@
     trim.enable = true;
   };
 
-  networking.hostName = "nixserv"; # Define your hostname.
-  networking.domain = "matelab.de";
-  networking.hostId = "744bb91a";
-  networking.interfaces.enp3s0.useDHCP = true;
-  networking.nameservers = [ "192.168.1.1" ];
+  networking = {
+    hostName = "nixserv";
+    domain = "matelab.de";
+    hostId = "744bb91a";
+    interfaces.enp3s0.useDHCP = true;
+    nameservers = [ "192.168.1.1" ];
+
+    vlans = {
+      vlan-lan = { id = 11; interface = "enp3s0"; };
+      vlan-iot = { id = 2; interface = "enp3s0"; };
+      vlan-guest = { id = 4; interface = "enp3s0"; };
+      vlan-server = { id = 3; interface = "enp3s0"; };
+      vlan-vpn = { id = 6; interface = "enp3s0"; };
+    };
+
+    bridges = {
+      br-lan = { interfaces = [ "enp3s0" ]; };
+      br-iot = { interfaces = [ "vlan-iot" ]; };
+      br-guest = { interfaces = [ "vlan-guest" ]; };
+      br-server = { interfaces = [ "vlan-server" ]; };
+      br-vpn = { interfaces = [ "vlan-vpn" ]; };
+    };
+
+    interfaces.br-lan.ipv4.addresses = [{
+      address = "192.168.1.20";
+      prefixLength = 24;
+    }];
+
+    interfaces.br-iot.ipv4.addresses = [{
+      address = "192.168.2.20";
+      prefixLength = 24;
+    }];
+
+    interfaces.br-server.ipv4.addresses = [{
+      address = "192.168.3.20";
+      prefixLength = 24;
+    }];
+
+  };
 
   # Extra user accounts (mainly for NFS)
   users.users.jan = {
