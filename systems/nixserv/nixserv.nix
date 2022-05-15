@@ -83,36 +83,127 @@
     domain = "matelab.de";
     hostId = "744bb91a";
     interfaces.enp3s0.useDHCP = false;
-    nameservers = [ "192.168.1.1" ];
     dhcpcd.enable = false;
-    defaultGateway = "192.168.1.1";
+  };
 
-    vlans = {
-      vlan-lan = { id = 11; interface = "enp3s0"; };
-      vlan-iot = { id = 2; interface = "enp3s0"; };
-      vlan-guest = { id = 4; interface = "enp3s0"; };
-      vlan-server = { id = 3; interface = "enp3s0"; };
-      vlan-vpn = { id = 6; interface = "enp3s0"; };
+  systemd.network = {
+    links."10-phys0" = {
+      matchConfig.MacAddress = "00:11:22:33:44:55";
+      linkConfig.Name = "phys0";
     };
 
-    bridges = {
-      br-lan = { interfaces = [ "vlan-lan" ]; };
-      br-iot = { interfaces = [ "vlan-iot" ]; };
-      br-guest = { interfaces = [ "vlan-guest" ]; };
-      br-server = { interfaces = [ "vlan-server" ]; };
-      br-vpn = { interfaces = [ "vlan-vpn" ]; };
+    netdevs."10-vlan-lan" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-lan";
+      };
+      vlanConfig.Id = 11;
     };
 
-    interfaces.br-lan.ipv4.addresses = [{
-      address = "192.168.1.20";
-      prefixLength = 24;
-    }];
+    netdevs."10-vlan-iot" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-iot";
+      };
+      vlanConfig.Id = 2;
+    };
 
-    interfaces.br-server.ipv4.addresses = [{
-      address = "192.168.3.20";
-      prefixLength = 24;
-    }];
+    netdevs."10-vlan-guest" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-guest";
+      };
+      vlanConfig.Id = 4;
+    };
 
+    netdevs."10-vlan-server" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-server";
+      };
+      vlanConfig.Id = 3;
+    };
+
+    netdevs."10-vlan-vpn" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-vpn";
+      };
+      vlanConfig.Id = 6;
+    };
+
+    netdevs."10-bridge-lan".netdevConfig = {
+      Kind = "bridge";
+      Name = "br-lan";
+    };
+
+    netdevs."10-bridge-iot".netdevConfig = {
+      Kind = "bridge";
+      Name = "br-iot";
+    };
+    
+    netdevs."10-bridge-guest".netdevConfig = {
+      Kind = "bridge";
+      Name = "br-guest";
+    };
+    
+    netdevs."10-bridge-server".netdevConfig = {
+      Kind = "bridge";
+      Name = "br-server";
+    };
+    
+    netdevs."10-bridge-vpn".netdevConfig = {
+      Kind = "bridge";
+      Name = "br-vpn";
+    };
+
+    networks."20-vlan-to-phys" = {
+      matchConfig.Name = "phys0";
+      networkConfig.VLAN = [ "vlan-lan" "vlan-iot" "vlan-guest" "vlan-server" "vlan-vpn" ];
+    };
+
+    networks."20-vlan-br-lan" = {
+      matchConfig.Name = "vlan-lan";
+      networkConfig.Bridge = "br-lan";
+    };
+
+    networks."20-vlan-br-iot" = {
+      matchConfig.Name = "vlan-iot";
+      networkConfig.Bridge = "br-iot";
+    };
+
+    networks."20-vlan-br-guest" = {
+      matchConfig.Name = "vlan-guest";
+      networkConfig.Bridge = "br-guest";
+    };
+
+    networks."20-vlan-br-server" = {
+      matchConfig.Name = "vlan-server";
+      networkConfig.Bridge = "br-server";
+    };
+
+    networks."20-vlan-br-vpn" = {
+      matchConfig.Name = "vlan-vpn";
+      networkConfig.Bridge = "br-vpn";
+    };
+
+    networks."30-br-lan" = {
+      matchConfig.Name = "br-lan";
+      addresses = [ { 
+        addressConfig.Address = "192.168.1.20/24";
+      } ];
+      networkConfig = {
+        Gateway = "192.168.1.1";
+        DNS = "192.168.1.1";
+      };
+    };
+
+    networks."30-br-server" = {
+      matchConfig.Name = "br-server";
+      addresses = [ { 
+        addressConfig.Address = "192.168.4.20/24";
+      } ];
+    };
   };
 
   # Extra user accounts (mainly for NFS)
