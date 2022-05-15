@@ -83,9 +83,12 @@
     domain = "matelab.de";
     hostId = "744bb91a";
     dhcpcd.enable = false;
+    useNetworkd = true;
   };
 
+  systemd.services.systemd-networkd-wait-online.enable = false;
   systemd.network = {
+    enable = true;
 
     # Rename our main network interface to "phys0"
     links."10-phys0" = {
