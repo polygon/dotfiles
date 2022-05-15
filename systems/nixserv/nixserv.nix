@@ -42,8 +42,8 @@
     };
     postCommands = ''
       echo "Bring up network on VLAN 11"
-      ip link set enp3s0 up
-      ip link add link enp3s0 name vlan-lan-boot type vlan id 11
+      ip link set phys0 up
+      ip link add link phys0 name vlan-lan-boot type vlan id 11
       ip link set vlan-lan-boot up
       ip a a 192.168.1.20/24 dev vlan-lan-boot
       ip r a 0/0 via 192.168.1.1
@@ -66,8 +66,8 @@
     ip a flush vlan-lan-boot
     ip link set vlan-lan-boot down
     ip link del vlan-lan-boot
-    ip a flush enp3s0
-    ip link set enp3s0 down
+    ip a flush phys0
+    ip link set phys0 down
   '';
 
   services.fwupd.enable = true;
@@ -82,16 +82,18 @@
     hostName = "nixserv";
     domain = "matelab.de";
     hostId = "744bb91a";
-    interfaces.enp3s0.useDHCP = false;
     dhcpcd.enable = false;
   };
 
   systemd.network = {
+
+    # Rename our main network interface to "phys0"
     links."10-phys0" = {
-      matchConfig.MacAddress = "00:11:22:33:44:55";
+      matchConfig.PermanentMACAddress = "d8:5e:d3:a5:c7:37";
       linkConfig.Name = "phys0";
     };
 
+    # Create VLAN devices
     netdevs."10-vlan-lan" = {
       netdevConfig = {
         Kind = "vlan";
@@ -132,6 +134,7 @@
       vlanConfig.Id = 6;
     };
 
+    # Create bridges
     netdevs."10-bridge-lan".netdevConfig = {
       Kind = "bridge";
       Name = "br-lan";
@@ -157,11 +160,13 @@
       Name = "br-vpn";
     };
 
+    # Assign VLANs to physical ethernet device
     networks."20-vlan-to-phys" = {
       matchConfig.Name = "phys0";
       networkConfig.VLAN = [ "vlan-lan" "vlan-iot" "vlan-guest" "vlan-server" "vlan-vpn" ];
     };
 
+    # Put VLAN devices into bridges
     networks."20-vlan-br-lan" = {
       matchConfig.Name = "vlan-lan";
       networkConfig.Bridge = "br-lan";
@@ -187,6 +192,7 @@
       networkConfig.Bridge = "br-vpn";
     };
 
+    # Configure bridges for networks that we want the host to have access to
     networks."30-br-lan" = {
       matchConfig.Name = "br-lan";
       addresses = [ { 
@@ -201,9 +207,15 @@
     networks."30-br-server" = {
       matchConfig.Name = "br-server";
       addresses = [ { 
-        addressConfig.Address = "192.168.4.20/24";
+        addressConfig.Address = "192.168.3.20/24";
       } ];
     };
+
+    # Configure other bridges without addresses to get them up
+    networks."30-br-guest".matchConfig.Name = "br-guest";
+    networks."30-br-iot".matchConfig.Name = "br-iot";
+    networks."30-br-vpn".matchConfig.Name = "br-vpn";
+
   };
 
   # Extra user accounts (mainly for NFS)
