@@ -11,11 +11,15 @@
       url = "github:polygon/awesome-wm-widgets/poly";
       flake = false;
     };
-    # TODO: Replace with github at some point
     audio.url = "github:polygon/audio.nix";
+    microvm = {
+      url = "github:astro/microvm.nix";
+      #url = "path:/home/admin/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, ...}:
+  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, ...}:
   fup.lib.mkFlake {
     inherit self inputs;
 
@@ -28,7 +32,8 @@
     channels.nixpkgs.overlaysBuilder = channels: [
       (final: super: {  
 	      geeqie = channels.unstable.geeqie;
-  	    blender = channels.unstable.blender;
+        blender = channels.unstable.blender;
+        cloud-hypervisor = channels.unstable.cloud-hypervisor;
     	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
       	  patches = (old.patches or []) ++ [
         	  ./zsh/0001-poly-prompt.patch
@@ -80,6 +85,7 @@
 
       modules = [
         ./systems/nixserv/nixserv.nix
+        microvm.nixosModules.host
         {
           home-manager.users.admin = import ./users/admin.nix;
         }
@@ -87,6 +93,22 @@
       
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
+
+    hosts.playground = rec {
+      system = "x86_64-linux";
+
+      modules = [
+        microvm.nixosModules.microvm
+        ./systems/microvms/playground
+      ];
+      
+      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+    };
+
+    outputsBuilder = channels: {
+      packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
+    };
+
   };
 }
 

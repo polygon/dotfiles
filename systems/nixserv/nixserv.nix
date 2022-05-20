@@ -219,6 +219,31 @@
     networks."30-br-iot".matchConfig.Name = "br-iot";
     networks."30-br-vpn".matchConfig.Name = "br-vpn";
 
+    networks."40-vm-br-lan" = {
+      matchConfig.Name = "vm-lan-*";
+      networkConfig.Bridge = "br-lan";
+    };
+
+    networks."40.vm-br-server" = {
+      matchConfig.Name = "vm-srv-*";
+      networkConfig.Bridge = "br-server";
+    };
+
+    networks."40.vm-br-guest" = {
+      matchConfig.Name = "vm-gst-*";
+      networkConfig.Bridge = "br-guest";
+    };
+
+    networks."40.vm-br-iot" = {
+      matchConfig.Name = "vm-iot-*";
+      networkConfig.Bridge = "br-iot";
+    };
+
+    networks."40.vm-br-vpn" = {
+      matchConfig.Name = "vm-vpn-*";
+      networkConfig.Bridge = "br-vpn";
+    };
+
   };
 
   # Extra user accounts (mainly for NFS)
