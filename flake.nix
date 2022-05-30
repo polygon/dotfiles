@@ -101,6 +101,21 @@
         microvm.nixosModules.microvm
         ./systems/microvms/playground
       ];
+
+      channelName = "unstable";
+      
+      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+    };
+
+    hosts.paperless = rec {
+      system = "x86_64-linux";
+
+      modules = [
+        microvm.nixosModules.microvm
+        ./systems/microvms/paperless
+      ];
+
+      channelName = "unstable";
       
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };

@@ -12,6 +12,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nginx.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -273,7 +274,7 @@
 
   # NFS
   services.nfs.server.enable = true;
-  networking.firewall.allowedTCPPorts = [ 2049 ];
+  networking.firewall.allowedTCPPorts = [ 2049 80 ];
 
   environment.systemPackages = with pkgs; [
   ];

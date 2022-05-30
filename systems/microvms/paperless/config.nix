@@ -19,9 +19,9 @@
     enable = true;
     # Configure bridges for networks that we want the host to have access to
     networks."lan" = {
-      matchConfig.MACAddress = "ba:da:55:00:00:00";
+      matchConfig.MACAddress = "ba:da:55:01:00:00";
       addresses = [ { 
-        addressConfig.Address = "192.168.1.21/24";
+        addressConfig.Address = "192.168.1.22/24";
       } ];
       networkConfig = {
         Gateway = "192.168.1.1";
@@ -29,16 +29,27 @@
       };
     };
     networks."server" = {
-      matchConfig.MACAddress = "ba:da:55:00:00:01";
+      matchConfig.MACAddress = "ba:da:55:01:00:01";
       addresses = [ { 
-        addressConfig.Address = "192.168.3.21/24";
+        addressConfig.Address = "192.168.3.22/24";
       } ];
     };
   };
 
   services.resolved.enable = true;
+  services.paperless.address = "192.168.3.22";
+  services.paperless.enable = true;
+  services.paperless.extraConfig = {
+    PAPERLESS_FILENAME_FORMAT = "{created_year}/{correspondent}/{created_month}-{created_day}-{title}-{asn}";
+    PAPERLESS_OCR_LANGUAGE = "deu+eng";
+    PAPERLESS_OCR_MODE = "skip";
+    PAPERLESS_OCR_CLEAN = "clean";
+    PAPERLESS_TASK_WORKERS = 2;
+    PAPERLESS_THREADS_PER_WORKER = 2;
+    PAPERLESS_TIME_ZONE = "Europe/Berlin";
+  };
 
-  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedTCPPorts = [ 28981 ];
 
   environment.systemPackages = with pkgs; [
     ripgrep

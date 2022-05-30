@@ -4,40 +4,47 @@
   #  kernel = pkgs.linuxPackages_latest.callPackage ../custom-kernel.nix {};
   #}));
   microvm.hypervisor = "qemu";
-  microvm.vcpu = 1;
-  microvm.mem = 512;
+  microvm.vcpu = 4;
+  microvm.mem = 2048;
   microvm.interfaces = [
     {
       type = "tap";
-      id = "vm-lan-playgrnd";
-      mac = "ba:da:55:00:00:00";
+      id = "vm-lan-paprless";
+      mac = "ba:da:55:01:00:00";
     } 
     {
       type = "tap";
-      id = "vm-srv-playgrnd";
-      mac = "ba:da:55:00:00:01";
+      id = "vm-srv-paprless";
+      mac = "ba:da:55:01:00:01";
     } 
   ];
   microvm.shares = [ 
     {
       tag = "etc";
       socket = "etc.socket";
-      source = "/vms/playground/etc";
+      source = "/vms/paperless/etc";
       mountPoint = "/etc";
       proto = "virtiofs";
     } 
     {
       tag = "var";
       socket = "var.socket";
-      source = "/vms/playground/var";
+      source = "/vms/paperless/var";
       mountPoint = "/var";
       proto = "virtiofs";
     } 
     {
       tag = "home";
       socket = "home.socket";
-      source = "/vms/playground/home";
+      source = "/vms/paperless/home";
       mountPoint = "/home";
+      proto = "virtiofs";
+    } 
+    {
+      tag = "data";
+      socket = "data.socket";
+      source = "/vms/paperless/data";
+      mountPoint = "/var/lib/paperless";
       proto = "virtiofs";
     } 
     {
