@@ -88,6 +88,15 @@
     UseDomains = true
   '';
 
+  systemd.network.networks."wacken".extraConfig = ''
+    [Match]
+    Name = wacken
+
+    [Network]
+    DNS = 192.168.1.1
+    Domains = ~matelab.de
+  '';
+
   services.blueman.enable = true;
 
   services.printing.enable = true;
