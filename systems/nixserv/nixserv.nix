@@ -13,6 +13,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nginx.nix
+      ./acme.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -274,10 +275,12 @@
 
   # NFS
   services.nfs.server.enable = true;
-  networking.firewall.allowedTCPPorts = [ 2049 80 ];
+  networking.firewall.allowedTCPPorts = [ 2049 ];
 
   environment.systemPackages = with pkgs; [
   ];
+
+  security.dhparams.stateful = true;
 
 
   # This value determines the NixOS release from which the default
