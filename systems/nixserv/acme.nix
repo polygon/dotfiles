@@ -3,7 +3,7 @@
   security.acme = {
     acceptTerms = true;
     preliminarySelfsigned = false;
-    email = "polygon@wh2.tu-dresden.de";
+    defaults.email = "polygon@wh2.tu-dresden.de";
     certs."matelab.de" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
