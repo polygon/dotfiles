@@ -19,6 +19,34 @@
     };
   };
 
+  services.nginx.virtualHosts."hab.matelab.de" = {
+    useACMEHost = "matelab.de";
+    forceSSL = true;
+
+    locations."/log/" = {
+      proxyPass = "http://192.168.3.10:9001";
+      proxyWebsockets = true;
+    };
+
+    locations."/red/" = {
+      proxyPass = "http://192.168.3.10:1880/";
+      proxyWebsockets = true;
+    };
+
+    locations."/" = {
+      proxyPass = "http://192.168.3.10:8080";
+    };
+  };
+
+  services.nginx.virtualHosts."grafana.matelab.de" = {
+    useACMEHost = "matelab.de";
+    forceSSL = true;
+
+    locations."/" = {
+      proxyPass = "http://192.168.3.12:3000";
+    };
+  };
+
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];
 
