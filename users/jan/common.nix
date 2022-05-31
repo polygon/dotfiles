@@ -40,11 +40,11 @@
     keepassx2
     xtrlock-pam
     brightnessctl
-    gnome3.gnome-tweak-tool
+    gnome.gnome-tweaks
     thunderbird
     spotify
     qjackctl
-    xlibs.xhost
+    xorg.xhost
     vscodium
     mplayer
     vlc

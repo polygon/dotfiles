@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -33,7 +33,6 @@
       (final: super: {  
 	      geeqie = channels.unstable.geeqie;
         blender = channels.unstable.blender;
-        cloud-hypervisor = channels.unstable.cloud-hypervisor;
     	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
       	  patches = (old.patches or []) ++ [
         	  ./zsh/0001-poly-prompt.patch
@@ -102,8 +101,6 @@
         ./systems/microvms/playground
       ];
 
-      channelName = "unstable";
-      
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
@@ -115,8 +112,6 @@
         ./systems/microvms/paperless
       ];
 
-      channelName = "unstable";
-      
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
