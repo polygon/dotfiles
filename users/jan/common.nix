@@ -55,6 +55,8 @@
     nixpkgs-fmt
     freecad
     prusa-slicer
+    imagemagick6
+    xfce.thunar
   ];
 
   # This value determines the Home Manager release that your
