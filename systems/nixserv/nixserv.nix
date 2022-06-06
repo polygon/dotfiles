@@ -15,6 +15,7 @@
       ./nginx.nix
       ./acme.nix
       ./postgres.nix
+      ./influxdb.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

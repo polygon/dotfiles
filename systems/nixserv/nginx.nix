@@ -51,6 +51,17 @@
       proxyPass = "http://192.168.3.12:3000";
     };
   };
+  
+  services.nginx.virtualHosts."redabas.matelab.de" = {
+    useACMEHost = "matelab.de";
+    forceSSL = true;
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8086";
+      proxyWebsockets = true;
+    };
+  };
+
 
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];
