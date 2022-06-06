@@ -14,6 +14,7 @@
       ./hardware-configuration.nix
       ./nginx.nix
       ./acme.nix
+      ./postgres.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

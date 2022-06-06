@@ -47,6 +47,8 @@
     PAPERLESS_TASK_WORKERS = 1;
     PAPERLESS_THREADS_PER_WORKER = 1;
     PAPERLESS_TIME_ZONE = "Europe/Berlin";
+    PAPERLESS_DBHOST = "192.168.3.20";
+    PAPERLESS_DATE_ORDER = "DMY";
   };
 
   networking.firewall.allowedTCPPorts = [ 28981 ];
