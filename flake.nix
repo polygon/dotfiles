@@ -93,7 +93,7 @@
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
-    hosts.playground = rec {
+    hosts.playground = (rec {
       system = "x86_64-linux";
 
       modules = [
@@ -102,6 +102,8 @@
       ];
 
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+    }).extendModules {
+      modules = [ ];
     };
 
     hosts.paperless = rec {
@@ -110,6 +112,17 @@
       modules = [
         microvm.nixosModules.microvm
         ./systems/microvms/paperless
+      ];
+
+      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+    };
+
+    hosts.hal = rec {
+      system = "x86_64-linux";
+
+      modules = [
+        microvm.nixosModules.microvm
+        ./systems/microvms/hal
       ];
 
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };

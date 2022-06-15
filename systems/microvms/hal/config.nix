@@ -19,9 +19,9 @@
     enable = true;
     # Configure bridges for networks that we want the host to have access to
     networks."lan" = {
-      matchConfig.MACAddress = "ba:da:55:00:00:00";
+      matchConfig.MACAddress = "ba:da:55:02:00:00";
       addresses = [ { 
-        addressConfig.Address = "192.168.1.21/24";
+        addressConfig.Address = "192.168.1.23/24";
       } ];
       networkConfig = {
         Gateway = "192.168.1.1";
@@ -29,9 +29,15 @@
       };
     };
     networks."server" = {
-      matchConfig.MACAddress = "ba:da:55:00:00:01";
+      matchConfig.MACAddress = "ba:da:55:02:00:01";
       addresses = [ { 
-        addressConfig.Address = "192.168.3.21/24";
+        addressConfig.Address = "192.168.3.23/24";
+      } ];
+    };
+    networks."iot" = {
+      matchConfig.MACAddress = "ba:da:55:02:00:02";
+      addresses = [ { 
+        addressConfig.Address = "192.168.2.23/24";
       } ];
     };
   };
@@ -45,23 +51,6 @@
   ];
 
   environment.noXlibs = false;
-
-  services.mosquitto = {
-    enable = true;
-    listeners = [
-      {
-        address = "127.0.0.1";
-      }
-    ];
-
-    bridges.pi = {
-      addresses = [ { address = "127.0.0.2"; } ];
-      topics = [ "plugs/# in" "tasmota/# in" ];
-      settings = {
-        remote_password = "GEH HEIM";
-      };
-    };
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
