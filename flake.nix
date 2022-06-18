@@ -93,7 +93,7 @@
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
-    hosts.playground = (rec {
+    hosts.playground = rec {
       system = "x86_64-linux";
 
       modules = [
@@ -102,8 +102,6 @@
       ];
 
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    }).extendModules {
-      modules = [ ];
     };
 
     hosts.paperless = rec {

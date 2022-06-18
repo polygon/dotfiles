@@ -44,6 +44,9 @@ in
       wget
       tmux
       direnv
+      sops
+      rage
+      ssh-to-age
     ];
 
     environment.pathsToLink = [ "/share/zsh" "/share/nix-direnv" ]; 
