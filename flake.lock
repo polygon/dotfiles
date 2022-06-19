@@ -140,6 +140,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-21_11": {
+      "locked": {
+        "lastModified": 1654346688,
+        "narHash": "sha256-Y7QtZkfdxTvACCvWmDjpN6qOf4OKkZATufHcJP2VMKM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2de556c4cd46a59e8ce2f85ee4dd400983213d45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-22_05": {
+      "locked": {
+        "lastModified": 1654373220,
+        "narHash": "sha256-3vKFnZz2oYHo4YcelaNOhO4XQ2jiIEXrp1s4w+e773c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d6cb04299ce8964290ae7fdcb87aa50da0500b5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1655200170,
@@ -164,7 +196,70 @@
         "home-manager": "home-manager",
         "microvm": "microvm",
         "nixpkgs": "nixpkgs_2",
+        "scalpel": "scalpel",
+        "secrets": "secrets",
+        "sops-nix": "sops-nix",
         "unstable": "unstable"
+      }
+    },
+    "scalpel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "sops-nix": [
+          "sops-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655566736,
+        "narHash": "sha256-Vyolf8j7QcAHyVTQMqS8EGYZ/P6leJtiVNhYyIxoMRw=",
+        "owner": "polygon",
+        "repo": "scalpel",
+        "rev": "16c2103d613bb1c7adc6dbf2a17c2980ce08567f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "polygon",
+        "repo": "scalpel",
+        "type": "github"
+      }
+    },
+    "secrets": {
+      "locked": {
+        "lastModified": 1655639798,
+        "narHash": "sha256-Xordxm9oLeQs/4xH0U6nwdashANouB4o3Yaj/vFOd/M=",
+        "ref": "refs/heads/main",
+        "rev": "7a8323cfebd18213c6c78bbcb3a921ff547eeae0",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/polygon/secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/polygon/secrets.git"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-21_11": "nixpkgs-21_11",
+        "nixpkgs-22_05": "nixpkgs-22_05"
+      },
+      "locked": {
+        "lastModified": 1654401128,
+        "narHash": "sha256-uCdQ2fzIPGakHw2TkvOncUvCl7Fo7z/vagpDWYooO7s=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "f075361ecbde21535b38e41dfaa28a28f160855c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "unstable": {

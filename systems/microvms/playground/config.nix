@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, unstable, secrets, ... }:
 {
   # == Module Configuration ==
 
@@ -50,18 +50,31 @@
     enable = true;
     listeners = [
       {
-        address = "127.0.0.1";
+        address = "0.0.0.0";
+        users."user" = {
+          passwordFile = config.sops.secrets.user.path;
+          acl = [
+            "readwrite #"
+          ];
+        };
       }
     ];
 
     bridges.pi = {
-      addresses = [ { address = "127.0.0.2"; } ];
+      addresses = [ { address = "192.168.3.10"; } ];
       topics = [ "plugs/# in" "tasmota/# in" ];
       settings = {
-        remote_password = "GEH HEIM";
+        remote_username = "openhabian";
+        remote_password = "!!MQTTBRIDGEPWD!!";
       };
     };
   };
+
+  sops.defaultSopsFile = "${secrets}/hosts/playground/secret.yaml";
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.gnupg.sshKeyPaths = [ ];
+  sops.secrets.mqttbridge = { };
+  sops.secrets.user = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
