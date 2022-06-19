@@ -116,17 +116,6 @@
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
-    hosts.paperless = rec {
-      system = "x86_64-linux";
-
-      modules = [
-        microvm.nixosModules.microvm
-        ./systems/microvms/paperless
-      ];
-
-      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    };
-
     outputsBuilder = channels: {
       packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
     };
@@ -196,6 +185,26 @@
         ];
         specialArgs = { prev = base; };
       };
+
+      paperless = let
+        base = nixosSystem' rec {
+          system = "x86_64-linux";
+
+          modules = [
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.sops
+            ./systems/microvms/paperless
+          ];
+        };
+      in
+      base.extendModules {
+        modules = [
+          scalpel.nixosModules.scalpel
+          ./systems/microvms/paperless/scalpel.nix
+        ];
+        specialArgs = { prev = base; };
+      };
+
     };
   };
 }

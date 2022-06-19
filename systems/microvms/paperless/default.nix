@@ -1,3 +1,3 @@
 { 
-    imports = [ ./microvm.nix ./config.nix ];
+    imports = [ ./microvm.nix ./config.nix ./paperless.nix ./secrets.nix ];
 }
