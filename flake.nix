@@ -127,17 +127,6 @@
       specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
     };
 
-    hosts.hal = rec {
-      system = "x86_64-linux";
-
-      modules = [
-        microvm.nixosModules.microvm
-        ./systems/microvms/hal
-      ];
-
-      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    };
-
     outputsBuilder = channels: {
       packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
     };
@@ -185,6 +174,25 @@
         modules = [
           scalpel.nixosModules.scalpel
           ./systems/microvms/playground/scalpel.nix
+        ];
+        specialArgs = { prev = base; };
+      };
+
+      hal = let
+        base = nixosSystem' rec {
+          system = "x86_64-linux";
+
+          modules = [
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.sops
+            ./systems/microvms/hal
+          ];
+        };
+      in
+      base.extendModules {
+        modules = [
+          scalpel.nixosModules.scalpel
+          ./systems/microvms/hal/scalpel.nix
         ];
         specialArgs = { prev = base; };
       };

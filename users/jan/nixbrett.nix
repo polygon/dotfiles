@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     steam
+    steam-run
     blender
     reaper
     drumgizmo
