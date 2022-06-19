@@ -2,7 +2,7 @@
 let
   new_env = env: (builtins.removeAttrs env ["PAPERLESS_DBPASS"]);
   preStart = "${prev.config.systemd.services.paperless-scheduler.preStart}";
-  manage = builtins.head (builtins.match ".*ln -sf ([^[:space:]]+).*" "${builtins.trace preStart preStart}");
+  manage = builtins.head (builtins.match ".*ln -sf ([^[:space:]]+).*" "${preStart}");
 in
 {
   systemd.services.paperless-scheduler.environment = lib.mkForce (new_env prev.config.systemd.services.paperless-scheduler.environment);
@@ -22,6 +22,6 @@ in
     matchers."PAPERLESS_DBPASS".secret = config.sops.secrets.paperless-dbpass.path;
     owner = "paperless";
     group = "paperless";
-    mode = "0440";
+    mode = "0550";
   };
 }
