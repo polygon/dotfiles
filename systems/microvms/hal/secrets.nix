@@ -11,9 +11,9 @@
     };
   in
   {
-    mosquitto-users-admin = { };
-    mosquitto-users-plugs = { };
-    mosquitto-bridge-pi-username = permissions;
-    mosquitto-bridge-pi-password = permissions;
+    mosquitto-users-admin = permissions;
+    mosquitto-users-plugs = permissions;
+    mosquitto-bridge-pi-username = { };
+    mosquitto-bridge-pi-password = { };
   };
 }
