@@ -9,7 +9,7 @@
   home.username = "jan";
   home.homeDirectory = "/home/jan";
 
-  programs.chromium.enable = true;
+  #programs.chromium.enable = true;
   
   modules.shell.common.enable = true;
   modules.shell.tmux.enable = true;

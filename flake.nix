@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
-    unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +13,7 @@
     };
     audio.url = "github:polygon/audio.nix";
     microvm = {
-      url = "github:astro/microvm.nix";
+      url = "github:astro/microvm.nix/v0.2.2";
       #url = "path:/home/admin/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
