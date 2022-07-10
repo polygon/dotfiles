@@ -1,3 +1,9 @@
 { 
-    imports = [ ./microvm.nix ./config.nix ./mqtt.nix ./secrets.nix ];
+    imports = [ 
+        ./microvm.nix 
+        ./config.nix 
+        ./mqtt.nix 
+        ./secrets.nix
+        ./mqtt2psql.nix
+    ];
 }
