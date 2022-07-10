@@ -15,5 +15,7 @@
     mosquitto-users-plugs = permissions;
     mosquitto-bridge-pi-username = { };
     mosquitto-bridge-pi-password = { };
+    mqtt2psql-mqtt-pass = { };
+    mqtt2psql-psql-pass = { };
   };
 }

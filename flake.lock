@@ -133,11 +133,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657455703,
-        "narHash": "sha256-LpW4L+Kd8nEH2Ny5jGkrPxn2VNPUEBuelBX5UXkpp7A=",
+        "lastModified": 1657464366,
+        "narHash": "sha256-MIXD8sKDAobgHtCnD6AOJfTEqgdrvRonepFuBg2mDeQ=",
         "owner": "polygon",
         "repo": "mqtt2psql",
-        "rev": "231f6de0b8ef8511de36787ff0b2592f7db40346",
+        "rev": "c686fbc7869544c1d9dd31b8f0bc42234542a3f8",
         "type": "github"
       },
       "original": {
@@ -233,11 +233,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1655680382,
-        "narHash": "sha256-BS6GegZXezETT9S+5AQPOjujOwQAS3tqycigRVpzRIk=",
+        "lastModified": 1657467352,
+        "narHash": "sha256-Ym0EhTcO8xSHw7z71bEuC7G+ur8KSJYzAG7wZiVdYgY=",
         "ref": "refs/heads/main",
-        "rev": "06468769c299edca71e94be4712409a32d0ad226",
-        "revCount": 6,
+        "rev": "dbbf1425a4fd45b052ca409ed6b9a2483cfb71e8",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/polygon/secrets.git"
       },
