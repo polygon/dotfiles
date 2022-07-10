@@ -27,9 +27,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.sops-nix.follows = "sops-nix";
     };
+    mqtt2psql = {
+      url = "github:polygon/mqtt2psql";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, ...}:
+  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, ...}:
   fup.lib.mkFlake {
     inherit self inputs;
 
@@ -176,6 +180,7 @@
             sops-nix.nixosModules.sops
             ./systems/microvms/hal
           ];
+          specialArgs = { inherit mqtt2psql; };
         };
       in
       base.extendModules {
