@@ -12,6 +12,9 @@
         };
         message_param_name = "message";
         title_param_name = "title";
+        data = {
+          priority = 5;
+        };
       }
     ];
   };
