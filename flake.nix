@@ -186,7 +186,7 @@
       base.extendModules {
         modules = [
           scalpel.nixosModules.scalpel
-          ./systems/microvms/hal/scalpel.nix
+          ./systems/microvms/hal/scalpel
         ];
         specialArgs = { prev = base; };
       };

@@ -9,16 +9,18 @@
       timescaledb
     ];
     settings = {
-      listen_addresses = pkgs.lib.mkForce "localhost,192.168.3.20";
+      listen_addresses = pkgs.lib.mkForce "localhost,192.168.3.20,192.168.1.20";
       shared_preload_libraries = "timescaledb";
     };
     authentication = ''
       host  all all 192.168.3.0/24 md5
+      host  all all 192.168.1.0/24 md5
     '';
 
     ensureDatabases = [
       "paperless"
       "iot"
+      "hass"
     ];
 
     ensureUsers = [
@@ -32,6 +34,12 @@
         name = "iot";
         ensurePermissions = {
           "DATABASE \"iot\"" = "ALL PRIVILEGES";
+        };
+      }
+      {
+        name = "hass";
+        ensurePermissions = {
+          "DATABASE \"hass\"" = "ALL PRIVILEGES";
         };
       }
     ];

@@ -11,10 +11,18 @@
             "readwrite #"
           ];
         };
+        users."hass" = {
+          passwordFile = config.sops.secrets.mosquitto-users-hass.path;
+          acl = [
+            "readwrite #"
+          ];
+        };
         users."plugs" = {
           passwordFile = config.sops.secrets.mosquitto-users-plugs.path;
           acl = [
-            "readwrite plugs/#"
+            "readwrite tele/#"
+            "readwrite cmnd/#"
+            "readwrite stat/#"
             "readwrite tasmota/#"
           ];
         };

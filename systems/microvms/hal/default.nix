@@ -5,5 +5,6 @@
         ./mqtt.nix 
         ./secrets.nix
         ./mqtt2psql.nix
+        ./hass
     ];
 }
