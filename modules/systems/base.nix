@@ -47,6 +47,7 @@ in
       sops
       rage
       ssh-to-age
+      pwgen
     ];
 
     environment.pathsToLink = [ "/share/zsh" "/share/nix-direnv" ]; 
