@@ -29,6 +29,7 @@ in
     users.groups.plugdev = {};
 
     environment.systemPackages = with pkgs; [
+      gnupg
     ];
 
     fonts.fonts = with pkgs; [
