@@ -57,6 +57,8 @@
     prusa-slicer
     imagemagick6
     xfce.thunar
+    ncdu
+    clementine
   ];
 
   # This value determines the Home Manager release that your
