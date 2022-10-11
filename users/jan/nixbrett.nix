@@ -14,5 +14,7 @@
     drumgizmo
     patchage
     carla
+    stellarium
+    siril
   ];
 }

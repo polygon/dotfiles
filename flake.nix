@@ -47,6 +47,7 @@
       (final: super: {  
 	      geeqie = channels.unstable.geeqie;
         blender = channels.unstable.blender;
+        siril = channels.unstable.siril;
     	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
       	  patches = (old.patches or []) ++ [
         	  ./zsh/0001-poly-prompt.patch
