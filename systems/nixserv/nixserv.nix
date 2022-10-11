@@ -287,6 +287,7 @@
   # MicroVMs to autostart
   microvm.autostart = [
     "paperless"
+    "hal"
   ];
 
 

@@ -17,6 +17,7 @@
       tasmota = {};
       backup = {};
       rest = {};
+      sun = {};
       recorder.db_url = "postgresql://hass:!!HASS_DBPASS!!@192.168.3.20/hass";
       http = {
         server_host = "192.168.3.23";

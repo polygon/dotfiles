@@ -38,39 +38,11 @@
 
   services.resolved.enable = true;
 
-  networking.firewall.allowedTCPPorts = [ ];
-
   environment.systemPackages = with pkgs; [
     ripgrep
   ];
 
   environment.noXlibs = false;
-
-  services.mosquitto = {
-    enable = true;
-    listeners = [
-      {
-        address = "0.0.0.0";
-        users."user" = {
-          passwordFile = config.sops.secrets.user.path;
-          acl = [
-            "readwrite #"
-          ];
-        };
-      }
-    ];
-
-    bridges.pi = {
-      addresses = [ { address = "192.168.3.10"; } ];
-      topics = [ "plugs/# in" "tasmota/# in" ];
-      settings = {
-        remote_username = "openhabian";
-        remote_password = "!!MQTTBRIDGEPWD!!";
-      };
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [ 1883 ];
 
   sops.defaultSopsFile = "${secrets}/hosts/playground/secret.yaml";
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
