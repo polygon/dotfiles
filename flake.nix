@@ -33,185 +33,193 @@
     };
   };
 
-  outputs = inputs@{self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, ...}:
-  fup.lib.mkFlake {
-    inherit self inputs;
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, ... }:
+    fup.lib.mkFlake {
+      inherit self inputs;
 
-    supportedSystems = [ "x86_64-linux" ];
+      supportedSystems = [ "x86_64-linux" ];
 
-    channelsConfig = {
-      allowUnfree = true;
-    };
+      channelsConfig = {
+        allowUnfree = true;
+      };
 
-    channels.nixpkgs.overlaysBuilder = channels: [
-      (final: super: {  
-	      geeqie = channels.unstable.geeqie;
-        blender = channels.unstable.blender;
-        siril = channels.unstable.siril;
-    	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
-      	  patches = (old.patches or []) ++ [
-        	  ./zsh/0001-poly-prompt.patch
-        	];
-      	});
-			})
-    ];
-
-    overlay = let 
-      pkgsunstable = unstable.legacyPackages.x86_64-linux;
-    in
-    (final: super: {  
-	      geeqie = pkgsunstable.geeqie;
-        blender = pkgsunstable.blender;
-    	  zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
-      	  patches = (old.patches or []) ++ [
-        	  ./zsh/0001-poly-prompt.patch
-        	];
-      	});
-			});
-
-    hostDefaults.modules = [
-      ./modules
-
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
-        home-manager.extraSpecialArgs = { inherit aww self audio; };
-      }
-    ];
-
-    hosts.nixbrett = rec {
-      system = "x86_64-linux";
-
-      modules = [
-        ./systems/nixbrett/nixbrett.nix
-				{
-          home-manager.users.jan = import ./users/jan/nixbrett.nix;
-          home-manager.users.dude = import ./users/dude.nix;
-        }
+      channels.nixpkgs.overlaysBuilder = channels: [
+        (final: super: {
+          geeqie = channels.unstable.geeqie;
+          blender = channels.unstable.blender;
+          siril = channels.unstable.siril;
+          vscodium = channels.unstable.vscodium;
+          zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [
+              ./zsh/0001-poly-prompt.patch
+            ];
+          });
+        })
       ];
-      
-      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    };
-    
-    hosts.travelnix = rec {
-      system = "x86_64-linux";
 
-      modules = [
-        ./systems/travelnix/travelnix.nix
+      overlay =
+        let
+          pkgsunstable = unstable.legacyPackages.x86_64-linux;
+        in
+        (final: super: {
+          geeqie = pkgsunstable.geeqie;
+          blender = pkgsunstable.blender;
+          zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [
+              ./zsh/0001-poly-prompt.patch
+            ];
+          });
+        });
+
+      hostDefaults.modules = [
+        ./modules
+
+        home-manager.nixosModules.home-manager
         {
-          home-manager.users.jan = import ./users/jan/common.nix;
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
+          home-manager.extraSpecialArgs = { inherit aww self audio; };
         }
       ];
-      
-      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    };
-    
-    hosts.nixserv = rec {
-      system = "x86_64-linux";
 
-      modules = [
-        ./systems/nixserv/nixserv.nix
-        microvm.nixosModules.host
-        {
-          home-manager.users.admin = import ./users/admin.nix;
-        }
-      ];
-      
-      specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-    };
+      hosts.nixbrett = rec {
+        system = "x86_64-linux";
 
-    outputsBuilder = channels: {
-      packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
-    };
-
-    nixosConfigurations = let
-      nixosSystem' =
-        # Custom NixOS builder
-        { nixpkgs ? inputs.nixpkgs, modules, extraArgs ? {}, system ? "x86_64-linux", specialArgs ? {} }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ pkgs, ... }: {
-              nixpkgs = {
-                overlays = [ self.overlay ];
-              };
-            })
-          ./modules
-
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
-            home-manager.extraSpecialArgs = { inherit aww self audio; };
+        modules = [
+          ./systems/nixbrett/nixbrett.nix
+          {
+            home-manager.users.jan = import ./users/jan/nixbrett.nix;
+            home-manager.users.dude = import ./users/dude.nix;
           }
-          ] ++ modules;
-          specialArgs = {
-            unstable = unstable.legacyPackages.${system};
-            inherit self secrets;
-          } // specialArgs;
-        };
-    in
-    {
-      playground = let
-        base = nixosSystem' rec {
-          system = "x86_64-linux";
-
-          modules = [
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.sops
-            ./systems/microvms/playground
-          ];
-        };
-      in
-      base.extendModules {
-        modules = [
-          scalpel.nixosModules.scalpel
-          ./systems/microvms/playground/scalpel.nix
         ];
-        specialArgs = { prev = base; };
+
+        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
       };
 
-      hal = let
-        base = nixosSystem' rec {
-          system = "x86_64-linux";
+      hosts.travelnix = rec {
+        system = "x86_64-linux";
 
-          modules = [
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.sops
-            ./systems/microvms/hal
-          ];
-          specialArgs = { inherit mqtt2psql; };
-        };
-      in
-      base.extendModules {
         modules = [
-          scalpel.nixosModules.scalpel
-          ./systems/microvms/hal/scalpel
+          ./systems/travelnix/travelnix.nix
+          {
+            home-manager.users.jan = import ./users/jan/common.nix;
+          }
         ];
-        specialArgs = { prev = base; };
+
+        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
       };
 
-      paperless = let
-        base = nixosSystem' rec {
-          system = "x86_64-linux";
+      hosts.nixserv = rec {
+        system = "x86_64-linux";
 
-          modules = [
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.sops
-            ./systems/microvms/paperless
-          ];
-        };
-      in
-      base.extendModules {
         modules = [
-          scalpel.nixosModules.scalpel
-          ./systems/microvms/paperless/scalpel.nix
+          ./systems/nixserv/nixserv.nix
+          microvm.nixosModules.host
+          {
+            home-manager.users.admin = import ./users/admin.nix;
+          }
         ];
-        specialArgs = { prev = base; };
+
+        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
       };
 
+      outputsBuilder = channels: {
+        packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
+      };
+
+      nixosConfigurations =
+        let
+          nixosSystem' =
+            # Custom NixOS builder
+            { nixpkgs ? inputs.nixpkgs, modules, extraArgs ? { }, system ? "x86_64-linux", specialArgs ? { } }:
+            nixpkgs.lib.nixosSystem {
+              inherit system;
+              modules = [
+                ({ pkgs, ... }: {
+                  nixpkgs = {
+                    overlays = [ self.overlay ];
+                  };
+                })
+                ./modules
+
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
+                  home-manager.extraSpecialArgs = { inherit aww self audio; };
+                }
+              ] ++ modules;
+              specialArgs = {
+                unstable = unstable.legacyPackages.${system};
+                inherit self secrets;
+              } // specialArgs;
+            };
+        in
+        {
+          playground =
+            let
+              base = nixosSystem' rec {
+                system = "x86_64-linux";
+
+                modules = [
+                  microvm.nixosModules.microvm
+                  sops-nix.nixosModules.sops
+                  ./systems/microvms/playground
+                ];
+              };
+            in
+            base.extendModules {
+              modules = [
+                scalpel.nixosModules.scalpel
+                ./systems/microvms/playground/scalpel.nix
+              ];
+              specialArgs = { prev = base; };
+            };
+
+          hal =
+            let
+              base = nixosSystem' rec {
+                system = "x86_64-linux";
+
+                modules = [
+                  microvm.nixosModules.microvm
+                  sops-nix.nixosModules.sops
+                  ./systems/microvms/hal
+                ];
+                specialArgs = { inherit mqtt2psql; };
+              };
+            in
+            base.extendModules {
+              modules = [
+                scalpel.nixosModules.scalpel
+                ./systems/microvms/hal/scalpel
+              ];
+              specialArgs = { prev = base; };
+            };
+
+          paperless =
+            let
+              base = nixosSystem' rec {
+                system = "x86_64-linux";
+
+                modules = [
+                  microvm.nixosModules.microvm
+                  sops-nix.nixosModules.sops
+                  ./systems/microvms/paperless
+                ];
+              };
+            in
+            base.extendModules {
+              modules = [
+                scalpel.nixosModules.scalpel
+                ./systems/microvms/paperless/scalpel.nix
+              ];
+              specialArgs = { prev = base; };
+            };
+
+        };
     };
-  };
 }
 

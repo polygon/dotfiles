@@ -22,7 +22,7 @@ in
     users.users.jan = {
       uid = 1000;
       isNormalUser = true;
-      extraGroups = [ "wheel" "audio" "video" "plugdev" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "audio" "video" "plugdev" "dialout" ]; # Enable ‘sudo’ for the user.
       shell = pkgs.zsh;
     };    
 

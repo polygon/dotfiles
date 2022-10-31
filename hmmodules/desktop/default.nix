@@ -1,3 +1,3 @@
 {
-  imports = [ ./awesome.nix ./gammastep.nix ./firefox.nix ./gnome-terminal.nix ];
+  imports = [ ./awesome.nix ./gammastep.nix ./firefox.nix ./gnome-terminal.nix ./vscode.nix ];
 }

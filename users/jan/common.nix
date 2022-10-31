@@ -1,4 +1,10 @@
-{ self, config, pkgs, unstable, aww, audio, ...
+{ self
+, config
+, pkgs
+, unstable
+, aww
+, audio
+, ...
 }:
 {
   # Let Home Manager install and manage itself.
@@ -10,7 +16,7 @@
   home.homeDirectory = "/home/jan";
 
   #programs.chromium.enable = true;
-  
+
   modules.shell.common.enable = true;
   modules.shell.tmux.enable = true;
   modules.shell.zsh.enable = true;
@@ -21,6 +27,7 @@
   modules.desktop.gammastep.enable = true;
   modules.desktop.firefox.enable = true;
   modules.desktop.gnome-terminal.enable = true;
+  modules.desktop.vscode.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -34,7 +41,7 @@
     geeqie
     hexchat
     dino
-    pavucontrol 
+    pavucontrol
     acpi
     owncloud-client
     keepassx2
@@ -45,7 +52,6 @@
     spotify
     qjackctl
     xorg.xhost
-    vscodium
     mplayer
     vlc
     zeal
@@ -59,6 +65,7 @@
     xfce.thunar
     ncdu
     clementine
+    rnix-lsp
   ];
 
   # This value determines the Home Manager release that your

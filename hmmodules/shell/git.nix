@@ -10,14 +10,15 @@ in
 
   config = mkIf cfg.enable {
     programs.git = {
-        enable = true;
-        userName = "polygon";
-        userEmail = "polygon@wh2.tu-dresden.de";
-        extraConfig = {
-          init = {
-            defaultBranch = "main";
-          };
+      enable = true;
+      userName = "polygon";
+      userEmail = "polygon@wh2.tu-dresden.de";
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
         };
+      };
+      difftastic.enable = true;
     };
   };
 }
