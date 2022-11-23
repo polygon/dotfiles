@@ -15,7 +15,7 @@ in
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
         vadimcn.vscode-lldb
-        matklad.rust-analyzer
+        #matklad.rust-analyzer
         ms-vscode-remote.remote-ssh
         ms-python.python
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
