@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     modules.systems.base.enable = true;
     
-    nix.trustedUsers = [ "jan" ];
+    nix.settings.trusted-users = [ "jan" ];
 
     systemd.services.systemd-networkd-wait-online.enable = false;
     systemd.services.systemd-networkd.restartIfChanged = false;
