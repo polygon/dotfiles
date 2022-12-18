@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     modules.systems.base.enable = true;
     
-    nix.trustedUsers = [ "admin" ];
+    nix.settings.trusted-users = [ "admin" ];
 
     security.sudo.extraRules = [
       {
