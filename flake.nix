@@ -132,7 +132,7 @@
         let
           nixosSystem' =
             # Custom NixOS builder
-            { nixpkgs ? inputs.nixpkgs, modules, extraArgs ? { }, system ? "x86_64-linux", specialArgs ? { } }:
+            { nixpkgs ? inputs.nixpkgs, modules, extraArgs ? { }, system ? "x86_64-linux", specialArgs ? { }, allowUnfree ? false }:
             nixpkgs.lib.nixosSystem {
               inherit system;
               modules = [
@@ -234,6 +234,11 @@
 
             modules = [
               ./systems/cube
+              {
+                home-manager.users.jan = import ./users/jan/cube.nix;
+                home-manager.users.dude = import ./users/dude.nix;
+                nixpkgs.config.allowUnfree = true;
+              }
             ];
           };
 

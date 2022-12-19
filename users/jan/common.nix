@@ -23,7 +23,7 @@
   modules.shell.vim.enable = true;
   modules.shell.git.enable = true;
 
-  modules.desktop.awesome.enable = true;
+  modules.desktop.awesome.enable = pkgs.lib.mkDefault true;
   modules.desktop.gammastep.enable = true;
   modules.desktop.firefox.enable = true;
   modules.desktop.gnome-terminal.enable = true;
@@ -76,5 +76,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.03";
+  home.stateVersion = pkgs.lib.mkDefault "21.03";
 }

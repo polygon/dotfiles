@@ -55,6 +55,8 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
