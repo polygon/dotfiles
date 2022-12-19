@@ -219,6 +219,16 @@
               specialArgs = { prev = base; };
             };
 
+          cloud = nixosSystem' rec {
+            system = "x86_64-linux";
+
+            modules = [
+              microvm.nixosModules.microvm
+              sops-nix.nixosModules.sops
+              ./systems/microvms/cloud
+            ];
+          };
+
         };
     };
 }
