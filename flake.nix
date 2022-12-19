@@ -229,6 +229,14 @@
             ];
           };
 
+          cube = nixosSystem' rec {
+            system = "x86_64-linux";
+
+            modules = [
+              ./systems/cube
+            ];
+          };
+
         };
     };
 }
