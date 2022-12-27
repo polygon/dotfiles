@@ -16,7 +16,7 @@
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
-      #sof-firmware = unstable.sof-firmware; 
+      sof-firmware = unstable.sof-firmware; 
       nix-direnv = unstable.nix-direnv;
     } ) 
   ];
@@ -48,6 +48,9 @@
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+  boot.extraModprobeConfig = ''
+    options snd-intel-dspcfg dsp_driver=1
+  '';
 
   services.fwupd.enable = true;
 
@@ -138,6 +141,7 @@
 ##    package = unstable.pulseaudioFull;
 ##    extraModules = [ unstable.pulseaudio-modules-bt ];
 ##  };
+  hardware.enableAllFirmware = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
