@@ -45,11 +45,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   boot.extraModprobeConfig = ''
-    options snd-intel-dspcfg dsp_driver=1
+    options snd-intel-dspcfg dsp_driver=3
+    options snd_sof sof_debug=128
   '';
 
   services.fwupd.enable = true;
