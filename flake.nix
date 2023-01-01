@@ -55,6 +55,7 @@
               ./zsh/0001-poly-prompt.patch
             ];
           });
+          nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
         })
       ];
 
