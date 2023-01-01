@@ -31,9 +31,10 @@
       url = "github:polygon/mqtt2psql";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-db.url = "github:Mic92/nix-index-database";
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, ... }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, ... }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -69,6 +70,7 @@
               ./zsh/0001-poly-prompt.patch
             ];
           });
+          nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
         });
 
       hostDefaults.modules = [

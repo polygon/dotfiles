@@ -11,13 +11,13 @@
   home.packages = with pkgs; [
     steam
     steam-run
-    #blender
-    #reaper
+    blender
+    reaper
     #drumgizmo
-    #patchage
-    #carla
-    #stellarium
-    #siril
+    patchage
+    carla
+    stellarium
+    siril
   ];
 
   home.stateVersion = "22.11";

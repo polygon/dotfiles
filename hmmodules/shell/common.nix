@@ -11,6 +11,8 @@ in
   config = mkIf cfg.enable {
     programs.fzf.enable = true;
 
+    home.file.".cache/nix-index/files".source = pkgs.nix-index-db;
+
     home.packages = with pkgs; [
       nix-index
       wget

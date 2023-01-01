@@ -12,6 +12,9 @@
   # Enable Wireguard tunnels
   modules.wireguard.mullvad.enable = true;
 
+  # Enable VirtualBox
+  modules.apps.virtualbox.enable = true;
+
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
@@ -63,11 +66,34 @@
 
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
+
+#  fonts.fontconfig = {
+#    hinting.style = "hintnone";
+#    hinting.autohint = false;
+#    hinting.enable = false;
+#    subpixel.rgba = "vrgb";
+#    subpixel.lcdfilter = "none";
+#  };
+
+  fonts.fontconfig.localConf = ''
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <match target="font">
+    <edit name="hintstyle" mode="assign"><const>hintslight</const></edit>
+    <edit name="autohint" mode="assign"><bool>true</bool></edit>
+    <edit name="antialias" mode="assign"><bool>true</bool></edit>
+    <edit name="rgba" mode="assign"><const>rgb</const></edit>
+    <edit name="lcdfilter" mode="assign"><const>lcddefault</const></edit>
+  </match>
+</fontconfig>
+  '';
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
