@@ -125,6 +125,8 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.windowManager.awesome.enable = true;
+
+  services.thermald.enable = true;
   
 
   # Configure keymap in X11
