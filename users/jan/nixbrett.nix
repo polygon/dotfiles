@@ -16,5 +16,6 @@
     carla
     stellarium
     siril
+    bespokesynth
   ];
 }
