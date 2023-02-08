@@ -44,7 +44,7 @@
     pavucontrol
     acpi
     owncloud-client
-    keepassx2
+    keepassxc
     xtrlock-pam
     brightnessctl
     gnome.gnome-tweaks

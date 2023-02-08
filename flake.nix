@@ -66,6 +66,7 @@
         (final: super: {
           geeqie = pkgsunstable.geeqie;
           blender = pkgsunstable.blender;
+          bitwig-studio = pkgsunstable.bitwig-studio;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch

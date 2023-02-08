@@ -283,6 +283,7 @@
     lmms
     carla
     zrythm
+    bitwig-studio
   ];
 
   environment.variables = {
