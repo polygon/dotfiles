@@ -26,6 +26,8 @@ in
       shell = pkgs.zsh;
     };    
 
+    environment.shells = [ pkgs.zsh ];
+
     users.groups.plugdev = {};
 
     environment.systemPackages = with pkgs; [

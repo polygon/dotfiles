@@ -13,11 +13,11 @@
     steam-run
     blender
     reaper
-    #drumgizmo
     patchage
     carla
     stellarium
     siril
+    bespokesynth
   ];
 
   home.stateVersion = "22.11";

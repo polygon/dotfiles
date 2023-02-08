@@ -65,9 +65,11 @@
   services.resolved.enable = true;
 
   # Enable the GNOME 3 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+#  services.xserver.displayManager.sddm.enable = true;
 #  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
+#  services.xserver.desktopManager.cinnamon.enable = true;
+  services.xserver.desktopManager.pantheon.enable = true;
+
 
   # Configure keymap in X11
   services.xserver.layout = "de";
@@ -221,6 +223,8 @@
     lmms
     carla
     zrythm
+    drumgizmo
+    bitwig-studio
   ];
 
   environment.variables = {
@@ -228,7 +232,7 @@
     #GDK_DPI_SCALE = "0.5";
     #_JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
     #VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
-    #LV2_PATH = "/run/current-system/sw/lib/lv2";
+    LV2_PATH = "/run/current-system/sw/lib/lv2";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
