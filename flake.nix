@@ -61,7 +61,10 @@
 
       overlay =
         let
-          pkgsunstable = unstable.legacyPackages.x86_64-linux;
+          pkgsunstable = import unstable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
         in
         (final: super: {
           geeqie = pkgsunstable.geeqie;
