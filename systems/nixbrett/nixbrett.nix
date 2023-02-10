@@ -51,6 +51,7 @@
   boot.extraModprobeConfig = ''
     options snd-intel-dspcfg dsp_driver=3
     options snd_sof sof_debug=128
+    options snd_usb_audio quirk_alias=19f7000a:05a71020
   '';
 
   services.fwupd.enable = true;

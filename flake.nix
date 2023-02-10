@@ -50,6 +50,7 @@
           blender = channels.unstable.blender;
           siril = channels.unstable.siril;
           vscodium = channels.unstable.vscodium;
+          bitwig-studio = channels.unstable.bitwig-studio;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
