@@ -77,6 +77,8 @@
             ];
           });
           nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
+          siril = pkgsunstable.siril;
+          vscodium = pkgsunstable.vscodium;
         });
 
       hostDefaults.modules = [
@@ -90,20 +92,6 @@
           home-manager.extraSpecialArgs = { inherit aww self audio; };
         }
       ];
-
-      hosts.nixbrett = rec {
-        system = "x86_64-linux";
-
-        modules = [
-          ./systems/nixbrett/nixbrett.nix
-          {
-            home-manager.users.jan = import ./users/jan/nixbrett.nix;
-            home-manager.users.dude = import ./users/dude.nix;
-          }
-        ];
-
-        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-      };
 
       hosts.travelnix = rec {
         system = "x86_64-linux";
@@ -250,6 +238,19 @@
             ];
           };
 
+          nixbrett = nixosSystem' rec {
+            system = "x86_64-linux";
+    
+            modules = [
+              ./systems/nixbrett
+              {
+                home-manager.users.jan = import ./users/jan/nixbrett.nix;
+                home-manager.users.dude = import ./users/dude.nix;
+                nixpkgs.config.allowUnfree = true;
+              }
+              sops-nix.nixosModules.sops
+            ];
+          };
         };
     };
 }
