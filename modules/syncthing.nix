@@ -11,16 +11,6 @@ in
 {
   options.modules.apps.syncthing = {
     enable = mkEnableOption "Syncthing";
-    dataDir = mkOption {
-      type = types.path;
-      default = "/home/jan/syncthing";
-      description = "Syncthing datadir";
-    };
-    configDir = mkOption {
-      type = types.path;
-      default = "/home/jan/.config/syncthing";
-      description = "Syncthing configdir";
-    };
     basePath = mkOption {
       type = types.path;
       default = "/home/jan";
@@ -37,8 +27,8 @@ in
     services.syncthing = {
       enable = true;
       user = "jan";
-      dataDir = cfg.dataDir;
-      configDir = cfg.configDir;
+      dataDir = cfg.basePath;
+      configDir = "${cfg.basePath}/.config/syncthing";
       guiAddress = cfg.guiAddress;
       devices."cloud" = {
         id = sync_ids.cloud;
