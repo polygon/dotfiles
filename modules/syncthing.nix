@@ -46,8 +46,14 @@ in
         id = sync_ids.cloud;
         addresses = [ "tcp4://192.168.1.24" ];
       };
-      devices."nixbrett".id = sync_ids.nixbrett;
-      devices."cube".id = sync_ids.cube;
+      devices."nixbrett" = {
+        id = sync_ids.nixbrett;
+        addresses = [ "tcp://nixbrett.matelab.de" ];
+      };
+      devices."cube" = {
+        id = sync_ids.cube;
+        addresses = [ "tcp://cube.matelab.de" ];
+      };
 
       folders."bitwig" = {
         path = "${cfg.basePath}/Bitwig Studio";
