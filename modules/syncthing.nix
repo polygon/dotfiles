@@ -30,6 +30,18 @@ in
       dataDir = cfg.basePath;
       configDir = "${cfg.basePath}/.config/syncthing";
       guiAddress = cfg.guiAddress;
+
+      extraOptions = {
+        options = {
+          globalAnnounceEnabled = false;
+          localAnnounceEnabled = false;
+          relaysEnabled = false;
+          natEnabled = false;
+          crashReportingEnabled = false;
+          announceLANAddresses = false;
+        };
+      };
+
       devices."cloud" = {
         id = sync_ids.cloud;
         addresses = [ "tcp4://192.168.1.24" ];
