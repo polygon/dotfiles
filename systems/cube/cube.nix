@@ -15,6 +15,9 @@
   # Enable VirtualBox
   modules.apps.virtualbox.enable = true;
 
+  # Enable SyncThing
+  modules.apps.syncthing.enable = true;   
+
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 

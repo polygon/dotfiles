@@ -47,10 +47,11 @@ in
         addresses = [ "tcp4://192.168.1.24" ];
       };
       devices."nixbrett".id = sync_ids.nixbrett;
+      devices."cube".id = sync_ids.cube;
 
       folders."bitwig" = {
         path = "${cfg.basePath}/Bitwig Studio";
-        devices = [ "cloud" "nixbrett" ];
+        devices = [ "cloud" "nixbrett" "cube" ];
       };
     };
 
