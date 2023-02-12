@@ -1,3 +1,3 @@
 { 
-  imports = [ ./nixbrett.nix ./hardware-configuration.nix ./syncthing.nix ];
+  imports = [ ./nixbrett.nix ./hardware-configuration.nix ];
 }

@@ -1,3 +1,3 @@
 { 
-    imports = [ ./wireguard ./systems ./virtualbox.nix ];
+    imports = [ ./wireguard ./systems ./virtualbox.nix ./syncthing.nix ];
 }

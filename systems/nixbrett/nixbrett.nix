@@ -13,6 +13,9 @@
   modules.wireguard.mullvad.enable = true;
   modules.wireguard.wacken.enable = true;
 
+  # Enable SyncThing
+  modules.apps.syncthing.enable = true;  
+
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
