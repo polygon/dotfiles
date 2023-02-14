@@ -16,7 +16,10 @@
   modules.apps.virtualbox.enable = true;
 
   # Enable SyncThing
-  modules.apps.syncthing.enable = true;   
+  modules.apps.syncthing.enable = true;  
+
+  # Audio production
+  modules.apps.audioprod.enable = true; 
 
   # == Host specific ==
   nixpkgs.overlays = [ 
@@ -214,20 +217,6 @@
     direnv
     (nix-direnv.override { enableFlakes = true; })
     xboxdrv
-    ardour
-    distrho
-    geonkick
-    x42-plugins    
-    dragonfly-reverb
-    faustPhysicalModeling
-    quadrafuzz
-    calf
-    lsp-plugins
-    lmms
-    carla
-    zrythm
-    drumgizmo
-    bitwig-studio
   ];
 
   environment.variables = {
@@ -235,7 +224,6 @@
     #GDK_DPI_SCALE = "0.5";
     #_JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
     #VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
-    LV2_PATH = "/run/current-system/sw/lib/lv2";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

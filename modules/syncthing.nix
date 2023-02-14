@@ -59,6 +59,11 @@ in
         path = "${cfg.basePath}/Bitwig Studio";
         devices = [ "cloud" "nixbrett" "cube" ];
       };
+
+      folders."audiolib" = {
+        path = "${cfg.basePath}/audiolib";
+        devices = [ "cloud" "nixbrett" "cube" ];
+      };
     };
 
     networking.firewall = {

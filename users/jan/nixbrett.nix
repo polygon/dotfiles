@@ -10,12 +10,7 @@
     steam
     steam-run
     blender
-    reaper
-    drumgizmo
-    patchage
-    carla
     stellarium
     siril
-    bespokesynth
   ];
 }

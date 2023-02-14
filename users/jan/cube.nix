@@ -14,10 +14,8 @@
     blender
     reaper
     patchage
-    carla
     stellarium
     siril
-    bespokesynth
   ];
 
   home.stateVersion = "22.11";
