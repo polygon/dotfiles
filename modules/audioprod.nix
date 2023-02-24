@@ -29,6 +29,7 @@ in
       bitwig-studio
       bespokesynth
       sonic-visualiser
+      gnome.zenity
     ];
   };
 }

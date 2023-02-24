@@ -47,7 +47,7 @@
       channels.nixpkgs.overlaysBuilder = channels: [
         (final: super: {
           geeqie = channels.unstable.geeqie;
-          blender = channels.unstable.blender;
+          #blender = channels.unstable.blender;
           siril = channels.unstable.siril;
           vscodium = channels.unstable.vscodium;
           bitwig-studio = channels.unstable.bitwig-studio;
@@ -62,15 +62,23 @@
 
       overlay =
         let
+          system = "x86_64-linux";
           pkgsunstable = import unstable {
-            system = "x86_64-linux";
+            inherit system;
             config.allowUnfree = true;
           };
+          pkgs = import nixpkgs { inherit system; };
         in
         (final: super: {
           geeqie = pkgsunstable.geeqie;
-          blender = pkgsunstable.blender;
-          bitwig-studio = pkgsunstable.bitwig-studio;
+          #blender = pkgsunstable.blender;
+          bitwig-studio = pkgsunstable.bitwig-studio.overrideAttrs (old: rec {
+            version = "4.4.8";
+            src = pkgs.fetchurl {
+              url = "https://downloads.bitwig.com/stable/${version}/${old.pname}-${version}.deb";
+              sha256 = "sha256-qdqRvCmp6Q7lcTdOIEHeQKAAOLtJxs867gapopyeHuc=";
+            };
+          });
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
