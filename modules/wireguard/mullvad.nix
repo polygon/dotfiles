@@ -17,9 +17,9 @@ in
           postUp = "systemd-resolve -i mullvad --set-dns=193.138.218.74 --set-domain=~.";
           peers = [
             { 
-              publicKey = "uC0C1H4zE6WoDjOq65DByv1dSZt2wAv6gXQ5nYOLiQM=";
+              publicKey = "9ldhvN7r4xGZkGehbsNfYb5tpyTJ5KBb5B3TbxCwklw=";
               allowedIPs = [ "0.0.0.0/0" "::0/0" ];
-              endpoint = "185.209.196.70:51820";
+              endpoint = "146.70.117.34:51820";
               persistentKeepalive = 25;
             }
           ];

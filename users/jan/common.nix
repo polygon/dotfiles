@@ -36,7 +36,7 @@
 
   home.packages = with pkgs; [
     hueadm
-    gimp
+    gimp-with-plugins
     inkscape
     geeqie
     hexchat

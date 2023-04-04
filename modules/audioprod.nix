@@ -30,6 +30,7 @@ in
       bespokesynth
       sonic-visualiser
       gnome.zenity
+      stochas
     ];
   };
 }
