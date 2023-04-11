@@ -73,10 +73,10 @@
           geeqie = pkgsunstable.geeqie;
           #blender = pkgsunstable.blender;
           bitwig-studio = pkgsunstable.bitwig-studio.overrideAttrs (old: rec {
-            version = "4.4.8";
+            version = "5.0-beta2";
             src = pkgs.fetchurl {
-              url = "https://downloads.bitwig.com/stable/${version}/${old.pname}-${version}.deb";
-              sha256 = "sha256-qdqRvCmp6Q7lcTdOIEHeQKAAOLtJxs867gapopyeHuc=";
+              url = "https://downloads.bitwig.com/5.0%20Beta%202/bitwig-studio-5.0-beta-2.deb";
+              sha256 = "sha256-wJ5X7fQZWNsWvfY8BPb1ARPUqA+QvpH4iKXX9C0CpoM=";
             };
           });
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
