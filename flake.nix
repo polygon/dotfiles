@@ -72,13 +72,7 @@
         (final: super: {
           geeqie = pkgsunstable.geeqie;
           #blender = pkgsunstable.blender;
-          bitwig-studio = pkgsunstable.bitwig-studio.overrideAttrs (old: rec {
-            version = "5.0-beta2";
-            src = pkgs.fetchurl {
-              url = "https://downloads.bitwig.com/5.0%20Beta%202/bitwig-studio-5.0-beta-2.deb";
-              sha256 = "sha256-wJ5X7fQZWNsWvfY8BPb1ARPUqA+QvpH4iKXX9C0CpoM=";
-            };
-          });
+          bitwig-studio = audio.packages.${system}.bitwig-studio5-beta3;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
