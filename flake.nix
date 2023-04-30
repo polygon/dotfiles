@@ -72,7 +72,7 @@
         (final: super: {
           geeqie = pkgsunstable.geeqie;
           #blender = pkgsunstable.blender;
-          bitwig-studio = audio.packages.${system}.bitwig-studio5-beta3;
+          bitwig-studio = audio.packages.${system}.bitwig-studio5-beta6;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
