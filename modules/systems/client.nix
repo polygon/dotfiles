@@ -32,6 +32,7 @@ in
 
     environment.systemPackages = with pkgs; [
       gnupg
+      nil
     ];
 
     fonts.fonts = with pkgs; [

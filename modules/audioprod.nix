@@ -31,6 +31,7 @@ in
       sonic-visualiser
       gnome.zenity
       stochas
+      xtuner
     ];
   };
 }

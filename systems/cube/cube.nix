@@ -16,17 +16,17 @@
   modules.apps.virtualbox.enable = true;
 
   # Enable SyncThing
-  modules.apps.syncthing.enable = true;  
+  modules.apps.syncthing.enable = true;
 
   # Audio production
-  modules.apps.audioprod.enable = true; 
+  modules.apps.audioprod.enable = true;
 
   # == Host specific ==
-  nixpkgs.overlays = [ 
-    (self: super: { 
+  nixpkgs.overlays = [
+    (self: super: {
       #sof-firmware = unstable.sof-firmware; 
       nix-direnv = unstable.nix-direnv;
-    } ) 
+    })
   ];
   hardware.opengl = {
     enable = true;
@@ -53,7 +53,7 @@
     enable = true;
     allowPing = true;
   };
-  
+
   systemd.network.networks."ethernet".extraConfig = ''
     [Match]
     Type = ether
@@ -65,43 +65,41 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nouveau" ];
-#  services.xserver.videoDrivers = [ "nvidia" ];
-#  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-#  services.xserver.synaptics.enable = true;
+  #  services.xserver.videoDrivers = [ "nvidia" ];
+  #  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
 
   # Enable the GNOME 3 Desktop Environment.
-#  services.xserver.displayManager.sddm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-#  services.xserver.desktopManager.cinnamon.enable = true;
-  services.xserver.desktopManager.pantheon.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
 
   # Configure keymap in X11
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
-#  fonts.fontconfig = {
-#    hinting.style = "hintnone";
-#    hinting.autohint = false;
-#    hinting.enable = false;
-#    subpixel.rgba = "vrgb";
-#    subpixel.lcdfilter = "none";
-#  };
+  #  fonts.fontconfig = {
+  #    hinting.style = "hintnone";
+  #    hinting.autohint = false;
+  #    hinting.enable = false;
+  #    subpixel.rgba = "vrgb";
+  #    subpixel.lcdfilter = "none";
+  #  };
 
   fonts.fontconfig.localConf = ''
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-  <match target="font">
-    <edit name="hintstyle" mode="assign"><const>hintslight</const></edit>
-    <edit name="autohint" mode="assign"><bool>true</bool></edit>
-    <edit name="antialias" mode="assign"><bool>true</bool></edit>
-    <edit name="rgba" mode="assign"><const>rgb</const></edit>
-    <edit name="lcdfilter" mode="assign"><const>lcddefault</const></edit>
-  </match>
-</fontconfig>
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <match target="font">
+        <edit name="hintstyle" mode="assign"><const>hintslight</const></edit>
+        <edit name="autohint" mode="assign"><bool>true</bool></edit>
+        <edit name="antialias" mode="assign"><bool>true</bool></edit>
+        <edit name="rgba" mode="assign"><const>rgb</const></edit>
+        <edit name="lcdfilter" mode="assign"><const>lcddefault</const></edit>
+      </match>
+    </fontconfig>
   '';
 
   # Enable CUPS to print documents.
@@ -122,7 +120,7 @@
 
     media-session.config.bluez-monitor.rules = [
       {
-        matches = [ { "device.name" = "~bluez_card.*"; } ];
+        matches = [{ "device.name" = "~bluez_card.*"; }];
         actions = {
           "update-props" = {
             "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
@@ -141,7 +139,7 @@
         };
       }
     ];
-
+    
     config.pipewire = {
       "context.properties" = {
         "link.max-buffers" = 16;
@@ -153,7 +151,7 @@
         "core.daemon" = true;
         "core.name" = "pipewire-0";
       };
-      
+
       "context.spa-libs" = {
         "audio.convert.*" = "audioconvert/libspa-audioconvert";
         "api.alsa.*" = "alsa/libspa-alsa";
@@ -172,7 +170,7 @@
             "nice.level" = -15;
             "rt.prio" = 88;
             "rt.time.soft" = 200000;
-            "rt.time.hard" = 200000;            
+            "rt.time.hard" = 200000;
           };
           flags = [ "ifexists" "nofail" ];
         }
@@ -183,8 +181,8 @@
         { name = "libpipewire-module-spa-node-factory"; }
         { name = "libpipewire-module-client-node"; }
         { name = "libpipewire-module-client-device"; }
-        { 
-				  name = "libpipewire-module-portal";
+        {
+          name = "libpipewire-module-portal";
           flags = [ "ifexists" "nofail" ];
         }
         { name = "libpipewire-module-access"; args = { }; }
