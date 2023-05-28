@@ -65,7 +65,6 @@
     xfce.thunar
     ncdu
     clementine
-    rnix-lsp
   ];
 
   # This value determines the Home Manager release that your

@@ -48,6 +48,7 @@ in
       rage
       ssh-to-age
       pwgen
+      w3m
     ];
 
     environment.pathsToLink = [ "/share/zsh" "/share/nix-direnv" ]; 
