@@ -45,7 +45,6 @@
     acpi
     owncloud-client
     keepassxc
-    xtrlock-pam
     brightnessctl
     gnome.gnome-tweaks
     thunderbird
@@ -61,7 +60,7 @@
     nixpkgs-fmt
     freecad
     prusa-slicer
-    imagemagick6
+    imagemagick
     xfce.thunar
     ncdu
     clementine

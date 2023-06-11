@@ -18,7 +18,7 @@
     geeqie
     (mplayer.override { pulseSupport = true; })
     filezilla
-    keepassx
+    keepassxc
     nmap
   ];
 

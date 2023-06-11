@@ -15,7 +15,7 @@ in
     
     nix.settings.trusted-users = [ "jan" ];
 
-    systemd.services.systemd-networkd-wait-online.enable = false;
+    systemd.services.systemd-networkd-wait-online.enable = mkForce false;
     systemd.services.systemd-networkd.restartIfChanged = false;
     networking.networkmanager.enable = false;    
 
@@ -46,5 +46,10 @@ in
       startAgent = true;
       agentTimeout = null;
     }; 
+
+    programs.i3lock = {
+      enable = true;
+      package = pkgs.i3lock-color;
+    };
   }; 
 }

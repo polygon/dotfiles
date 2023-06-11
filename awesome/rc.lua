@@ -385,12 +385,12 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn.with_shell("brightnessctl s $(( $(brightnessctl g)*1.25 + 60))") end),
 
     -- Screen Locking
-    awful.key({ modkey,           }, "x", function () awful.spawn.with_shell("sleep 0.5 && xtrlock-pam") end),
+    awful.key({ modkey,           }, "x", function () awful.spawn.with_shell("sleep 0.5 && XTrlock-pam") end),
 
     -- Sleep
-    awful.key({ }, "XF86ScreenSaver", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end),
-    awful.key({ }, "XF86Sleep", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end),
-    awful.key({ }, "XF86Favorites", function () awful.spawn.with_shell("(sleep 0.5 && xtrlock-pam) & (sleep 1.5 && systemctl suspend)") end)
+    awful.key({ }, "XF86ScreenSaver", function () awful.spawn.with_shell("(sleep 0.5 && i3lock) & (sleep 1.5 && systemctl suspend)") end),
+    awful.key({ }, "XF86Sleep", function () awful.spawn.with_shell("(sleep 0.5 && i3lock) & (sleep 1.5 && systemctl suspend)") end),
+    awful.key({ }, "XF86Favorites", function () awful.spawn.with_shell("(sleep 0.5 && i3lock) & (sleep 1.5 && systemctl suspend)") end)
 )
 
 clientkeys = gears.table.join(
