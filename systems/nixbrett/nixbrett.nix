@@ -75,6 +75,7 @@
     allowedTCPPorts = [
       20000
     ];
+    allowedUDPPorts = [ 24727 ];
   };
   
   systemd.network.networks."ethernet".extraConfig = ''

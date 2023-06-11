@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1685186255,
-        "narHash": "sha256-tqaTv/z/eiaJYOBm1wJ4Tvd0hZX0EHQ7qWqRU9Xr2ro=",
+        "lastModified": 1685737450,
+        "narHash": "sha256-ztHjMH5vb+vCBgJOkC3tncuNz6gm41H/6gDGZDR++T4=",
         "owner": "polygon",
         "repo": "audio.nix",
-        "rev": "961d3602a229b5adbd4fe13718d3aea16ab21102",
+        "rev": "41c388f6e935070533faf9e85977e583a592a967",
         "type": "github"
       },
       "original": {
@@ -167,16 +167,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1685043448,
-        "narHash": "sha256-U3BwyDc2OzBcZ8tD09qXibyivgOtOQFTFCVgFyJ+6MM=",
+        "lastModified": 1685620773,
+        "narHash": "sha256-iQ+LmporQNdLz8uMJdP62TaAWeLUwl43/MYUBtWqulM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9886352ec9ab3945896ee8a4185e961fe29df209",
+        "rev": "f0ba8235153dd2e25cf06cbf70d43efdd4443592",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-22.11",
+        "ref": "nixos-23.05",
         "repo": "nixpkgs",
         "type": "github"
       }
