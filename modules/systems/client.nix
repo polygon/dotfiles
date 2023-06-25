@@ -34,6 +34,7 @@ in
       gnupg
       nil
       mc
+      obsidian
     ];
 
     fonts.fonts = with pkgs; [

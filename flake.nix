@@ -13,7 +13,7 @@
     };
     audio.url = "github:polygon/audio.nix";
     microvm = {
-      url = "github:astro/microvm.nix/v0.2.2";
+      url = "github:astro/microvm.nix/v0.3.3";
       #url = "path:/home/admin/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -81,6 +81,7 @@
           nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
           siril = pkgsunstable.siril;
           vscodium = pkgsunstable.vscodium;
+          obsidian = pkgsunstable.obsidian;
         });
 
       hostDefaults.modules = [

@@ -12,5 +12,8 @@
     blender
     stellarium
     siril
+    ghidra
+    cutter
+    AusweisApp2
   ];
 }
