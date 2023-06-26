@@ -14,7 +14,7 @@
     useNetworkd = true;
   };
 
-  systemd.services.systemd-networkd-wait-online.enable = false;
+  systemd.services.systemd-networkd-wait-online.enable = pkgs.lib.mkForce false;
   systemd.network = {
     enable = true;
     # Configure bridges for networks that we want the host to have access to

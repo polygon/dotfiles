@@ -1,4 +1,4 @@
-{ config, secrets, ... }:
+{ config, secrets, lib, ... }:
 {
   services.paperless.extraConfig = {
     PAPERLESS_FILENAME_FORMAT = "{created_year}/{document_type}/{created_month}-{created_day}-{title}-{asn}";
@@ -13,6 +13,9 @@
     PAPERLESS_DATE_ORDER = "DMY";
     PAPERLESS_URL = "https://paperless.matelab.de";
   };
+
+  # Allow network access for paperless-scheduler since we run postgres on another host
+  systemd.services.paperless-scheduler.serviceConfig.PrivateNetwork = lib.mkForce false;
 
   networking.firewall.allowedTCPPorts = [ 28981 ];
 }

@@ -24,6 +24,12 @@
     };
   };
 
+  services.nginx.virtualHosts."media.matelab.de" = {
+    useACMEHost = "matelab.de";
+    forceSSL = true;
+    root = "/nas/media";
+  };
+
   services.nginx.virtualHosts."hab.matelab.de" = {
     useACMEHost = "matelab.de";
     forceSSL = true;
