@@ -75,6 +75,7 @@
           #blender = pkgsunstable.blender;
           bitwig-studio = audio.packages.${system}.bitwig-studio5-latest;
           atlas2 = audio.packages.${system}.atlas2;
+          plugdata = audio.packages.${system}.plugdata;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch

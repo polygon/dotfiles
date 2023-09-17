@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1694968393,
-        "narHash": "sha256-GU8J7U39GooTdXjsAVB3wmjzH0BqxIEmQXnsRbMi/f4=",
+        "lastModified": 1694975067,
+        "narHash": "sha256-yb0iPYpcKT6lOn/3w47LYBl2hUt+yRuBWTzzHj5gt9c=",
         "owner": "polygon",
         "repo": "audio.nix",
-        "rev": "ec99617eeb2e5cc1848f113732d0503e9cb4aebb",
+        "rev": "607e9b4fbed44d555d82159c9794e720e09895ce",
         "type": "github"
       },
       "original": {

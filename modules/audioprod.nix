@@ -33,6 +33,7 @@ in
       stochas
       xtuner
       atlas2
+      plugdata
     ];
   };
 }
