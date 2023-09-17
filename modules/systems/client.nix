@@ -32,9 +32,11 @@ in
 
     environment.systemPackages = with pkgs; [
       gnupg
-      nil
+      nixd
+      nixfmt
       mc
       obsidian
+      chromium
     ];
 
     fonts.fonts = with pkgs; [

@@ -32,6 +32,7 @@ in
       gnome.zenity
       stochas
       xtuner
+      atlas2
     ];
   };
 }

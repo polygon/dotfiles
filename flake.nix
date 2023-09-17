@@ -32,9 +32,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-db.url = "github:Mic92/nix-index-database";
+    nixd.url = "github:nix-community/nixd";
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, ... }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd, ... }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -73,6 +74,7 @@
           geeqie = pkgsunstable.geeqie;
           #blender = pkgsunstable.blender;
           bitwig-studio = audio.packages.${system}.bitwig-studio5-latest;
+          atlas2 = audio.packages.${system}.atlas2;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
@@ -82,6 +84,7 @@
           siril = pkgsunstable.siril;
           vscodium = pkgsunstable.vscodium;
           obsidian = pkgsunstable.obsidian;
+          nixd = nixd.packages.${system}.nixd;
         });
 
       hostDefaults.modules = [
