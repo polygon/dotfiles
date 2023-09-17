@@ -13,7 +13,7 @@
     };
     audio.url = "github:polygon/audio.nix";
     microvm = {
-      url = "github:astro/microvm.nix/v0.3.3";
+      url = "github:astro/microvm.nix/v0.4.0";
       #url = "path:/home/admin/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
