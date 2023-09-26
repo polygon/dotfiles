@@ -43,8 +43,8 @@
     {
       tag = "storage";
       socket = "storage.socket";
-      source = "/vms/cloud/storage";
-      mountPoint = "/storage";
+      source = "/vms/cloud/storage/hdd";
+      mountPoint = "/storage/hdd";
       proto = "virtiofs";
     } 
     {
