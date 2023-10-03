@@ -15,6 +15,9 @@ in
       LV2_PATH = "/run/current-system/sw/lib/lv2";
     };
 
+    # Ableton link
+    networking.firewall.allowedUDPPorts = [ 20808 ];
+
     environment.systemPackages = with pkgs; [
       distrho
       geonkick

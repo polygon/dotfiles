@@ -11,6 +11,9 @@ in
   systemd.services.paperless-consumer.environment = lib.mkForce (new_env prev.config.systemd.services.paperless-consumer.environment);
   systemd.services.paperless-consumer.serviceConfig.EnvironmentFile = config.sops.secrets.paperless-dbpass-envfile.path;
 
+  systemd.services.paperless-task-queue.environment = lib.mkForce (new_env prev.config.systemd.services.paperless-consumer.environment);
+  systemd.services.paperless-task-queue.serviceConfig.EnvironmentFile = config.sops.secrets.paperless-dbpass-envfile.path;
+
   systemd.services.paperless-web.environment = lib.mkForce (new_env prev.config.systemd.services.paperless-web.environment);
   systemd.services.paperless-web.serviceConfig.EnvironmentFile = config.sops.secrets.paperless-dbpass-envfile.path;
 
