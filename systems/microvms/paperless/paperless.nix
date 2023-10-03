@@ -9,7 +9,6 @@
     PAPERLESS_THREADS_PER_WORKER = 1;
     PAPERLESS_TIME_ZONE = "Europe/Berlin";
     PAPERLESS_DBHOST = "192.168.3.20";
-    PAPERLESS_DBPASS = "!!PAPERLESS_DBPASS!!";
     PAPERLESS_DATE_ORDER = "DMY";
     PAPERLESS_URL = "https://paperless.matelab.de";
   };
