@@ -55,6 +55,11 @@ in
         addresses = [ "tcp://cube.matelab.de" ];
       };
 
+      devices."fon" = {
+        id = sync_ids.fon;
+        addresses = [ "tcp://192.168.1.183" ];
+      };
+
       folders."bitwig" = {
         path = "${cfg.basePath}/Bitwig Studio";
         devices = [ "cloud" "nixbrett" "cube" ];
@@ -63,6 +68,11 @@ in
       folders."audiolib" = {
         path = "${cfg.basePath}/audiolib";
         devices = [ "cloud" "nixbrett" "cube" ];
+      };
+
+      folders."obsidian" = {
+        path = "${cfg.basePath}/obsidian";
+        devices = [ "cloud" "nixbrett" "cube" "fon" ];
       };
     };
 
