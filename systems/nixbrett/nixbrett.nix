@@ -287,8 +287,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     sof-firmware
-    direnv
-    (nix-direnv.override { enableFlakes = true; })
     xboxdrv
   ];
 
