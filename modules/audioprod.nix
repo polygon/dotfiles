@@ -37,6 +37,10 @@ in
       xtuner
       atlas2
       plugdata
+      yabridge
+      yabridgectl
+      wineWowPackages.full
+      winetricks
     ];
   };
 }

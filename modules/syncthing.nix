@@ -74,6 +74,11 @@ in
         path = "${cfg.basePath}/obsidian";
         devices = [ "cloud" "nixbrett" "cube" "fon" ];
       };
+
+      folders."wine-vst64" = {
+        path = "${cfg.basePath}/.local/share/wineprefixes/wine-vst64";
+        devices = [ "cloud" "nixbrett" "cube" ];
+      };
     };
 
     networking.firewall = {
