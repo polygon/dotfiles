@@ -11,7 +11,10 @@
       url = "github:polygon/awesome-wm-widgets/poly";
       flake = false;
     };
-    audio.url = "github:polygon/audio.nix";
+    audio = {
+      url = "github:polygon/audio.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     microvm = {
       url = "github:astro/microvm.nix/v0.4.0";
       #url = "path:/home/admin/microvm.nix";
@@ -73,9 +76,6 @@
         (final: super: {
           geeqie = pkgsunstable.geeqie;
           #blender = pkgsunstable.blender;
-          bitwig-studio = audio.packages.${system}.bitwig-studio5-latest;
-          atlas2 = audio.packages.${system}.atlas2;
-          plugdata = audio.packages.${system}.plugdata;
           zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [
               ./zsh/0001-poly-prompt.patch
@@ -85,6 +85,7 @@
           siril = pkgsunstable.siril;
           vscodium = pkgsunstable.vscodium;
           obsidian = pkgsunstable.obsidian;
+          vital = pkgsunstable.vital;
           nixd = nixd.packages.${system}.nixd;
         });
 
@@ -141,7 +142,7 @@
               modules = [
                 ({ pkgs, ... }: {
                   nixpkgs = {
-                    overlays = [ self.overlay ];
+                    overlays = [ self.overlay audio.overlays.default ];
                   };
                 })
                 ./modules

@@ -18,6 +18,8 @@ in
     # Ableton link
     networking.firewall.allowedUDPPorts = [ 20808 ];
 
+    environment.pathsToLink = [ "/lib/vst2" "/lib/vst3" "/lib/clap" ];
+
     environment.systemPackages = with pkgs; [
       distrho
       geonkick
@@ -29,7 +31,8 @@ in
       lsp-plugins
       carla
       drumgizmo
-      bitwig-studio
+      bitwig-studio5-latest
+      #bitwig-studio5-stable-latest
       bespokesynth
       sonic-visualiser
       gnome.zenity
@@ -41,6 +44,9 @@ in
       yabridgectl
       wineWowPackages.full
       winetricks
+      paulxstretch
+      vital
+      run-scaled
     ];
   };
 }

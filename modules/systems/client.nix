@@ -37,6 +37,7 @@ in
       mc
       obsidian
       chromium
+      cntr
     ];
 
     fonts.fonts = with pkgs; [
