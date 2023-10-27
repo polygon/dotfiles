@@ -47,6 +47,7 @@ in
       paulxstretch
       vital
       run-scaled
+      tony
     ];
   };
 }

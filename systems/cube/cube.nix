@@ -64,9 +64,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nouveau" ];
-  #  services.xserver.videoDrivers = [ "nvidia" ];
-  #  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #  services.xserver.videoDrivers = [ "nouveau" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
@@ -75,6 +75,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  programs.dconf.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "de";
