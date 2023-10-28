@@ -11,10 +11,7 @@
       url = "github:polygon/awesome-wm-widgets/poly";
       flake = false;
     };
-    audio = {
-      url = "github:polygon/audio.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    audio.url = "github:polygon/audio.nix";
     microvm = {
       url = "github:astro/microvm.nix/v0.4.0";
       #url = "path:/home/admin/microvm.nix";

@@ -32,7 +32,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Awesome config
-  #home.file.".direnvrc".source = "${self}/misc/direnvrc";
+  home.file.".direnvrc".source = "${self}/misc/direnvrc";
 
   # yabridge config
   xdg.configFile."yabridgectl/config.toml".source = ./yabridgectl.toml;
