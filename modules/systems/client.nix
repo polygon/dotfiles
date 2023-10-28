@@ -55,5 +55,7 @@ in
       enable = true;
       package = pkgs.i3lock-color;
     };
+
+    programs.nix-ld.enable = true;
   }; 
 }
