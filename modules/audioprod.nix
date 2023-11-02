@@ -39,7 +39,7 @@ in
       stochas
       xtuner
       atlas2
-      plugdata
+      #plugdata
       yabridge
       yabridgectl
       wineWowPackages.full
@@ -48,6 +48,7 @@ in
       vital
       run-scaled
       tony
+      neuralnote
     ];
 
     security.pam.loginLimits = [
