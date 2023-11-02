@@ -57,5 +57,7 @@ in
     };
 
     programs.nix-ld.enable = true;
+
+    services.openssh.settings.X11Forwarding = true;
   }; 
 }
