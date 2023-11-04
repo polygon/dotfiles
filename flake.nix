@@ -82,8 +82,13 @@
           siril = pkgsunstable.siril;
           vscodium = pkgsunstable.vscodium;
           obsidian = pkgsunstable.obsidian;
-          vital = pkgsunstable.vital;
           nixd = nixd.packages.${system}.nixd;
+          distrho = pkgsunstable.distrho;
+          geonkick = pkgsunstable.geonkick;
+          x42-plugins = pkgsunstable.x42-plugins;
+          dragonfly-reverb = pkgsunstable.dragonfly-reverb;
+          yabridge = pkgsunstable.yabridge;
+          yabridgectl = pkgsunstable.yabridgectl;
         });
 
       hostDefaults.modules = [
