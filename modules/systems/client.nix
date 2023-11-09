@@ -38,6 +38,7 @@ in
       obsidian
       chromium
       cntr
+      nix-init
     ];
 
     fonts.fonts = with pkgs; [

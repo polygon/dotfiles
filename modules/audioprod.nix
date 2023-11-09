@@ -49,6 +49,7 @@ in
       run-scaled
       tony
       neuralnote
+      amplocker
     ];
 
     security.pam.loginLimits = [
