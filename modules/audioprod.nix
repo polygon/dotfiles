@@ -50,6 +50,11 @@ in
       tony
       neuralnote
       amplocker
+      chow-tape-model
+      chow-multitool
+      chow-centaur
+      chow-phaser
+      chow-kick
     ];
 
     security.pam.loginLimits = [

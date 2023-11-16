@@ -98,7 +98,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
+          home-manager.sharedModules = [ ./hmmodules ];
           home-manager.extraSpecialArgs = { inherit aww self audio; };
         }
       ];
