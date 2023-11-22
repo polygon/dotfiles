@@ -67,6 +67,7 @@
     xfce.thunar
     ncdu
     clementine
+    krita
   ];
 
   # This value determines the Home Manager release that your
