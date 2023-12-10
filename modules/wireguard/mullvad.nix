@@ -12,7 +12,8 @@ in
     networking.wg-quick = {
       interfaces = {
         mullvad = {
-          address = [ "10.65.0.99/32" "fc00:bbbb:bbbb:bb01::2:62/128" ];
+          #address = [ "10.65.0.99/32" "fc00:bbbb:bbbb:bb01::2:62/128" ];
+          address = [ "10.65.31.58/32" "fc00:bbbb:bbbb:bb01::2:1f39/128" ];
           privateKeyFile = "/home/jan/wg/private";
           postUp = "systemd-resolve -i mullvad --set-dns=193.138.218.74 --set-domain=~.";
           peers = [
