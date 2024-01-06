@@ -13,6 +13,7 @@
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "bpool" "rpool" ];
+  boot.zfs.devNodes = "/dev/disk/by-partuuid";
 
   # Grub
   boot.loader.grub.enable = true;
@@ -35,12 +36,20 @@
     domain = "nubego.de";
     hostId = "bd66481d";
     dhcpcd.enable = false;
-    useNetworkd = true;
   };
 
   systemd.services.systemd-networkd-wait-online.enable = pkgs.lib.mkForce false;
-#  systemd.network = {
-#    enable = true;
+  systemd.network = {
+    enable = true;
+    
+    networks."10-wan" = {
+      matchConfig.Name = "ens3";
+      networkConfig = {
+        DHCP = "ipv4";
+        IPv6AcceptRA = true;
+      };
+    };
+  };
 #
 #    # Rename our main network interface to "phys0"
 #    links."10-phys0" = {
