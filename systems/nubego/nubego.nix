@@ -14,6 +14,12 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "bpool" "rpool" ];
 
+  # Grub
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+
+
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="vd[a-z]*[0-9]*|sd[a-z]*[0-9]*|mmcblk[0-9]*p[0-9]*|nvme[0-9]*n[0-9]*p[0-9]*", ENV{ID_FS_TYPE}=="zfs_member", ATTR{../queue/scheduler}="none"
   ''; # zfs already has its own scheduler. without this my(@Artturin) computer froze for a second when i nix build something.  

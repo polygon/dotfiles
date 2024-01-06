@@ -264,6 +264,18 @@
               sops-nix.nixosModules.sops
             ];
           };
+
+          nubego = nixosSystem' rec {
+            system = "x86_64-linux";
+    
+            modules = [
+              ./systems/nubego
+              {
+                home-manager.users.admin = import ./users/admin.nix;
+              }
+              sops-nix.nixosModules.sops
+            ];
+          };
         };
     };
 }
