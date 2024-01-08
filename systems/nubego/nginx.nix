@@ -16,6 +16,15 @@
     root = "${pkgs.nginx}/html";
   };
 
+  services.nginx.virtualHosts."push.nubego.de" = {
+    useACMEHost = "nubego.de";
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://10.23.42.13:8080/";
+      proxyWebsockets = true;
+    };
+  };  
+
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];
 

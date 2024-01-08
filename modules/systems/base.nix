@@ -50,6 +50,7 @@ in
       ssh-to-age
       pwgen
       w3m
+      nix-output-monitor
     ];
 
     programs.zsh.enable = true;

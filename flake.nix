@@ -33,9 +33,13 @@
     };
     nix-index-db.url = "github:Mic92/nix-index-database";
     nixd.url = "github:nix-community/nixd";
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd, ... }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd, vscode-server, ... }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -272,6 +276,7 @@
               ./systems/nubego
               {
                 home-manager.users.admin = import ./users/admin.nix;
+                home-manager.sharedModules = [ "${vscode-server}/modules/vscode-server/home.nix" ];
               }
               sops-nix.nixosModules.sops
             ];
