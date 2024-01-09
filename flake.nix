@@ -123,20 +123,6 @@
         specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
       };
 
-      hosts.nixserv = rec {
-        system = "x86_64-linux";
-
-        modules = [
-          ./systems/nixserv/nixserv.nix
-          microvm.nixosModules.host
-          {
-            home-manager.users.admin = import ./users/admin.nix;
-          }
-        ];
-
-        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-      };
-
       outputsBuilder = channels: {
         packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
       };
@@ -160,7 +146,11 @@
                 {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-                  home-manager.sharedModules = [ ./hmmodules audio.hmModule ];
+                  home-manager.sharedModules = [ 
+                    ./hmmodules 
+                    audio.hmModule 
+                    "${vscode-server}/modules/vscode-server/home.nix"
+                  ];
                   home-manager.extraSpecialArgs = { inherit aww self audio; };
                 }
               ] ++ modules;
@@ -276,10 +266,23 @@
               ./systems/nubego
               {
                 home-manager.users.admin = import ./users/admin.nix;
-                home-manager.sharedModules = [ "${vscode-server}/modules/vscode-server/home.nix" ];
               }
               sops-nix.nixosModules.sops
             ];
+          };
+   
+          nixserv = nixosSystem' rec {
+            system = "x86_64-linux";
+
+            modules = [
+              ./systems/nixserv/nixserv.nix
+              microvm.nixosModules.host
+              {
+                home-manager.users.admin = import ./users/admin.nix;
+              }
+            ];
+
+            specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
           };
         };
     };

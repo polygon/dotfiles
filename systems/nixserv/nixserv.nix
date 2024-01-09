@@ -288,6 +288,7 @@
   microvm.autostart = [
     "paperless"
     "hal"
+    "cloud"
   ];
 
 
