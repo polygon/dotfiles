@@ -23,6 +23,16 @@
       fsType = "zfs";
     };
 
+  fileSystems."/nix" =
+    { device = "rpool/nixos/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix/store" =
+    { device = "rpool/nixos/nix/store";
+      fsType = "zfs";
+    };
+
   fileSystems."/etc" =
     { device = "rpool/nixos/etc";
       fsType = "zfs";

@@ -36,6 +36,10 @@
     domain = "nubego.de";
     hostId = "bd66481d";
     dhcpcd.enable = false;
+    nat = {
+      externalInterface = "ens3";
+      enable = true;
+    };
   };
 
   systemd.services.systemd-networkd-wait-online.enable = pkgs.lib.mkForce false;
@@ -61,6 +65,14 @@
   users.users.jan = {
     isNormalUser = true;
     uid = 1000;
+  };
+
+  # Public facing server, put a bit more SSH security in place
+   services.openssh = {
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
   };
 
   # Configure network proxy if necessary

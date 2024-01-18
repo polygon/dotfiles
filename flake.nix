@@ -37,9 +37,13 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd, vscode-server, ... }:
+  outputs = inputs@{ 
+    self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix,
+    mqtt2psql, nix-index-db, nixd, vscode-server, simple-nixos-mailserver, ... 
+  }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -166,7 +170,7 @@
               ] ++ modules;
               specialArgs = {
                 unstable = unstable.legacyPackages.${system};
-                inherit self secrets;
+                inherit self secrets simple-nixos-mailserver;
               } // specialArgs;
             };
         in
@@ -274,6 +278,7 @@
     
             modules = [
               ./systems/nubego
+              simple-nixos-mailserver.nixosModule
               {
                 home-manager.users.admin = import ./users/admin.nix;
                 home-manager.sharedModules = [ "${vscode-server}/modules/vscode-server/home.nix" ];
@@ -284,4 +289,3 @@
         };
     };
 }
-
