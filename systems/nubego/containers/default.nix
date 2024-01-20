@@ -1,3 +1,7 @@
 { 
-  imports = [ ./playground.nix ./push.nix ];
+  imports = [ 
+    ./playground.nix 
+    ./push.nix 
+    ./mail.nix
+  ];
 }

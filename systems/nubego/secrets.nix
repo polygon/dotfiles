@@ -8,5 +8,8 @@
       owner = "acme";
       mode = "0400";
     };
+    "mail/jan/hashedPasswordFile" = {
+      restartUnits = [ "container@mail.service" ];
+     };
   };
 }
