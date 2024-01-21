@@ -25,6 +25,14 @@
     };
   };  
 
+  services.nginx.virtualHosts."dav.nubego.de" = {
+    useACMEHost = "nubego.de";
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://10.23.42.17:5232/";
+    };
+  };  
+
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];
 

@@ -459,11 +459,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1705160061,
-        "narHash": "sha256-HGV3oRsJuF4stRyKqrCBlRSCKK9rMktkzuJAPixBang=",
+        "lastModified": 1705795953,
+        "narHash": "sha256-J5zCKGZybZK9iXs71VuaN2Jsym1Mi12JuuMSJQCX0vw=",
         "ref": "refs/heads/main",
-        "rev": "f2591b969f8c119bedac335df9ad8df56ada4f05",
-        "revCount": 22,
+        "rev": "ba5b64b7188d572bf1dbd3bd901070998ad85143",
+        "revCount": 23,
         "type": "git",
         "url": "ssh://git@github.com/polygon/secrets.git"
       },

@@ -11,5 +11,8 @@
     "mail/jan/hashedPasswordFile" = {
       restartUnits = [ "container@mail.service" ];
      };
+    "dav/htpasswd" = {
+      restartUnits = [ "container@dav.service" ];
+    };
   };
 }
