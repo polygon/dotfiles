@@ -4,5 +4,6 @@
     ./push.nix 
     ./mail.nix
     ./dav.nix
+    ./sync.nix
   ];
 }

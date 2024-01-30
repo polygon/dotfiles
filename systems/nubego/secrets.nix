@@ -14,5 +14,9 @@
     "dav/htpasswd" = {
       restartUnits = [ "container@dav.service" ];
     };
+    "sync/htpasswd" = { 
+      owner = "nginx";
+      mode = "0400";
+    };
   };
 }

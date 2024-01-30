@@ -33,6 +33,16 @@
     };
   };  
 
+  services.nginx.virtualHosts."sync.nubego.de" = {
+    useACMEHost = "nubego.de";
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://10.23.42.19:8384/";
+    };
+    basicAuthFile = config.sops.secrets."sync/htpasswd".path;
+  };  
+
+
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];
 

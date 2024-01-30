@@ -21,6 +21,11 @@ in
       default = "127.0.0.1:8384";
       description = "Syncthing listen address";
     };
+    includeAddresses = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Include IP addresses of devices";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -45,22 +50,27 @@ in
 
         devices."cloud" = {
           id = sync_ids.cloud;
-          addresses = [ "tcp4://192.168.1.24" ];
+          addresses = lib.optionals cfg.includeAddresses [ "tcp4://192.168.1.24" ];
         };
         devices."nixbrett" = {
           id = sync_ids.nixbrett;
-          addresses = [ "tcp://nixbrett.matelab.de" ];
+          addresses = lib.optionals cfg.includeAddresses [ "tcp://nixbrett.matelab.de" ];
         };
         devices."cube" = {
           id = sync_ids.cube;
-          addresses = [ "tcp://cube.matelab.de" ];
+          addresses = lib.optionals cfg.includeAddresses [ "tcp://cube.matelab.de" ];
         };
   
         devices."fon" = {
           id = sync_ids.fon;
-          addresses = [ "tcp://192.168.1.183" ];
+          addresses = lib.optionals cfg.includeAddresses [ "tcp://192.168.1.183" ];
         };
-  
+
+        devices."sync" = {
+          id = sync_ids.sync;
+          addresses = lib.optionals cfg.includeAddresses [ "tcp://192.168.1.183" ];
+        };
+
         folders."bitwig" = {
           path = "${cfg.basePath}/Bitwig Studio";
           devices = [ "cloud" "nixbrett" "cube" ];
@@ -73,7 +83,7 @@ in
   
         folders."obsidian" = {
           path = "${cfg.basePath}/obsidian";
-          devices = [ "cloud" "nixbrett" "cube" "fon" ];
+          devices = [ "cloud" "nixbrett" "cube" "fon" "sync" ];
         };
   
         folders."Documents" = {
