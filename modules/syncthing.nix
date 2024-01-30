@@ -68,7 +68,7 @@ in
 
         devices."sync" = {
           id = sync_ids.sync;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp://192.168.1.183" ];
+          addresses = lib.optionals cfg.includeAddresses [ "tcp://sync.nubego.de" ];
         };
 
         folders."bitwig" = {
@@ -88,12 +88,12 @@ in
   
         folders."Documents" = {
           path = "${cfg.basePath}/Documents";
-          devices = [ "cloud" "nixbrett" "cube" ];
+          devices = [ "cloud" "nixbrett" "cube" "sync" ];
         };
   
         folders."Pictures" = {
           path = "${cfg.basePath}/Pictures";
-          devices = [ "cloud" "nixbrett" "cube" ];
+          devices = [ "cloud" "nixbrett" "cube" "sync" ];
         };
   
         folders."wine-vst64" = {
