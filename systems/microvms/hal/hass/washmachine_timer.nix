@@ -84,12 +84,11 @@
       {
         alias = "Washmachine Acknowledge";
         trigger = {
-          platform = "device";
-          domain = "tasmota";
-          device_id = "6acc481f1947e2088e6707268f17f101";
-          type = "button_short_press";
-          subtype = "button_1";
-          discovery_id = "2462AB201F9D_button_1_SINGLE";
+          platform = "event";
+          event_type = "tasmota_event";
+          event_data.mac = "2462AB201F9D";
+          event_data.source = "button_1";
+          event_data.event = "SINGLE";
         };
         condition = {
           condition = "state";
