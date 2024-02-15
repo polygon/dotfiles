@@ -100,6 +100,11 @@ in
           path = "${cfg.basePath}/.local/share/wineprefixes/wine-vst64";
           devices = [ "cloud" "nixbrett" "cube" ];
         };
+
+        folders."Photos" = {
+          path = "${cfg.basePath}/Photos";
+          devices = [ "cloud" "nixbrett" "cube" "sync" "fon" ];
+        };
       };
     };
 
