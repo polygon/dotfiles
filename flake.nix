@@ -100,6 +100,7 @@
           dragonfly-reverb = pkgsunstable.dragonfly-reverb;
           yabridge = pkgsunstable.yabridge;
           yabridgectl = pkgsunstable.yabridgectl;
+          syncthing = pkgsunstable.syncthing;
         });
 
       hostDefaults.modules = [
