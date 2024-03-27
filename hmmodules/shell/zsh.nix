@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 
 with lib;
 
@@ -52,5 +52,6 @@ in {
       enableAutosuggestions = true;
       enableCompletion = true;
     };
+    home.file.".p10k.zsh".source = "${self}/zsh/p10k.zsh";
   };
 }
