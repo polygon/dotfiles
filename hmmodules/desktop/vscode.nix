@@ -17,7 +17,7 @@ in
         vadimcn.vscode-lldb
         #matklad.rust-analyzer
         ms-vscode-remote.remote-ssh
-        ms-python.python
+        #ms-python.python
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         #{
         #  name = "command-server";

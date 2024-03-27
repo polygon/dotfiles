@@ -18,7 +18,7 @@ in
         visibleName = "polygon";
         backspaceBinding = "ascii-delete";
         deleteBinding = "delete-sequence";
-        font = "Monospace 11";
+        font = "MesloLGS NF 11";
         colors = {
           backgroundColor = "rgb(0,43,54)";
           foregroundColor = "rgb(131,148,150)";

@@ -45,6 +45,7 @@ in
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      meslo-lgs-nf
     ];    
 
     programs.ssh = {

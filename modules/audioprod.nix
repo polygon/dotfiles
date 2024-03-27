@@ -55,6 +55,7 @@ in
       chow-centaur
       chow-phaser
       chow-kick
+      papu
     ];
 
     security.pam.loginLimits = [

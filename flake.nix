@@ -11,7 +11,10 @@
       url = "github:polygon/awesome-wm-widgets/poly";
       flake = false;
     };
-    audio.url = "github:polygon/audio.nix";
+    audio = {
+      url = "github:polygon/audio.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     microvm = {
       url = "github:astro/microvm.nix/v0.4.0";
       #url = "path:/home/admin/microvm.nix";
@@ -152,7 +155,6 @@
                   home-manager.useUserPackages = true;
                   home-manager.sharedModules = [ 
                     ./hmmodules 
-                    audio.hmModule 
                     "${vscode-server}/modules/vscode-server/home.nix"
                   ];
                   home-manager.extraSpecialArgs = { inherit aww self audio; };

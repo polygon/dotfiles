@@ -47,7 +47,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = (pkgs.zfs.override {
+    removeLinuxDRM = pkgs.hostPlatform.isAarch64;
+  }).latestCompatibleLinuxPackages;
+  boot.zfs.removeLinuxDRM = true;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   boot.extraModprobeConfig = ''
@@ -58,6 +61,8 @@
   '';
 
   services.fwupd.enable = true;
+
+  services.mullvad-vpn.enable = true;
 
   services.zfs = {
     autoScrub.enable = true;
