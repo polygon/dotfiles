@@ -10,6 +10,9 @@ in {
     programs.zsh = {
       enable = true;
       initExtra = ''
+        # Make autosuggestions visible with Solarized color scheme
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+
         eval "$(direnv hook zsh)"
         unsetopt NOMATCH
       '';
