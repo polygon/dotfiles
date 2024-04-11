@@ -97,12 +97,12 @@
           vscodium = pkgsunstable.vscodium;
           obsidian = pkgsunstable.obsidian;
           nixd = nixd.packages.${system}.nixd;
-          distrho = pkgsunstable.distrho;
-          geonkick = pkgsunstable.geonkick;
-          x42-plugins = pkgsunstable.x42-plugins;
-          dragonfly-reverb = pkgsunstable.dragonfly-reverb;
-          yabridge = pkgsunstable.yabridge;
-          yabridgectl = pkgsunstable.yabridgectl;
+          #distrho = pkgsunstable.distrho;
+          #geonkick = pkgsunstable.geonkick;
+          #x42-plugins = pkgsunstable.x42-plugins;
+          #dragonfly-reverb = pkgsunstable.dragonfly-reverb;
+          #yabridge = pkgsunstable.yabridge;
+          #yabridgectl = pkgsunstable.yabridgectl;
           syncthing = pkgsunstable.syncthing;
         });
 

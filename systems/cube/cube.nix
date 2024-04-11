@@ -245,6 +245,18 @@
   # Assign plugdev for radi0 users
   services.udev.packages = [ unstable.hackrf ];
 
+  # Serve Nix Store of this machine
+  nix.sshServe = {
+    enable = true;
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMfpLyBuT0Yu8R2MiYBxAfAKddVe1URRYafw4SjdBnx nixget@matelab"
+    ];
+  };
+
+  nix.extraOptions = ''
+    secret-key-files = /root/nix-cache/nix-cache-key.sec
+  '';
+
   #containers.postgres = {
   #  config = { config, pkgs, ... }: {
   #    services.postgresql = {
