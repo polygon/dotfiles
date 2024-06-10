@@ -145,7 +145,7 @@
   services.resolved.enable = true;
 
   # Enable the GNOME 3 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.windowManager.awesome.enable = true;
 
@@ -153,7 +153,7 @@
   
 
   # Configure keymap in X11
-  services.xserver.layout = "de";
+  services.xserver.xkb.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.

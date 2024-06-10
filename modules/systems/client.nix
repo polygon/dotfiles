@@ -33,7 +33,7 @@ in
     environment.systemPackages = with pkgs; [
       gnupg
       nixd
-      nixfmt
+      nixfmt-classic
       mc
       obsidian
       chromium

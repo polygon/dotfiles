@@ -52,7 +52,7 @@ in {
           source "$HOME/.cache/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
       '';
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
     };
     home.file.".p10k.zsh".source = "${self}/zsh/p10k.zsh";

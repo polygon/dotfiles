@@ -21,7 +21,7 @@ in
       keep-derivations = true
       experimental-features = nix-command flakes
       '';
-      package = pkgs.nixUnstable;
+      package = pkgs.nixVersions.latest;
     }; 
 
     systemd.network.enable = true;

@@ -13,10 +13,10 @@ in
     programs.zoxide.enable = true;
     programs.pls.enable = true;
 
-    home.file.".cache/nix-index/files".source = pkgs.nix-index-db;
+#    home.file.".cache/nix-index/files".source = pkgs.nix-index-db;
 
     home.packages = with pkgs; [
-      nix-index
+#      nix-index
       wget
       htop
       traceroute

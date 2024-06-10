@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     microvm = {
-      url = "github:astro/microvm.nix/v0.4.0";
+      url = "github:astro/microvm.nix/v0.5.0";
       #url = "path:/home/admin/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -68,7 +68,6 @@
               ./zsh/0001-poly-prompt.patch
             ];
           });
-          nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
         })
       ];
 
@@ -92,7 +91,6 @@
               ./zsh/0001-poly-prompt.patch
             ];
           });
-          nix-index-db = nix-index-db.legacyPackages.x86_64-linux.database;
           siril = pkgsunstable.siril;
           vscodium = pkgsunstable.vscodium;
           obsidian = pkgsunstable.obsidian;
@@ -157,6 +155,7 @@
                   home-manager.sharedModules = [ 
                     ./hmmodules 
                     "${vscode-server}/modules/vscode-server/home.nix"
+                    nix-index-db.hmModules.nix-index
                   ];
                   home-manager.extraSpecialArgs = { inherit aww self audio; };
                 }
