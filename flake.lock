@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716880849,
-        "narHash": "sha256-jIbdjIsQ8MvCmaFp1tv+/SKM6IKAyiJY8wUtdEbnBe0=",
+        "lastModified": 1718044674,
+        "narHash": "sha256-9BOwWPbAGFYD7igzG75xZOrwFTDuClx2qwYgrSeZ/F8=",
         "owner": "polygon",
         "repo": "audio.nix",
-        "rev": "87f053e4dffe20ff97661f4a83f64d4914cd8d40",
+        "rev": "2b22bcebeb607bdf8b3689a72badd5db4e7ff585",
         "type": "github"
       },
       "original": {
