@@ -130,7 +130,7 @@
   services.avahi.enable = true;
   # Important to resolve .local domains of printers, otherwise you get an error
   # like  "Impossible to connect to XXX.local: Name or service not known"
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -271,8 +271,8 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.touchpad = {
+  services.libinput.enable = true;
+  services.libinput.touchpad = {
     tapping = true;
     clickMethod = "clickfinger";
     accelSpeed = "0.2";

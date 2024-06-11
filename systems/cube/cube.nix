@@ -258,6 +258,9 @@
     secret-key-files = /root/nix-cache/nix-cache-key.sec
   '';
 
+  # Space Mouse
+  hardware.spacenavd.enable = true;
+
   #containers.postgres = {
   #  config = { config, pkgs, ... }: {
   #    services.postgresql = {
