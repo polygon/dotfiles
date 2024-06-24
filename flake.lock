@@ -38,6 +38,28 @@
         "type": "github"
       }
     },
+    "blender-bin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "blender",
+        "lastModified": 1715164129,
+        "narHash": "sha256-IfqQb+FjCQAfy9NzWq0nyAWpvKj0c2Y20DBKmve+G74=",
+        "owner": "edolstra",
+        "repo": "nix-warez",
+        "rev": "979aa248bd8af258b98a3fe46671d7dc06bc956b",
+        "type": "github"
+      },
+      "original": {
+        "dir": "blender",
+        "owner": "edolstra",
+        "repo": "nix-warez",
+        "type": "github"
+      }
+    },
     "blobs": {
       "flake": false,
       "locked": {
@@ -360,6 +382,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-spacenavd": {
+      "locked": {
+        "lastModified": 1718056708,
+        "narHash": "sha256-hyOZwC4nDDnEVS5AoUxkDFN8Gp10PmWad/EbhXqWvms=",
+        "owner": "polygon",
+        "repo": "nixpkgs",
+        "rev": "5b5c8e359c7a13c1895aa79a96ae154ed908a765",
+        "type": "github"
+      },
+      "original": {
+        "owner": "polygon",
+        "ref": "update-spacenavd",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1717880976,
@@ -443,6 +481,7 @@
       "inputs": {
         "audio": "audio",
         "aww": "aww",
+        "blender-bin": "blender-bin",
         "fup": "fup",
         "home-manager": "home-manager",
         "microvm": "microvm",
@@ -450,6 +489,7 @@
         "nix-index-db": "nix-index-db",
         "nixd": "nixd",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-spacenavd": "nixpkgs-spacenavd",
         "scalpel": "scalpel",
         "secrets": "secrets",
         "simple-nixos-mailserver": "simple-nixos-mailserver",

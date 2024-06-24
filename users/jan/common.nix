@@ -62,6 +62,7 @@
     flowblade
     nixpkgs-fmt
     freecad
+    bambu-studio
     prusa-slicer
     imagemagick
     xfce.thunar

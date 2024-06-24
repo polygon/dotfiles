@@ -11,8 +11,8 @@
   home.packages = with pkgs; [
     steam
     steam-run
-    blender
     reaper
+    blender-bin
     patchage
     stellarium
     siril

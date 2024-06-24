@@ -47,6 +47,7 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
       meslo-lgs-nf
+      xorg.fontcursormisc
     ];    
 
     programs.ssh = {

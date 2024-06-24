@@ -217,6 +217,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xboxdrv
+    spacenavd
   ];
 
   environment.variables = {
@@ -260,6 +261,7 @@
 
   # Space Mouse
   hardware.spacenavd.enable = true;
+  systemd.tmpfiles.rules = [ "L /var/run/spnav.sock - - - - /run/user/1000/spnav.sock" ];
 
   #containers.postgres = {
   #  config = { config, pkgs, ... }: {

@@ -75,6 +75,11 @@ in
           path = "${cfg.basePath}/Bitwig Studio";
           devices = [ "cloud" "nixbrett" "cube" ];
         };
+
+        folders."blender" = {
+          path = "${cfg.basePath}/blender";
+          devices = [ "cloud" "nixbrett" "cube" ];
+        };
   
         folders."audiolib" = {
           path = "${cfg.basePath}/audiolib";

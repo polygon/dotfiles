@@ -41,11 +41,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
+    nixpkgs-spacenavd.url = "github:polygon/nixpkgs/update-spacenavd";
+    blender-bin = {
+      url = "github:edolstra/nix-warez?dir=blender";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ 
     self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix,
-    mqtt2psql, nix-index-db, nixd, vscode-server, simple-nixos-mailserver, ... 
+    mqtt2psql, nix-index-db, nixd, vscode-server, simple-nixos-mailserver, nixpkgs-spacenavd, blender-bin, ... 
   }:
     fup.lib.mkFlake {
       inherit self inputs;
@@ -102,6 +107,8 @@
           #yabridge = pkgsunstable.yabridge;
           #yabridgectl = pkgsunstable.yabridgectl;
           syncthing = pkgsunstable.syncthing;
+          spacenavd = nixpkgs-spacenavd.legacyPackages.${system}.spacenavd;
+          blender-bin = blender-bin.packages.${system}.blender_4_1;
         });
 
       hostDefaults.modules = [
