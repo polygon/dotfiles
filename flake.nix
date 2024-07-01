@@ -40,7 +40,7 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.05";
     nixpkgs-spacenavd.url = "github:polygon/nixpkgs/update-spacenavd";
     blender-bin = {
       url = "github:edolstra/nix-warez?dir=blender";
@@ -122,19 +122,6 @@
           home-manager.extraSpecialArgs = { inherit aww self audio; };
         }
       ];
-
-      hosts.travelnix = rec {
-        system = "x86_64-linux";
-
-        modules = [
-          ./systems/travelnix/travelnix.nix
-          {
-            home-manager.users.jan = import ./users/jan/common.nix;
-          }
-        ];
-
-        specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
-      };
 
       outputsBuilder = channels: {
         packages.microvm-kernel = microvm.packages.x86_64-linux.microvm-kernel;
@@ -297,6 +284,17 @@
             ];
 
             specialArgs = { unstable = unstable.legacyPackages.${system}; inherit self; };
+          };
+
+          midimaxe = nixosSystem' {
+            system = "x86_64-linux";
+    
+            modules = [
+              ./systems/travelnix/midimaxe.nix
+              {
+                home-manager.users.midimaxe = import ./users/midimaxe.nix;
+              }
+            ];
           };
         };
     };
