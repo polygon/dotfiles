@@ -46,11 +46,16 @@
       url = "github:edolstra/nix-warez?dir=blender";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    midimaxe = {
+      url = "github:polygon/midimaxe";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };    
   };
 
   outputs = inputs@{ 
     self, nixpkgs, unstable, home-manager, fup, aww, audio, microvm, scalpel, secrets, sops-nix,
-    mqtt2psql, nix-index-db, nixd, vscode-server, simple-nixos-mailserver, nixpkgs-spacenavd, blender-bin, ... 
+    mqtt2psql, nix-index-db, nixd, vscode-server, simple-nixos-mailserver, nixpkgs-spacenavd, blender-bin,
+    midimaxe, ...
   }:
     fup.lib.mkFlake {
       inherit self inputs;
@@ -109,6 +114,7 @@
           syncthing = pkgsunstable.syncthing;
           spacenavd = nixpkgs-spacenavd.legacyPackages.${system}.spacenavd;
           blender-bin = blender-bin.packages.${system}.blender_4_1;
+          midimaxe = midimaxe.packages.${system}.midimaxe;
         });
 
       hostDefaults.modules = [

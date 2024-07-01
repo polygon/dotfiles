@@ -17,7 +17,6 @@
   modules.desktop.gnome-terminal.enable = true;
 
   home.packages = with pkgs; [
-    tenacity
   ];
 
   # This value determines the Home Manager release that your
