@@ -51,6 +51,7 @@ in
       pwgen
       w3m
       nix-output-monitor
+      bpftrace
     ];
 
     programs.zsh.enable = true;
