@@ -558,7 +558,8 @@
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "sops-nix": "sops-nix",
         "unstable": "unstable",
-        "vscode-server": "vscode-server"
+        "vscode-server": "vscode-server",
+        "winery": "winery"
       }
     },
     "rust-overlay": {
@@ -605,11 +606,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1720041521,
-        "narHash": "sha256-gVzgEqmOM7LB6V4jcZLUDIM6VUylXuHfr7RUVOUxJkA=",
+        "lastModified": 1725801313,
+        "narHash": "sha256-2iCaqw9qyLmUZegZm/TFZORiKRNz/NDGJbOR7DKAhWE=",
         "ref": "refs/heads/main",
-        "rev": "7b2b7716ba3bd4253cc3402126e75f7812e26748",
-        "revCount": 28,
+        "rev": "012b67b9d5685262b05b52941d6547588bd813ca",
+        "revCount": 29,
         "type": "git",
         "url": "ssh://git@github.com/polygon/secrets.git"
       },
@@ -806,6 +807,23 @@
         "owner": "nix-community",
         "repo": "nixos-vscode-server",
         "type": "github"
+      }
+    },
+    "winery": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1723749444,
+        "narHash": "sha256-yZ7yPGEi65Swd/s9mWAfvPrbP1VJPOVhmmyn7E6buP0=",
+        "path": "/home/jan/Projects/winery",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/jan/Projects/winery",
+        "type": "path"
       }
     }
   },

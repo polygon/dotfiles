@@ -52,6 +52,7 @@ in
       w3m
       nix-output-monitor
       bpftrace
+      restic
     ];
 
     programs.zsh.enable = true;

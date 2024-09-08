@@ -7,8 +7,7 @@ with lib;
 let
   cfg = config.modules.apps.syncthing;
   sync_ids = import "${secrets}/syncthing.nix";
-in
-{
+in {
   options.modules.apps.syncthing = {
     enable = mkEnableOption "Syncthing";
     basePath = mkOption {
@@ -50,25 +49,36 @@ in
 
         devices."cloud" = {
           id = sync_ids.cloud;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp4://192.168.1.24" ];
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp4://192.168.1.24" ];
         };
         devices."nixbrett" = {
           id = sync_ids.nixbrett;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp://nixbrett.matelab.de" ];
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp://nixbrett.matelab.de" ];
         };
         devices."cube" = {
           id = sync_ids.cube;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp://cube.matelab.de" ];
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp://cube.matelab.de" ];
         };
-  
+
         devices."fon" = {
           id = sync_ids.fon;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp://192.168.1.183" ];
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp://192.168.1.183" ];
+        };
+
+        devices."fon55" = {
+          id = sync_ids.fon55;
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp://192.168.1.173" ];
         };
 
         devices."sync" = {
           id = sync_ids.sync;
-          addresses = lib.optionals cfg.includeAddresses [ "tcp://sync.nubego.de" ];
+          addresses =
+            lib.optionals cfg.includeAddresses [ "tcp://sync.nubego.de" ];
         };
 
         folders."bitwig" = {
@@ -80,27 +90,27 @@ in
           path = "${cfg.basePath}/blender";
           devices = [ "cloud" "nixbrett" "cube" ];
         };
-  
+
         folders."audiolib" = {
           path = "${cfg.basePath}/audiolib";
           devices = [ "cloud" "nixbrett" "cube" ];
         };
-  
+
         folders."obsidian" = {
           path = "${cfg.basePath}/obsidian";
-          devices = [ "cloud" "nixbrett" "cube" "fon" "sync" ];
+          devices = [ "cloud" "nixbrett" "cube" "fon55" "sync" ];
         };
-  
+
         folders."Documents" = {
           path = "${cfg.basePath}/Documents";
           devices = [ "cloud" "nixbrett" "cube" "sync" ];
         };
-  
+
         folders."Pictures" = {
           path = "${cfg.basePath}/Pictures";
           devices = [ "cloud" "nixbrett" "cube" "sync" ];
         };
-  
+
         folders."wine-vst64" = {
           path = "${cfg.basePath}/.local/share/wineprefixes/wine-vst64";
           devices = [ "cloud" "nixbrett" "cube" ];
@@ -108,7 +118,7 @@ in
 
         folders."Photos" = {
           path = "${cfg.basePath}/Photos";
-          devices = [ "cloud" "nixbrett" "cube" "sync" "fon" ];
+          devices = [ "cloud" "nixbrett" "cube" "sync" "fon55" ];
         };
       };
     };
