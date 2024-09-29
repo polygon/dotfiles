@@ -51,10 +51,10 @@
       url = "github:polygon/midimaxe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    winery = {
-      url = "path:/home/jan/Projects/winery";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#    winery = {
+#      url = "path:/home/jan/Projects/winery";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
   };
 
   outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio

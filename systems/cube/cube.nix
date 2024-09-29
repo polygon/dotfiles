@@ -13,7 +13,7 @@
   modules.wireguard.mullvad.enable = true;
 
   # Enable VirtualBox
-  modules.apps.virtualbox.enable = true;
+  # modules.apps.virtualbox.enable = true;
 
   # Enable SyncThing
   modules.apps.syncthing.enable = true;
