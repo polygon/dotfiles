@@ -29,7 +29,7 @@
   # VSCode server
   services.vscode-server = {
     enable = true;
-    installPath = "~/.vscode-server";
+    installPath = "$HOME/.vscode-server";
   };
 
   # This value determines the Home Manager release that your
