@@ -5,7 +5,7 @@
   #}));
   microvm.hypervisor = "qemu";
   microvm.vcpu = 1;
-  microvm.mem = 2048;
+  microvm.mem = 4096;
   microvm.interfaces = [
     {
       type = "tap";
