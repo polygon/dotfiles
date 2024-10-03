@@ -15,6 +15,7 @@
 
   # Allow network access for paperless-scheduler since we run postgres on another host
   systemd.services.paperless-scheduler.serviceConfig.PrivateNetwork = lib.mkForce false;
+  systemd.services.paperless-consumer.serviceConfig.PrivateNetwork = lib.mkForce false;
 
   networking.firewall.allowedTCPPorts = [ 28981 ];
 }
