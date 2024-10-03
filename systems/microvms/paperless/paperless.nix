@@ -1,6 +1,6 @@
 { config, secrets, lib, ... }:
 {
-  services.paperless.extraConfig = {
+  services.paperless.settings = {
     PAPERLESS_FILENAME_FORMAT = "{created_year}/{document_type}/{created_month}-{created_day}-{title}-{asn}";
     PAPERLESS_OCR_LANGUAGE = "deu+eng";
     PAPERLESS_OCR_MODE = "skip";

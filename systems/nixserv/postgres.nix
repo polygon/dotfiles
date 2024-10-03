@@ -26,21 +26,15 @@
     ensureUsers = [
       {
         name = "paperless";
-        ensurePermissions = {
-          "DATABASE \"paperless\"" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
       }
       {
         name = "iot";
-        ensurePermissions = {
-          "DATABASE \"iot\"" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
       }
       {
         name = "hass";
-        ensurePermissions = {
-          "DATABASE \"hass\"" = "ALL PRIVILEGES";
-        };
+        ensureDBOwnership = true;
       }
     ];
   };
