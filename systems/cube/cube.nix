@@ -13,7 +13,7 @@
   modules.wireguard.mullvad.enable = true;
 
   # Enable VirtualBox
-  # modules.apps.virtualbox.enable = true;
+  modules.apps.virtualbox.enable = true;
 
   # Enable SyncThing
   modules.apps.syncthing.enable = true;
@@ -273,6 +273,10 @@
   #    };
   #  };
   #};
+
+  networking.firewall = {
+    allowedUDPPorts = [ 24727 ]; # Ausweisapp
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

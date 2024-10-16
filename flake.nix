@@ -108,6 +108,7 @@
         #yabridge = pkgsunstable.yabridge;
         #yabridgectl = pkgsunstable.yabridgectl;
         syncthing = pkgsunstable.syncthing;
+        freecad = pkgsunstable.freecad;
         spacenavd = nixpkgs-spacenavd.legacyPackages.${system}.spacenavd;
         blender-bin = blender-bin.packages.${system}.blender_4_1;
         midimaxe = midimaxe.packages.${system}.midimaxe;

@@ -16,6 +16,7 @@
     patchage
     stellarium
     siril
+    AusweisApp2
   ];
 
   home.stateVersion = "22.11";

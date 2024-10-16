@@ -83,7 +83,7 @@
     allowedTCPPorts = [
       20000
     ];
-    allowedUDPPorts = [ 24727 ];
+    allowedUDPPorts = [ 24727 ]; # Ausweisapp
   };
 
   networking.wireless.networks."Camp2023".auth = ''
