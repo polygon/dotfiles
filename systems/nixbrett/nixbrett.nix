@@ -19,6 +19,9 @@
   # Audio production
   modules.apps.audioprod.enable = true; 
 
+  # Android Debug Bridge
+  modules.apps.adb.enable = true;
+
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
