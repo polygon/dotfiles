@@ -2,21 +2,23 @@
   "nodes": {
     "audio": {
       "inputs": {
+        "home-manager": "home-manager",
         "nix-buildproxy": "nix-buildproxy",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1728748462,
-        "narHash": "sha256-kVg8KHcm9RLqHQXYmb0Zw+RhcXlztY2XRfvojuwRuLI=",
+        "lastModified": 1732324240,
+        "narHash": "sha256-0oFnROWT10dk8grEjchEhgmaKGrKo3fdicww3aBI5Yc=",
         "owner": "polygon",
         "repo": "audio.nix",
-        "rev": "7193632b04bb58f4f9a0c1e7960c6f3227f26bf4",
+        "rev": "69d499f98b37445f7e1f4a218f9884abb37e21c0",
         "type": "github"
       },
       "original": {
         "owner": "polygon",
+        "ref": "yabridgemgr_dev",
         "repo": "audio.nix",
         "type": "github"
       }
@@ -218,6 +220,28 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "audio",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726989464,
+        "narHash": "sha256-Vl+WVTJwutXkimwGprnEtXc/s/s8sMuXzqXaspIGlwM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2f23fa308a7c067e52dfcc30a0758f47043ec176",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-24.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -377,6 +401,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixd",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1729509737,
+        "narHash": "sha256-8OHgqz+tFo21h3hg4/GHizFPws+MMzpEru/+62Z0E8c=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "cc2d3c0e060f981905d52337340ee6ec8b8eb037",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -546,12 +586,13 @@
         "aww": "aww",
         "blender-bin": "blender-bin",
         "fup": "fup",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "microvm": "microvm",
         "midimaxe": "midimaxe",
         "mqtt2psql": "mqtt2psql",
         "nix-index-db": "nix-index-db",
         "nixd": "nixd",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-spacenavd": "nixpkgs-spacenavd",
         "scalpel": "scalpel",

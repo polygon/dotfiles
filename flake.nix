@@ -12,7 +12,7 @@
       flake = false;
     };
     audio = {
-      url = "github:polygon/audio.nix";
+      url = "github:polygon/audio.nix/yabridgemgr_dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     microvm = {
@@ -51,6 +51,7 @@
       url = "github:polygon/midimaxe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 #    winery = {
 #      url = "path:/home/jan/Projects/winery";
 #      inputs.nixpkgs.follows = "nixpkgs";
@@ -60,7 +61,7 @@
   outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio
     , microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd
     , vscode-server, simple-nixos-mailserver, nixpkgs-spacenavd, blender-bin
-    , midimaxe, ... }:
+    , midimaxe, nixos-hardware, ... }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -244,12 +245,14 @@
 
           modules = [
             ./systems/nixbrett
+            audio.nixosModules.yabridgemgr
             {
               home-manager.users.jan = import ./users/jan/nixbrett.nix;
               home-manager.users.dude = import ./users/dude.nix;
               nixpkgs.config.allowUnfree = true;
             }
             sops-nix.nixosModules.sops
+            nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
           ];
         };
 

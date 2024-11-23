@@ -40,8 +40,8 @@ in
       xtuner
       atlas2
       #plugdata
-      yabridge
-      yabridgectl
+      #yabridge
+      #yabridgectl
       wineWowPackages.full
       winetricks
       paulxstretch

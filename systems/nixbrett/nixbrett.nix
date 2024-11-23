@@ -22,6 +22,12 @@
   # Android Debug Bridge
   modules.apps.adb.enable = true;
 
+  # Yabridgemgr
+  modules.audio-nix.yabridgemgr = {
+    enable = true;
+    user = "jan";
+  };
+
   # == Host specific ==
   nixpkgs.overlays = [ 
     (self: super: { 
@@ -29,9 +35,9 @@
       nix-direnv = unstable.nix-direnv;
     } ) 
   ];
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  #};
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
@@ -42,6 +48,7 @@
     ];
     # Steam
     driSupport32Bit = true;
+    driSupport = true;
   };
   hardware.cpu.intel.updateMicrocode = true;
 
@@ -143,6 +150,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "modesetting" ];
 #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
@@ -303,6 +311,7 @@
     GDK_DPI_SCALE = "0.5";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
     VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
+    vblank_mode = "0";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
