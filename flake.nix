@@ -232,6 +232,7 @@
 
           modules = [
             ./systems/cube
+            audio.nixosModules.yabridgemgr
             {
               home-manager.users.jan = import ./users/jan/cube.nix;
               home-manager.users.dude = import ./users/dude.nix;
