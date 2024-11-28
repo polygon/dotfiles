@@ -2,18 +2,17 @@
   "nodes": {
     "audio": {
       "inputs": {
-        "home-manager": "home-manager",
         "nix-buildproxy": "nix-buildproxy",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1732326559,
-        "narHash": "sha256-LaPS8TAtFo/w/UB1mhrUsiLUPcHZMG/31X8DxovzNKo=",
+        "lastModified": 1732817743,
+        "narHash": "sha256-SD+WuVHvu8rNLrJ5h1dWEPTNt2DJSol8K1WfHl3D98I=",
         "owner": "polygon",
         "repo": "audio.nix",
-        "rev": "062eaf41726e4b42eb700bfe464fd4bab578a52c",
+        "rev": "542ee3f2b0d886e0ab67f232f87246e738222ed5",
         "type": "github"
       },
       "original": {
@@ -218,28 +217,6 @@
       }
     },
     "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "audio",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1726989464,
-        "narHash": "sha256-Vl+WVTJwutXkimwGprnEtXc/s/s8sMuXzqXaspIGlwM=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "2f23fa308a7c067e52dfcc30a0758f47043ec176",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "release-24.05",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -570,7 +547,7 @@
         "aww": "aww",
         "blender-bin": "blender-bin",
         "fup": "fup",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager",
         "microvm": "microvm",
         "midimaxe": "midimaxe",
         "mqtt2psql": "mqtt2psql",
