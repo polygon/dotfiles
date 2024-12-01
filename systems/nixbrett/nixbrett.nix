@@ -38,7 +38,7 @@
   #nixpkgs.config.packageOverrides = pkgs: {
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
@@ -47,8 +47,7 @@
       libvdpau-va-gl
     ];
     # Steam
-    driSupport32Bit = true;
-    driSupport = true;
+    enable32Bit = true;
   };
   hardware.cpu.intel.updateMicrocode = true;
 
@@ -57,9 +56,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = (pkgs.zfs.override {
-    removeLinuxDRM = pkgs.hostPlatform.isAarch64;
-  }).latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
   boot.zfs.removeLinuxDRM = true;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
@@ -171,7 +168,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 ##  hardware.pulseaudio = {
 ##    enable = true;

@@ -21,7 +21,7 @@ in
     environment.pathsToLink = [ "/lib/vst2" "/lib/vst3" "/lib/clap" ];
 
     environment.systemPackages = with pkgs; [
-      distrho
+      distrho-ports
       geonkick
       x42-plugins    
       dragonfly-reverb
@@ -35,7 +35,7 @@ in
       #bitwig-studio5-stable-latest
       bespokesynth
       sonic-visualiser
-      gnome.zenity
+      zenity
       stochas
       xtuner
       atlas2

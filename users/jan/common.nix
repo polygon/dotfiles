@@ -49,7 +49,7 @@
     owncloud-client
     keepassxc
     brightnessctl
-    gnome.gnome-tweaks
+    gnome-tweaks
     thunderbird
     spotify
     qjackctl
