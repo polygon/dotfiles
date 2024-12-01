@@ -34,9 +34,6 @@
   # Awesome config
   home.file.".direnvrc".source = "${self}/misc/direnvrc";
 
-  # yabridge config
-  xdg.configFile."yabridgectl/config.toml".source = ./yabridgectl.toml;
-
   home.packages = with pkgs; [
     hueadm
     gimp-with-plugins
