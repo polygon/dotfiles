@@ -28,15 +28,6 @@
         };
       }
     ];
-
-    bridges.pi = {
-      addresses = [ { address = "192.168.3.10"; } ];
-      topics = [ "plugs/# in" "tasmota/# in" ];
-      settings = {
-        remote_username = "!!BRIDGE_PI_USERNAME!!";
-        remote_password = "!!BRIDGE_PI_PASSWORD!!";
-      };
-    };
   };
 
   networking.firewall.allowedTCPPorts = [ 1883 ];
