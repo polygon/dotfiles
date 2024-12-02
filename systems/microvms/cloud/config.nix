@@ -41,8 +41,6 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  environment.noXlibs = false;
-
   #sops.defaultSopsFile = "${secrets}/hosts/playground/secret.yaml";
   #sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   #sops.gnupg.sshKeyPaths = [ ];

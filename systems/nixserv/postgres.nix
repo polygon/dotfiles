@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:               
+{ config, pkgs, lib, ... }:               
 {
+  # Enable timescaledb
+
+  nixpkgs.config.allowUnfreePredicate = pkgs: builtins.elem (lib.getName pkgs) [ "timescaledb" ];
+
   # Common config
   services.postgresql = {
     enable = true;

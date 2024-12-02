@@ -23,6 +23,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ZFS related options
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
   boot.kernelParams = [ "nohibernate" ];
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];

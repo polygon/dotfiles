@@ -33,15 +33,15 @@
       nix-direnv = unstable.nix-direnv;
     })
   ];
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     # Steam
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "nfs" "ntfs" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
@@ -71,7 +71,10 @@
   services.xserver.enable = true;
   #  services.xserver.videoDrivers = [ "nouveau" ];
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    open = false;
+  };
   #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
@@ -113,7 +116,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 
   # Pipewire
