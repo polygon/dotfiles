@@ -56,6 +56,7 @@ in
       chow-phaser
       chow-kick
       papu
+      kmidimon
     ];
 
     security.pam.loginLimits = [

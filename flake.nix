@@ -12,7 +12,7 @@
       flake = false;
     };
     audio = {
-      url = "github:polygon/audio.nix/yabridgemgr_dev";
+      url = "github:polygon/audio.nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     microvm = {

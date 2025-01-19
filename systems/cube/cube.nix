@@ -72,9 +72,15 @@
   #  services.xserver.videoDrivers = [ "nouveau" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = false;
+    powerManagement.enable = true;
   };
+
+  boot.extraModprobeConfig = ''
+    options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
+  '';
+
   #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;

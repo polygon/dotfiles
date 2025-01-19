@@ -15,5 +15,4 @@
   boot.loader.grub.devices = [
     "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNG0MC11352D"
   ];
-  boot.zfs.package = pkgs.zfs_2_1;
 }
