@@ -15,7 +15,7 @@
     blender-bin
     patchage
     stellarium
-    siril
+    #siril
     AusweisApp2
   ];
 

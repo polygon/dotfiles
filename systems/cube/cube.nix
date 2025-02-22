@@ -41,7 +41,7 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "nfs" "ntfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
@@ -72,7 +72,7 @@
   #  services.xserver.videoDrivers = [ "nouveau" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+#    package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = false;
     powerManagement.enable = true;
   };

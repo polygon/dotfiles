@@ -60,7 +60,7 @@
     nixpkgs-fmt
     freecad
     bambu-studio
-    prusa-slicer
+    #prusa-slicer
     imagemagick
     xfce.thunar
     ncdu

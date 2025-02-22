@@ -57,6 +57,7 @@ in
       chow-kick
       papu
       kmidimon
+      ripplerx
     ];
 
     security.pam.loginLimits = [
