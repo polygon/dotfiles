@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, unstable, ... }:
-{
+{ config, pkgs, unstable, ... }: {
   # == Module Configuration ==
 
   # General settings for all clients/workstations
@@ -14,10 +13,10 @@
   modules.wireguard.wacken.enable = true;
 
   # Enable SyncThing
-  modules.apps.syncthing.enable = true;  
+  modules.apps.syncthing.enable = true;
 
   # Audio production
-  modules.apps.audioprod.enable = true; 
+  modules.apps.audioprod.enable = true;
 
   # Android Debug Bridge
   modules.apps.adb.enable = true;
@@ -29,11 +28,11 @@
   };
 
   # == Host specific ==
-  nixpkgs.overlays = [ 
-    (self: super: { 
-      sof-firmware = unstable.sof-firmware; 
+  nixpkgs.overlays = [
+    (self: super: {
+      sof-firmware = unstable.sof-firmware;
       nix-direnv = unstable.nix-direnv;
-    } ) 
+    })
   ];
   #nixpkgs.config.packageOverrides = pkgs: {
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
@@ -84,9 +83,7 @@
   networking.firewall = {
     enable = true;
     allowPing = true;
-    allowedTCPPorts = [
-      20000
-    ];
+    allowedTCPPorts = [ 20000 ];
     allowedUDPPorts = [ 24727 ]; # Ausweisapp
   };
 
@@ -95,14 +92,16 @@
     eap=TTLS
     identity="camp"
     password="camp"
-    ca_cert="${builtins.fetchurl {
-      url="https://letsencrypt.org/certs/isrgrootx1.pem";
-      sha256="sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
-    }}"
+    ca_cert="${
+      builtins.fetchurl {
+        url = "https://letsencrypt.org/certs/isrgrootx1.pem";
+        sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
+      }
+    }"
     altsubject_match="DNS:radius.c3noc.net"
     phase2="auth=PAP"
   '';
-  
+
   systemd.network.networks."ethernet".extraConfig = ''
     [Match]
     Type = ether
@@ -148,7 +147,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
-#  services.xserver.synaptics.enable = true;
+  #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
 
@@ -158,7 +157,6 @@
   services.xserver.windowManager.awesome.enable = true;
 
   services.thermald.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "de";
@@ -169,18 +167,16 @@
 
   # Enable sound.
   hardware.pulseaudio.enable = false;
-##  hardware.pulseaudio = {
-##    enable = true;
-##    package = unstable.pulseaudioFull;
-##    extraModules = [ unstable.pulseaudio-modules-bt ];
-##  };
+  ##  hardware.pulseaudio = {
+  ##    enable = true;
+  ##    package = unstable.pulseaudioFull;
+  ##    extraModules = [ unstable.pulseaudio-modules-bt ];
+  ##  };
   hardware.enableAllFirmware = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
-    General = {
-      Enabe = "Source,Sink,Media,Socket";
-    };
+    General = { Enabe = "Source,Sink,Media,Socket"; };
   };
 
   # Pipewire
@@ -193,88 +189,88 @@
     jack.enable = true;
     wireplumber.enable = true;
 
-#    media-session.config.bluez-monitor.rules = [
-#      {
-#        matches = [ { "device.name" = "~bluez_card.*"; } ];
-#        actions = {
-#          "update-props" = {
-#            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
-#            "bluez5.msbc-support" = true;
-#            "bluez5.sbc-xq-support" = true;
-#          };
-#        };
-#      }
-#      {
-#        matches = [
-#          { "node.name" = "~bluez_input.*"; }
-#          { "node.name" = "~bluez_output.*"; }
-#        ];
-#        actions = {
-#          "node.pause-on-idle" = false;
-#        };
-#      }
-#    ];
+    #    media-session.config.bluez-monitor.rules = [
+    #      {
+    #        matches = [ { "device.name" = "~bluez_card.*"; } ];
+    #        actions = {
+    #          "update-props" = {
+    #            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+    #            "bluez5.msbc-support" = true;
+    #            "bluez5.sbc-xq-support" = true;
+    #          };
+    #        };
+    #      }
+    #      {
+    #        matches = [
+    #          { "node.name" = "~bluez_input.*"; }
+    #          { "node.name" = "~bluez_output.*"; }
+    #        ];
+    #        actions = {
+    #          "node.pause-on-idle" = false;
+    #        };
+    #      }
+    #    ];
 
-#    config.pipewire = {
-#      "context.properties" = {
-#        "link.max-buffers" = 16;
-#        "log.level" = 2;
-#        "default.clock.rate" = 48000;
-#        "default.clock.quantum" = 256;
-#        "default.clock.min-quantum" = 256;
-#        "default.clock.max-quantum" = 1024;
-#        "core.daemon" = true;
-#        "core.name" = "pipewire-0";
-#      };
-#      
-#      "context.spa-libs" = {
-#        "audio.convert.*" = "audioconvert/libspa-audioconvert";
-#        "api.alsa.*" = "alsa/libspa-alsa";
-#        "api.v4l2.*" = "v4l2/libspa-v4l2";
-#        "api.libcamera.*" = "libcamera/libspa-libcamera";
-#        "api.bluez5.*" = "bluez5/libspa-bluez5";
-#        "api.vulkan.*" = "vulkan/libspa-vulkan";
-#        "api.jack.*" = "jack/libspa-jack";
-#        "support.*" = "support/libspa-support";
-#      };
-#
-#      "context.modules" = [
-#        {
-#          name = "libpipewire-module-rtkit";
-#          args = {
-#            "nice.level" = -15;
-#            "rt.prio" = 88;
-#            "rt.time.soft" = 200000;
-#            "rt.time.hard" = 200000;            
-#          };
-#          flags = [ "ifexists" "nofail" ];
-#        }
-#        { name = "libpipewire-module-protocol-native"; }
-#        { name = "libpipewire-module-profiler"; }
-#        { name = "libpipewire-module-metadata"; }
-#        { name = "libpipewire-module-spa-device-factory"; }
-#        { name = "libpipewire-module-spa-node-factory"; }
-#        { name = "libpipewire-module-client-node"; }
-#        { name = "libpipewire-module-client-device"; }
-#        { 
-#				  name = "libpipewire-module-portal";
-#          flags = [ "ifexists" "nofail" ];
-#        }
-#        { name = "libpipewire-module-access"; args = { }; }
-#        { name = "libpipewire-module-adapter"; }
-#        { name = "libpipewire-module-link-factory"; }
-#        { name = "libpipewire-module-session-manager"; }
-#        {
-#          name = "libpipewire-module-protocol-pulse";
-#          args = {
-#            "server.address" = [
-#              "unit.native"
-#              "tcp:4713"
-#            ];
-#          };
-#        }
-#      ];
-#    };
+    #    config.pipewire = {
+    #      "context.properties" = {
+    #        "link.max-buffers" = 16;
+    #        "log.level" = 2;
+    #        "default.clock.rate" = 48000;
+    #        "default.clock.quantum" = 256;
+    #        "default.clock.min-quantum" = 256;
+    #        "default.clock.max-quantum" = 1024;
+    #        "core.daemon" = true;
+    #        "core.name" = "pipewire-0";
+    #      };
+    #      
+    #      "context.spa-libs" = {
+    #        "audio.convert.*" = "audioconvert/libspa-audioconvert";
+    #        "api.alsa.*" = "alsa/libspa-alsa";
+    #        "api.v4l2.*" = "v4l2/libspa-v4l2";
+    #        "api.libcamera.*" = "libcamera/libspa-libcamera";
+    #        "api.bluez5.*" = "bluez5/libspa-bluez5";
+    #        "api.vulkan.*" = "vulkan/libspa-vulkan";
+    #        "api.jack.*" = "jack/libspa-jack";
+    #        "support.*" = "support/libspa-support";
+    #      };
+    #
+    #      "context.modules" = [
+    #        {
+    #          name = "libpipewire-module-rtkit";
+    #          args = {
+    #            "nice.level" = -15;
+    #            "rt.prio" = 88;
+    #            "rt.time.soft" = 200000;
+    #            "rt.time.hard" = 200000;            
+    #          };
+    #          flags = [ "ifexists" "nofail" ];
+    #        }
+    #        { name = "libpipewire-module-protocol-native"; }
+    #        { name = "libpipewire-module-profiler"; }
+    #        { name = "libpipewire-module-metadata"; }
+    #        { name = "libpipewire-module-spa-device-factory"; }
+    #        { name = "libpipewire-module-spa-node-factory"; }
+    #        { name = "libpipewire-module-client-node"; }
+    #        { name = "libpipewire-module-client-device"; }
+    #        { 
+    #				  name = "libpipewire-module-portal";
+    #          flags = [ "ifexists" "nofail" ];
+    #        }
+    #        { name = "libpipewire-module-access"; args = { }; }
+    #        { name = "libpipewire-module-adapter"; }
+    #        { name = "libpipewire-module-link-factory"; }
+    #        { name = "libpipewire-module-session-manager"; }
+    #        {
+    #          name = "libpipewire-module-protocol-pulse";
+    #          args = {
+    #            "server.address" = [
+    #              "unit.native"
+    #              "tcp:4713"
+    #            ];
+    #          };
+    #        }
+    #      ];
+    #    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -297,16 +293,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    sof-firmware
-    xboxdrv
-  ];
+  environment.systemPackages = with pkgs; [ sof-firmware xboxdrv ];
 
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
+    VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
     vblank_mode = "0";
   };
 

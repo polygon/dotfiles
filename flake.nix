@@ -52,16 +52,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-#    winery = {
-#      url = "path:/home/jan/Projects/winery";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
+    hover = {
+      url = "github:max-privatevoid/hover";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    #    winery = {
+    #      url = "path:/home/jan/Projects/winery";
+    #      inputs.nixpkgs.follows = "nixpkgs";
+    #    };
   };
 
   outputs = inputs@{ self, nixpkgs, unstable, home-manager, fup, aww, audio
     , microvm, scalpel, secrets, sops-nix, mqtt2psql, nix-index-db, nixd
     , vscode-server, simple-nixos-mailserver, nixpkgs-spacenavd, blender-bin
-    , midimaxe, nixos-hardware, ... }:
+    , midimaxe, nixos-hardware, hover, ... }:
     fup.lib.mkFlake {
       inherit self inputs;
 
@@ -113,6 +117,7 @@
         spacenavd = nixpkgs-spacenavd.legacyPackages.${system}.spacenavd;
         blender-bin = blender-bin.packages.${system}.blender_4_1;
         midimaxe = midimaxe.packages.${system}.midimaxe;
+        hover = hover.packages.${system}.default;
       });
 
       hostDefaults.modules = [

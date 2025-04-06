@@ -61,6 +61,7 @@ in
     };
 
     programs.nix-ld.enable = true;
+    programs.fuse.userAllowOther = true;
 
     services.openssh.settings.X11Forwarding = true;
   }; 
