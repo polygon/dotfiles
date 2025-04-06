@@ -58,6 +58,7 @@ in
       papu
       kmidimon
       ripplerx
+      aida-x
     ];
 
     security.pam.loginLimits = [
