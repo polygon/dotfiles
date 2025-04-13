@@ -79,6 +79,7 @@
 
   boot.extraModprobeConfig = ''
     options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
+    options nvidia_modeset vblank_sem_control=0
   '';
 
   #  services.xserver.synaptics.enable = true;
