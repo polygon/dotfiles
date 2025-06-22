@@ -1,12 +1,4 @@
-{ self
-, config
-, pkgs
-, unstable
-, aww
-, audio
-, ...
-}:
-{
+{ self, config, pkgs, unstable, aww, audio, ... }: {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -36,7 +28,7 @@
 
   home.packages = with pkgs; [
     hueadm
-    gimp-with-plugins
+    gimp3-with-plugins
     inkscape
     geeqie
     hexchat
@@ -60,6 +52,7 @@
     nixpkgs-fmt
     freecad
     bambu-studio
+    orca-slicer
     #prusa-slicer
     imagemagick
     xfce.thunar
