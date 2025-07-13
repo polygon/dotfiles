@@ -11,7 +11,7 @@ in
   config = mkIf cfg.enable {
     programs.fzf.enable = true;
     programs.zoxide.enable = true;
-    programs.pls.enable = true;
+#    programs.pls.enable = true;
 
 #    home.file.".cache/nix-index/files".source = pkgs.nix-index-db;
 
