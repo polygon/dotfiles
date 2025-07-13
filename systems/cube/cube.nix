@@ -13,7 +13,7 @@
   modules.wireguard.mullvad.enable = true;
 
   # Enable VirtualBox
-  modules.apps.virtualbox.enable = true;
+#  modules.apps.virtualbox.enable = true;
 
   # Enable SyncThing
   modules.apps.syncthing.enable = true;
@@ -22,10 +22,10 @@
   modules.apps.audioprod.enable = true;
 
   # Yabridgemgr
-  modules.audio-nix.yabridgemgr = {
-    enable = true;
-    user = "jan";
-  };
+  #modules.audio-nix.yabridgemgr = {
+  #  enable = true;
+  #  user = "jan";
+  #};
   # == Host specific ==
   nixpkgs.overlays = [
     (self: super: {
@@ -123,7 +123,7 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # Pipewire
   security.rtkit.enable = true;
@@ -230,7 +230,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xboxdrv
     spacenavd
   ];
 

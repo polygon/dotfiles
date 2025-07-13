@@ -21,7 +21,7 @@
   modules.desktop.gnome-terminal.enable = true;
   modules.desktop.vscode.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # Awesome config
   home.file.".direnvrc".source = "${self}/misc/direnvrc";

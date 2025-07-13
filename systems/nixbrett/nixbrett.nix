@@ -22,18 +22,18 @@
   modules.apps.adb.enable = true;
 
   # Yabridgemgr
-  modules.audio-nix.yabridgemgr = {
-    enable = true;
-    user = "jan";
-  };
+  #modules.audio-nix.yabridgemgr = {
+  #  enable = true;
+  #  user = "jan";
+  #};
 
   # == Host specific ==
-  nixpkgs.overlays = [
-    (self: super: {
-      sof-firmware = unstable.sof-firmware;
-      nix-direnv = unstable.nix-direnv;
-    })
-  ];
+  #nixpkgs.overlays = [
+  #  (self: super: {
+  #    sof-firmware = unstable.sof-firmware;
+  #    nix-direnv = unstable.nix-direnv;
+  #  })
+  #];
   #nixpkgs.config.packageOverrides = pkgs: {
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
@@ -166,12 +166,7 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
-  ##  hardware.pulseaudio = {
-  ##    enable = true;
-  ##    package = unstable.pulseaudioFull;
-  ##    extraModules = [ unstable.pulseaudio-modules-bt ];
-  ##  };
+  services.pulseaudio.enable = false;
   hardware.enableAllFirmware = true;
 
   hardware.bluetooth.enable = true;
@@ -293,7 +288,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ sof-firmware xboxdrv ];
+  environment.systemPackages = with pkgs; [ sof-firmware ];
 
   environment.variables = {
     GDK_SCALE = "2";

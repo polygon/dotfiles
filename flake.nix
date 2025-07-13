@@ -78,7 +78,6 @@
           (final: super: {
             geeqie = channels.unstable.geeqie;
             #blender = channels.unstable.blender;
-            siril = channels.unstable.siril;
             vscodium = channels.unstable.vscodium;
             bitwig-studio = channels.unstable.bitwig-studio;
             zsh-prezto = super.zsh-prezto.overrideAttrs (old: {
@@ -118,6 +117,8 @@
         blender-bin = blender-bin.packages.${system}.blender_4_1;
         midimaxe = midimaxe.packages.${system}.midimaxe;
         hover = hover.packages.${system}.default;
+        #sof-firmware = pkgsunstable.sof-firmware;
+        #nix-direnv = pkgsunstable.nix-direnv;
       });
 
       hostDefaults.modules = [
@@ -158,7 +159,7 @@
                 home-manager.sharedModules = [
                   ./hmmodules
                   "${vscode-server}/modules/vscode-server/home.nix"
-                  nix-index-db.hmModules.nix-index
+                  nix-index-db.homeModules.nix-index
                 ];
                 home-manager.extraSpecialArgs = { inherit aww self audio; };
               }

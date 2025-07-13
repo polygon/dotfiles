@@ -46,7 +46,7 @@ in
       winetricks
       paulxstretch
       vital
-      run-scaled
+      #run-scaled // deprecated, now part of xpra
       tony
       neuralnote
       amplocker

@@ -8,7 +8,7 @@
     steam-run
     blender
     stellarium
-    siril
+    #siril
     ghidra
     cutter
     AusweisApp2
