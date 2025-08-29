@@ -31,7 +31,7 @@ in
       lsp-plugins
       carla
       drumgizmo
-      bitwig-studio5-latest
+      bitwig-studio-latest
       #bitwig-studio5-stable-latest
       bespokesynth
       sonic-visualiser

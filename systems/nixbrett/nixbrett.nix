@@ -22,10 +22,10 @@
   modules.apps.adb.enable = true;
 
   # Yabridgemgr
-  #modules.audio-nix.yabridgemgr = {
-  #  enable = true;
-  #  user = "jan";
-  #};
+  modules.audio-nix.yabridgemgr = {
+    enable = true;
+    user = "jan";
+  };
 
   # == Host specific ==
   #nixpkgs.overlays = [
