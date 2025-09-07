@@ -291,8 +291,8 @@
   environment.systemPackages = with pkgs; [ sof-firmware ];
 
   environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
+    #GDK_SCALE = "2";
+    #GDK_DPI_SCALE = "0.5";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
     VK_ICD_FILENAMES =
       "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
