@@ -258,7 +258,7 @@
 
   # udev
   # Assign plugdev for radi0 users
-  services.udev.packages = [ unstable.hackrf ];
+  services.udev.packages = [ unstable.hackrf pkgs.openocd ];
 
   # Serve Nix Store of this machine
   nix.sshServe = {

@@ -204,7 +204,7 @@
     networks."30-br-lan" = {
       matchConfig.Name = "br-lan";
       addresses = [ { 
-        addressConfig.Address = "192.168.1.20/24";
+        Address = "192.168.1.20/24";
       } ];
       networkConfig = {
         Gateway = "192.168.1.1";
@@ -215,7 +215,7 @@
     networks."30-br-server" = {
       matchConfig.Name = "br-server";
       addresses = [ { 
-        addressConfig.Address = "192.168.3.20/24";
+        Address = "192.168.3.20/24";
       } ];
     };
 

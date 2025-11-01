@@ -21,7 +21,7 @@
     networks."lan" = {
       matchConfig.MACAddress = "ba:da:55:02:00:00";
       addresses = [ { 
-        addressConfig.Address = "192.168.1.23/24";
+        Address = "192.168.1.23/24";
       } ];
       networkConfig = {
         Gateway = "192.168.1.1";
@@ -31,13 +31,13 @@
     networks."server" = {
       matchConfig.MACAddress = "ba:da:55:02:00:01";
       addresses = [ { 
-        addressConfig.Address = "192.168.3.23/24";
+        Address = "192.168.3.23/24";
       } ];
     };
     networks."iot" = {
       matchConfig.MACAddress = "ba:da:55:02:00:02";
       addresses = [ { 
-        addressConfig.Address = "192.168.2.23/24";
+        Address = "192.168.2.23/24";
       } ];
     };
   };
