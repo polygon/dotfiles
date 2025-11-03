@@ -9,23 +9,23 @@
   modules.systems.client.enable = true;
 
   # Enable Wireguard tunnels
-  modules.wireguard.mullvad.enable = true;
-  modules.wireguard.wacken.enable = true;
+  #modules.wireguard.mullvad.enable = true;
+  #modules.wireguard.wacken.enable = true;
 
   # Enable SyncThing
-  modules.apps.syncthing.enable = true;
+  #modules.apps.syncthing.enable = true;
 
   # Audio production
-  modules.apps.audioprod.enable = true;
+  #modules.apps.audioprod.enable = true;
 
   # Android Debug Bridge
-  modules.apps.adb.enable = true;
+  #modules.apps.adb.enable = true;
 
   # Yabridgemgr
-  modules.audio-nix.yabridgemgr = {
-    enable = true;
-    user = "jan";
-  };
+  #modules.audio-nix.yabridgemgr = {
+  #  enable = true;
+  #  user = "jan";
+  #};
 
   # == Host specific ==
   #nixpkgs.overlays = [
@@ -37,34 +37,23 @@
   #nixpkgs.config.packageOverrides = pkgs: {
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-    # Steam
-    enable32Bit = true;
-  };
+  #hardware.graphics = {
+  #  enable = true;
+  #  extraPackages = with pkgs; [
+  #    intel-media-driver
+  #    vaapiIntel
+  #    vaapiVdpau
+  #    libvdpau-va-gl
+  #  ];
+  #  # Steam
+  #  enable32Bit = true;
+  #};
   hardware.cpu.intel.updateMicrocode = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.supportedFilesystems = [ "zfs" ];
-  boot.supportedFilesystems = [ "zfs" "nfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.zfs.removeLinuxDRM = true;
-  boot.kernelModules = [ "acpi_call" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-  boot.extraModprobeConfig = ''
-    options snd-intel-dspcfg dsp_driver=3
-    options snd_sof sof_debug=128
-    #options snd_usb_audio quirk_alias=19f7000a:05a71020
-    options thinkpad_acpi fan_control=1
-  '';
 
   services.fwupd.enable = true;
 
@@ -78,7 +67,7 @@
   networking.hostName = "nixbrett"; # Define your hostname.
   networking.wireless.iwd.enable = true;
 
-  networking.hostId = "3ba26467";
+  networking.hostId = "51192e49";
 
   networking.firewall = {
     enable = true;
@@ -87,20 +76,20 @@
     allowedUDPPorts = [ 24727 ]; # Ausweisapp
   };
 
-  networking.wireless.networks."Camp2023".auth = ''
-    key_mgmt=WPA-EAP
-    eap=TTLS
-    identity="camp"
-    password="camp"
-    ca_cert="${
-      builtins.fetchurl {
-        url = "https://letsencrypt.org/certs/isrgrootx1.pem";
-        sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
-      }
-    }"
-    altsubject_match="DNS:radius.c3noc.net"
-    phase2="auth=PAP"
-  '';
+#  networking.wireless.networks."Camp2023".auth = ''
+#    key_mgmt=WPA-EAP
+#    eap=TTLS
+#    identity="camp"
+#    password="camp"
+#    ca_cert="${
+#      builtins.fetchurl {
+#        url = "https://letsencrypt.org/certs/isrgrootx1.pem";
+#        sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
+#      }
+#    }"
+#    altsubject_match="DNS:radius.c3noc.net"
+#    phase2="auth=PAP"
+#  '';
 
   systemd.network.networks."ethernet".extraConfig = ''
     [Match]
@@ -121,14 +110,14 @@
     UseDomains = true
   '';
 
-  systemd.network.networks."wacken".extraConfig = ''
-    [Match]
-    Name = wacken
-
-    [Network]
-    DNS = 192.168.1.1
-    Domains = ~matelab.de
-  '';
+ # systemd.network.networks."wacken".extraConfig = ''
+ #   [Match]
+ #   Name = wacken
+#
+#    [Network]
+#    DNS = 192.168.1.1
+#    Domains = ~matelab.de
+#  '';
 
   services.blueman.enable = true;
 
@@ -153,10 +142,12 @@
 
   # Enable the GNOME 3 Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.windowManager.awesome.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
+  services.desktopManager.plasma6.enable = true;
 
-  services.thermald.enable = true;
+  programs.dconf.enable = true;
+
+  #services.thermald.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "de";
@@ -293,10 +284,10 @@
   environment.variables = {
     #GDK_SCALE = "2";
     #GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-    VK_ICD_FILENAMES =
-      "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
-    vblank_mode = "0";
+    #_JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    #VK_ICD_FILENAMES =
+    #  "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
+    #vblank_mode = "0";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -342,7 +333,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
 
