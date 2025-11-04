@@ -48,8 +48,8 @@ in
       vital
       #run-scaled // deprecated, now part of xpra
       tony
-      neuralnote
-      amplocker
+      #neuralnote
+      #amplocker
       chow-tape-model
       #chow-multitool
       chow-centaur

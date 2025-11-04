@@ -13,10 +13,10 @@
   #modules.wireguard.wacken.enable = true;
 
   # Enable SyncThing
-  #modules.apps.syncthing.enable = true;
+  modules.apps.syncthing.enable = true;
 
   # Audio production
-  #modules.apps.audioprod.enable = true;
+  modules.apps.audioprod.enable = true;
 
   # Android Debug Bridge
   #modules.apps.adb.enable = true;
@@ -57,7 +57,7 @@
 
   services.fwupd.enable = true;
 
-  services.mullvad-vpn.enable = true;
+  #services.mullvad-vpn.enable = true;
 
   services.zfs = {
     autoScrub.enable = true;

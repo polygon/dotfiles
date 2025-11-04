@@ -425,16 +425,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1761827175,
-        "narHash": "sha256-XdPVSYyIBK4/ruoqujaQmmSGg3J2/EenexV9IEXhr6o=",
-        "owner": "NixOS",
+        "lastModified": 1762252223,
+        "narHash": "sha256-zAgFq4yMcQVmh6StfzC1nvSSs3UGeGzsF6UINut8a+Y=",
+        "owner": "polygon",
         "repo": "nixos-hardware",
-        "rev": "43ffe9ac82567512abb83187cb673de1091bdfa8",
+        "rev": "add1bbc7eeaccef179b31987fb3e7a1516078406",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "master",
+        "owner": "polygon",
+        "ref": "p14sgen6",
         "repo": "nixos-hardware",
         "type": "github"
       }
@@ -645,11 +645,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1725801313,
-        "narHash": "sha256-2iCaqw9qyLmUZegZm/TFZORiKRNz/NDGJbOR7DKAhWE=",
+        "lastModified": 1762190614,
+        "narHash": "sha256-pTCNRmPZ4RBK4pFDJBn9Q9/XKUU2aJYWGJlNeK4IsEE=",
         "ref": "refs/heads/main",
-        "rev": "012b67b9d5685262b05b52941d6547588bd813ca",
-        "revCount": 29,
+        "rev": "5884d1e5de0849af9faafc1561e3adbc5c026d13",
+        "revCount": 30,
         "type": "git",
         "url": "ssh://git@github.com/polygon/secrets.git"
       },

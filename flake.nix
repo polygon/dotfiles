@@ -51,7 +51,7 @@
       url = "github:polygon/midimaxe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:polygon/nixos-hardware/p14sgen6";
     hover = {
       url = "github:max-privatevoid/hover";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -258,7 +258,7 @@
               nixpkgs.config.allowUnfree = true;
             }
             sops-nix.nixosModules.sops
-            nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
+            nixos-hardware.nixosModules.lenovo-thinkpad-p14s-intel-gen6
           ];
         };
 
