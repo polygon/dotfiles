@@ -32,7 +32,6 @@ in
       carla
       drumgizmo
       bitwig-studio-latest
-      #bitwig-studio5-stable-latest
       bespokesynth
       sonic-visualiser
       zenity
@@ -49,7 +48,7 @@ in
       #run-scaled // deprecated, now part of xpra
       tony
       #neuralnote
-      #amplocker
+      amplocker
       chow-tape-model
       #chow-multitool
       chow-centaur

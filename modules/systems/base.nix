@@ -53,6 +53,11 @@ in
       nix-output-monitor
       bpftrace
       restic
+      powertop
+      lm_sensors
+      acpica-tools
+      linuxPackages.turbostat
+      pciutils
     ];
 
     programs.zsh.enable = true;

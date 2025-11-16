@@ -54,6 +54,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.zfs.removeLinuxDRM = true;
+  boot.kernelPackages = pkgs.linuxPackages_6_15;
 
   services.fwupd.enable = true;
 
@@ -267,7 +268,7 @@
     accelSpeed = "0.2";
   };
 
-  services.picom.enable = true;
+  #services.picom.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
