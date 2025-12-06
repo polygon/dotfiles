@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:polygon/nixpkgs/with_6_15";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.05";
+      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
     nixpkgs-spacenavd.url = "github:polygon/nixpkgs/update-spacenavd";
     blender-bin = {
       url = "github:edolstra/nix-warez?dir=blender";

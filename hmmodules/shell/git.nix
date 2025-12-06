@@ -11,14 +11,18 @@ in
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
-      userName = "polygon";
-      userEmail = "polygon@wh2.tu-dresden.de";
-      extraConfig = {
+      settings = {
+        user.name = "polygon";
+        user.email = "polygon@wh2.tu-dresden.de";
         init = {
           defaultBranch = "main";
         };
       };
-      difftastic.enable = true;
+    };
+
+    programs.difftastic = {
+      enable = true;
+      git.enable = true;
     };
   };
 }

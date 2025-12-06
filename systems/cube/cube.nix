@@ -287,8 +287,9 @@
   #  };
   #};
 
-  networking.firewall = {
-    allowedUDPPorts = [ 24727 ]; # Ausweisapp
+  programs.ausweisapp = {
+    enable = true;
+    openFirewall = true;
   };
 
   # Open ports in the firewall.

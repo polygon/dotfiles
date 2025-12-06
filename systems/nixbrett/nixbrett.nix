@@ -54,7 +54,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.zfs.removeLinuxDRM = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_15;
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
 
   services.fwupd.enable = true;
 
@@ -74,8 +74,12 @@
     enable = true;
     allowPing = true;
     allowedTCPPorts = [ 20000 ];
-    allowedUDPPorts = [ 24727 ]; # Ausweisapp
   };
+
+  programs.ausweisapp = {
+    enable = true;
+    openFirewall = true;
+  };  
 
 #  networking.wireless.networks."Camp2023".auth = ''
 #    key_mgmt=WPA-EAP
@@ -147,6 +151,8 @@
   services.desktopManager.plasma6.enable = true;
 
   programs.dconf.enable = true;
+
+  programs.steam.enable = true;
 
   #services.thermald.enable = true;
 

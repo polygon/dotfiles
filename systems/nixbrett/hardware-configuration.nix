@@ -12,6 +12,9 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "pcie_aspm.policy=powersupersave"
+  ];
 
   fileSystems."/" =
     { device = "rpool/nixos/root";

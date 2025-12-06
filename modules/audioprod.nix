@@ -49,15 +49,16 @@ in
       tony
       #neuralnote
       amplocker
-      chow-tape-model
+      #chow-tape-model
       #chow-multitool
       chow-centaur
       chow-phaser
-      chow-kick
+      #chow-kick
       papu
       kmidimon
       ripplerx
-      aida-x
+      #aida-x
+      decent-sampler
     ];
 
     security.pam.loginLimits = [
