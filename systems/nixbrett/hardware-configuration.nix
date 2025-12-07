@@ -19,26 +19,31 @@
   fileSystems."/" =
     { device = "rpool/nixos/root";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
     { device = "rpool/nixos/home";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/var/lib" =
     { device = "rpool/nixos/var/lib";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/var/log" =
     { device = "rpool/nixos/var/log";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/nix/store" =
     { device = "rpool/nixos/nix/store";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =

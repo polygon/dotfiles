@@ -116,6 +116,7 @@
         blender-bin = blender-bin.packages.${system}.blender_4_1;
         midimaxe = midimaxe.packages.${system}.midimaxe;
         hover = hover.packages.${system}.default;
+        kdePackages = (import ./kde-fix.nix { inherit pkgs; prev = super; });
         #sof-firmware = pkgsunstable.sof-firmware;
         #nix-direnv = pkgsunstable.nix-direnv;
       });
