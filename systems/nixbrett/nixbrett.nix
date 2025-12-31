@@ -21,6 +21,9 @@
   # Android Debug Bridge
   #modules.apps.adb.enable = true;
 
+  # Podman and stuff
+  modules.apps.podman.enable = true;
+
   # Yabridgemgr
   #modules.audio-nix.yabridgemgr = {
   #  enable = true;
@@ -80,7 +83,18 @@
     enable = true;
     openFirewall = true;
   };  
-
+networking.wireless.networks."39C3".auth = ''
+  key_mgmt=WPA-EAP
+  eap=TTLS
+  identity="39C3"
+  password="39C3"
+  ca_cert="${builtins.fetchurl {
+    url = "https://letsencrypt.org/certs/isrgrootx1.pem";
+    sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
+  }}"
+  altsubject_match="DNS:radius.c3noc.net"
+  phase2="auth=PAP"
+'';
 #  networking.wireless.networks."Camp2023".auth = ''
 #    key_mgmt=WPA-EAP
 #    eap=TTLS

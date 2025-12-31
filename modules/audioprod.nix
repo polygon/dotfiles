@@ -59,6 +59,7 @@ in
       ripplerx
       #aida-x
       decent-sampler
+      mucap
     ];
 
     security.pam.loginLimits = [
