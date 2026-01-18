@@ -41,7 +41,8 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "nfs" "ntfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.zfs.package = pkgs.zfs_2_4;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 

@@ -57,7 +57,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.zfs.removeLinuxDRM = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_17;
+  boot.zfs.package = pkgs.zfs_2_4;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   services.fwupd.enable = true;
 
@@ -161,7 +162,7 @@ networking.wireless.networks."39C3".auth = ''
 
   # Enable the GNOME 3 Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.displayManager.defaultSession = "plasmax11";
+  services.displayManager.defaultSession = "plasma";
   services.desktopManager.plasma6.enable = true;
 
   programs.dconf.enable = true;

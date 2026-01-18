@@ -40,6 +40,9 @@ in
       cntr
       nix-init
       appimage-run
+      opencode
+      amp-cli
+      qalculate-qt
     ];
 
     fonts.packages = with pkgs; [

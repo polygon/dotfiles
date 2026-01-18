@@ -117,6 +117,8 @@
         midimaxe = midimaxe.packages.${system}.midimaxe;
         hover = hover.packages.${system}.default;
         kdePackages = (import ./kde-fix.nix { inherit pkgs; prev = super; });
+        opencode = pkgsunstable.opencode;
+        amp-cli = pkgsunstable.amp-cli;
         #sof-firmware = pkgsunstable.sof-firmware;
         #nix-direnv = pkgsunstable.nix-direnv;
       });
