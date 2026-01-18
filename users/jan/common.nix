@@ -19,6 +19,7 @@
   modules.desktop.gammastep.enable = true;
   modules.desktop.firefox.enable = true;
   modules.desktop.gnome-terminal.enable = true;
+  modules.desktop.kitty.enable = true;
   modules.desktop.vscode.enable = true;
 
   #nixpkgs.config.allowUnfree = true;
