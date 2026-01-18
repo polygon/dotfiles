@@ -23,11 +23,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ZFS related options
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
   boot.kernelParams = [ "nohibernate" ];
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" "nfs" ];
   boot.zfs.extraPools = [ "diskpool" "ssdpool" ];
+  boot.zfs.package = pkgs.zfs_2_4;
 
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="sd[a-z]*[0-9]*|mmcblk[0-9]*p[0-9]*|nvme[0-9]*n[0-9]*p[0-9]*", ENV{ID_FS_TYPE}=="zfs_member", ATTR{../queue/scheduler}="none"
