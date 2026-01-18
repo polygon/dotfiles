@@ -15,6 +15,9 @@
   # Enable VirtualBox
 #  modules.apps.virtualbox.enable = true;
 
+  # Enable Podman
+  modules.apps.podman.enable = true;
+
   # Enable SyncThing
   modules.apps.syncthing.enable = true;
 
