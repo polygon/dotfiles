@@ -60,6 +60,7 @@
     ncdu
     clementine
     krita
+    mpv
   ];
 
   # This value determines the Home Manager release that your
