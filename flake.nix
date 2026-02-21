@@ -113,7 +113,7 @@
         #yabridgectl = pkgsunstable.yabridgectl;
         #freecad = pkgsunstable.freecad;
         spacenavd = nixpkgs-spacenavd.legacyPackages.${system}.spacenavd;
-        blender-bin = blender-bin.packages.${system}.blender_4_1;
+        blender-bin = blender-bin.packages.${system}.blender_5_0;
         midimaxe = midimaxe.packages.${system}.midimaxe;
         hover = hover.packages.${system}.default;
         kdePackages = (import ./kde-fix.nix { inherit pkgs; prev = super; });

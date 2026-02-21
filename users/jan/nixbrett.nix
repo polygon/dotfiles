@@ -4,7 +4,7 @@
   imports = [ ./common.nix ];
 
   home.packages = with pkgs; [
-    blender
+    blender-bin
     stellarium
     #siril
     ghidra

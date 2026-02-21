@@ -43,6 +43,7 @@ in
       opencode
       amp-cli
       qalculate-qt
+      pureref
     ];
 
     fonts.packages = with pkgs; [
