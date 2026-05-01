@@ -50,6 +50,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   services.fwupd.enable = true;
+  services.flatpak.enable = true;
 
   services.zfs = {
     autoScrub.enable = true;
