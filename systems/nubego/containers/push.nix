@@ -24,8 +24,8 @@
 
         services.gotify = {
           enable = true;
-          port = 8080;
           stateDirectoryName = "push";
+          environment.GOTIFY_SERVER_PORT = 8080;
         };
 
         # Open firewall for reverse proxy
