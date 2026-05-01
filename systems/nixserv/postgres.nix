@@ -7,9 +7,9 @@
   # Common config
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_14;
+    package = pkgs.postgresql_18;
     enableTCPIP = true;
-    extraPlugins = with pkgs.postgresql14Packages; [
+    extraPlugins = with pkgs.postgresql18Packages; [
       timescaledb
     ];
     settings = {
