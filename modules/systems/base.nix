@@ -58,6 +58,7 @@ in
       acpica-tools
       linuxPackages.turbostat
       pciutils
+      kitty.terminfo
     ];
 
     programs.zsh.enable = true;

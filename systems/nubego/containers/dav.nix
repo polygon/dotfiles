@@ -45,6 +45,8 @@
 
         networking.firewall.allowedTCPPorts = [ 5232 ];
 
+        environment.systemPackages = [ pkgs.kitty.terminfo ];
+
         system.stateVersion = "23.11";
       };
   };

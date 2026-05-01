@@ -18,7 +18,7 @@
   # Grub
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
 
   services.udev.extraRules = ''

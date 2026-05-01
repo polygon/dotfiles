@@ -20,6 +20,7 @@
       {
         environment.systemPackages = with pkgs; [
           sqlite
+          kitty.terminfo
         ];
 
         services.gotify = {

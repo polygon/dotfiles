@@ -93,6 +93,7 @@ in
       {
         imports = [ simple-nixos-mailserver.nixosModule ];
         environment.systemPackages = with pkgs; [
+          kitty.terminfo
         ];
 
         networking = {
@@ -101,6 +102,7 @@ in
         };        
 
         mailserver = {
+          stateVersion = 3;
           enable = true;
           fqdn = "mail.nubego.de";
           domains = [ "nubego.de" ];
