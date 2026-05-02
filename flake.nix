@@ -119,6 +119,13 @@
         kdePackages = (import ./kde-fix.nix { inherit pkgs; prev = super; });
         opencode = pkgsunstable.opencode;
         amp-cli = pkgsunstable.amp-cli;
+        llama-cpp = pkgsunstable.llama-cpp.overrideAttrs (old: {
+          cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DGGML_NATIVE=ON" ];
+          preConfigure = ''
+            export NIX_ENFORCE_NO_NATIVE=0
+            ${old.preConfigure or ""}
+          '';
+        });
         #sof-firmware = pkgsunstable.sof-firmware;
         #nix-direnv = pkgsunstable.nix-direnv;
       });
