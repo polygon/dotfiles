@@ -77,6 +77,7 @@
   #  services.xserver.videoDrivers = [ "nouveau" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
+    branch = "legacy_580";
 #    package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = false;
     powerManagement.enable = true;

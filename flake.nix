@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fup.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -126,6 +126,7 @@
             ${old.preConfigure or ""}
           '';
         });
+        pureref = pkgsunstable.pureref;
         #sof-firmware = pkgsunstable.sof-firmware;
         #nix-direnv = pkgsunstable.nix-direnv;
       });

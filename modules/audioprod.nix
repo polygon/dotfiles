@@ -41,7 +41,7 @@ in
       #plugdata
       #yabridge
       #yabridgectl
-      wineWowPackages.full
+      wineWow64Packages.full
       winetricks
       paulxstretch
       vital

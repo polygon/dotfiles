@@ -52,7 +52,6 @@
     flowblade
     nixpkgs-fmt
     freecad
-    bambu-studio
     orca-slicer
     #prusa-slicer
     imagemagick
