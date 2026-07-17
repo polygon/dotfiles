@@ -31,7 +31,6 @@ let
 in
 {
   systemd.tmpfiles.rules = builtins.map (f: "d ${f} 755 root root") hostPaths;
-  security.acme.certs."nubego.de".reloadServices = [ "container@mail.service" ];
   networking.nat = {
     internalInterfaces = [ "ve-mail" ];
     forwardPorts = [
@@ -142,6 +141,24 @@ in
           };
 
           hierarchySeparator = "/";
+        };
+
+        # Detect certificate change (Letsencrypt updated)
+        systemd.paths.mail-cert-reload = {
+          description = "Watch for renewed nubego.de certificate";
+          wantedBy = [ "multi-user.target" ];
+          pathConfig = {
+            PathModified = "/var/lib/ssl/nubego/fullchain.pem";
+          };
+        };
+
+        # Reload postfix and dovecot when certificate change is detected
+        systemd.services.mail-cert-reload = {
+          description = "Reload postfix/dovecot after nubego.de certificate renewal";
+          serviceConfig.Type = "oneshot";
+          script = ''
+            ${pkgs.systemd}/bin/systemctl try-reload-or-restart postfix.service dovecot.service
+          '';
         };
 
         # Put rspamd controller WebUI on port 11333

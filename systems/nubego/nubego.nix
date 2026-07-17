@@ -14,6 +14,7 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "bpool" "rpool" ];
   boot.zfs.devNodes = "/dev/disk/by-partuuid";
+  boot.zfs.forceImportRoot = false;
 
   # Grub
   boot.loader.grub.enable = true;
