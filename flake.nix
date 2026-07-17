@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
+      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
     nixpkgs-spacenavd.url = "github:polygon/nixpkgs/update-spacenavd";
     blender-bin = {
       url = "github:edolstra/nix-warez?dir=blender";

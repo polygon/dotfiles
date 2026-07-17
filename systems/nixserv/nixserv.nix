@@ -284,8 +284,6 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  security.dhparams.stateful = true;
-
   # MicroVMs to autostart
   microvm.autostart = [
     "paperless"

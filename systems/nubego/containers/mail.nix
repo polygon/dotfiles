@@ -12,11 +12,6 @@ let
       isReadOnly = false;
     };
 
-    "/var/sieve" = {
-      hostPath = "/vms/mail/sieve";
-      isReadOnly = false; 
-    };
-
     "/var/dkim" = {
       hostPath = "/vms/mail/dkim";
       isReadOnly = false;
@@ -107,7 +102,7 @@ in
           fqdn = "mail.nubego.de";
           domains = [ "nubego.de" ];
 
-          loginAccounts = {
+          accounts = {
             "jan@nubego.de" = {
               hashedPasswordFile = "/var/lib/secrets/jan/hashedPasswordFile";
               aliases = [
@@ -117,34 +112,32 @@ in
             };
           };
 
-          certificateScheme = "manual";
-          keyFile = "/var/lib/ssl/nubego/key.pem";
-          certificateFile = "/var/lib/ssl/nubego/fullchain.pem";
+          x509.privateKeyFile = "/var/lib/ssl/nubego/key.pem";
+          x509.certificateFile = "/var/lib/ssl/nubego/fullchain.pem";
 
           fullTextSearch.enable = true;
 
           # Pin folder to desired locations
           indexDir = "/var/lib/dovecot/indices";
-          sieveDirectory = "/var/sieve";
-          mailDirectory = "/var/vmail";
-          dkimKeyDirectory = "/var/dkim";
+          storage.path = "/var/vmail";
+          dkim.keyDirectory = "/var/dkim";
 
           mailboxes = {
             Drafts = {
               auto = "subscribe";
-              specialUse = "Drafts";
+              special_use = "\\Drafts";
             };
             Junk = {
               auto = "subscribe";
-              specialUse = "Junk";
+              special_use = "\\Junk";
             };
             Sent = {
               auto = "subscribe";
-              specialUse = "Sent";
+              special_use = "\\Sent";
             };
             Trash = {
               auto = "no";
-              specialUse = "Trash";
+              special_use = "\\Trash";
             };
           };
 

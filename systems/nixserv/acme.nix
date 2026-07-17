@@ -6,7 +6,7 @@
     certs."matelab.de" = {
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
-      credentialsFile = "/var/lib/secrets/matelab-cloudflare-api-token";
+      credentialFiles."CLOUDFLARE_DNS_API_TOKEN_FILE" = "/var/lib/secrets/matelab-cloudflare-api-token";
       dnsPropagationCheck = true;
       domain = "matelab.de";
       extraDomainNames = [ "*.matelab.de" ];

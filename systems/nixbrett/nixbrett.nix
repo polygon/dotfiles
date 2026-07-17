@@ -301,7 +301,7 @@ networking.wireless.networks."39C3".auth = ''
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ sof-firmware llama-cpp ];
+  environment.systemPackages = with pkgs; [ sof-firmware ];
 
   environment.variables = {
     #GDK_SCALE = "2";
