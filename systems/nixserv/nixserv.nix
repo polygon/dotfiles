@@ -81,7 +81,6 @@
 
   boot.initrd.systemd.contents."/var/empty/.profile".text = ''
     systemd-tty-ask-password-agent --query
-    zfs load-key -a 2>/dev/null || true
   '';
 
   services.fwupd.enable = true;
