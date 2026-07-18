@@ -29,6 +29,7 @@
   boot.supportedFilesystems = [ "zfs" "nfs" ];
   boot.zfs.extraPools = [ "diskpool" "ssdpool" ];
   boot.zfs.package = pkgs.zfs_2_4;
+  boot.zfs.forceImportRoot = false;
 
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="sd[a-z]*[0-9]*|mmcblk[0-9]*p[0-9]*|nvme[0-9]*n[0-9]*p[0-9]*", ENV{ID_FS_TYPE}=="zfs_member", ATTR{../queue/scheduler}="none"
@@ -36,8 +37,12 @@
 
   # Allow entering ZFS encryption key via SSH
   boot.initrd.kernelModules = [ "r8169" "8021q" ];
+
+  boot.initrd.systemd.enable = true;
+
   boot.initrd.network = {
     enable = true;
+    flushBeforeStage2 = true;
     ssh = {
       enable = true;
       port = 22022;
@@ -46,34 +51,37 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGEKrCGXyHqD0jdTYVHnnScL9mhDU2PR9VyH7fu528J"
       ];
     };
-    postCommands = ''
-      echo "Bring up network on VLAN 11"
-      ip link set phys0 up
-      ip link add link phys0 name vlan-lan-boot type vlan id 11
-      ip link set vlan-lan-boot up
-      ip a a 192.168.1.20/24 dev vlan-lan-boot
-      ip r a 0/0 via 192.168.1.1
-
-      cat <<EOF > /root/.profile
-      if pgrep -x "zfs" > /dev/null
-      then
-        zfs load-key -a
-        killall zfs
-      else
-        echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
-      fi
-      EOF
-    '';
-
   };
-  
-  boot.initrd.postMountCommands = ''
-    echo "Shutting down network"
-    ip a flush vlan-lan-boot
-    ip link set vlan-lan-boot down
-    ip link del vlan-lan-boot
-    ip a flush phys0
-    ip link set phys0 down
+
+  boot.initrd.systemd.network = {
+    links."10-phys0" = {
+      matchConfig.permanentMACAddress = "d8:5e:d3:a5:c7:37";
+      linkConfig.Name = "phys0";
+    };
+
+    netdevs."10-vlan-lan-boot" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "vlan-lan-boot";
+      };
+      vlanConfig.Id = 11;
+    };
+
+    networks."20-vlan-lan-boot-to-phys" = {
+      matchConfig.Name = "phys0";
+      networkConfig.VLAN = [ "vlan-lan-boot" ];
+    };
+
+    networks."30-vlan-lan-boot" = {
+      matchConfig.Name = "vlan-lan-boot";
+      addresses = [ { Address = "192.168.1.20/24"; } ];
+      networkConfig.Gateway = "192.168.1.1";
+    };
+  };
+
+  boot.initrd.systemd.contents."/root/.profile".text = ''
+    systemd-tty-ask-password-agent --query
+    zfs load-key -a 2>/dev/null || true
   '';
 
   services.fwupd.enable = true;

@@ -9,7 +9,7 @@
     enable = true;
     package = pkgs.postgresql_18;
     enableTCPIP = true;
-    extraPlugins = with pkgs.postgresql18Packages; [
+    extensions = with pkgs.postgresql18Packages; [
       timescaledb
     ];
     settings = {
