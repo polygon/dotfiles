@@ -55,25 +55,25 @@
 
   boot.initrd.systemd.network = {
     links."10-phys0" = {
-      matchConfig.permanentMACAddress = "d8:5e:d3:a5:c7:37";
+      matchConfig.PermanentMACAddress = "d8:5e:d3:a5:c7:37";
       linkConfig.Name = "phys0";
     };
 
-    netdevs."10-vlan-lan-boot" = {
+    netdevs."10-vlan-lan" = {
       netdevConfig = {
         Kind = "vlan";
-        Name = "vlan-lan-boot";
+        Name = "vlan-lan";
       };
       vlanConfig.Id = 11;
     };
 
-    networks."20-vlan-lan-boot-to-phys" = {
+    networks."20-vlan-lan-to-phys" = {
       matchConfig.Name = "phys0";
-      networkConfig.VLAN = [ "vlan-lan-boot" ];
+      networkConfig.VLAN = [ "vlan-lan" ];
     };
 
-    networks."30-vlan-lan-boot" = {
-      matchConfig.Name = "vlan-lan-boot";
+    networks."30-vlan-lan" = {
+      matchConfig.Name = "vlan-lan";
       addresses = [ { Address = "192.168.1.20/24"; } ];
       networkConfig.Gateway = "192.168.1.1";
     };
