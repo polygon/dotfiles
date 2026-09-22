@@ -167,7 +167,11 @@ networking.wireless.networks."39C3".auth = ''
 
   programs.dconf.enable = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    extest.enable = true;
+  };
+  programs.gamemode.enable = true;
 
   #services.thermald.enable = true;
 
@@ -331,6 +335,9 @@ networking.wireless.networks."39C3".auth = ''
   # udev
   # Assign plugdev for radi0 users
   services.udev.packages = [ unstable.hackrf ];
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6001", MODE="0660", GROUP="plugdev"
+  '';
 
   #containers.postgres = {
   #  config = { config, pkgs, ... }: {

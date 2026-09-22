@@ -38,7 +38,6 @@
     nixd.url = "github:nix-community/nixd";
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     simple-nixos-mailserver.url =
       "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
