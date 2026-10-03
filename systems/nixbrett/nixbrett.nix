@@ -10,7 +10,7 @@
 
   # Enable Wireguard tunnels
   #modules.wireguard.mullvad.enable = true;
-  #modules.wireguard.wacken.enable = true;
+  modules.wireguard.wacken.enable = true;
 
   # Enable SyncThing
   modules.apps.syncthing.enable = true;
