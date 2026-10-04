@@ -78,6 +78,19 @@
     };
   };
 
+  services.nginx.virtualHosts."code.matelab.de" = {
+    useACMEHost = "matelab.de";
+    forceSSL = true;
+
+    locations."/" = {
+      proxyPass = "http://192.168.3.25:3000";
+      recommendedProxySettings = true;
+      extraConfig = ''
+        client_max_body_size 512M;
+      '';
+    };
+  };
+
 
   # Allow nginx access to letsencrypt keys
   users.users."nginx".extraGroups = [ "acme" ];

@@ -242,6 +242,16 @@
           ];
         };
 
+        code = nixosSystem' rec {
+          system = "x86_64-linux";
+
+          modules = [
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.sops
+            ./systems/microvms/code
+          ];
+        };
+
         cube = nixosSystem' rec {
           system = "x86_64-linux";
 
