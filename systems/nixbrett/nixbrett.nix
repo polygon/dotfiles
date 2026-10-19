@@ -18,6 +18,9 @@
   # Audio production
   modules.apps.audioprod.enable = true;
 
+  # Gaming
+  modules.apps.gaming.enable = true;
+
   # Android Debug Bridge
   #modules.apps.adb.enable = true;
 
@@ -166,12 +169,6 @@ networking.wireless.networks."39C3".auth = ''
   services.desktopManager.plasma6.enable = true;
 
   programs.dconf.enable = true;
-
-  programs.steam = {
-    enable = true;
-    extest.enable = true;
-  };
-  programs.gamemode.enable = true;
 
   #services.thermald.enable = true;
 

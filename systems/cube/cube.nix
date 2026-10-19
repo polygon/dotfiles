@@ -24,6 +24,9 @@
   # Audio production
   modules.apps.audioprod.enable = true;
 
+  # Gaming
+  modules.apps.gaming.enable = true;
+
   # Yabridgemgr
   #modules.audio-nix.yabridgemgr = {
   #  enable = true;
@@ -44,13 +47,12 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.supportedFilesystems = [ "nfs" "ntfs" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.zfs.package = pkgs.zfs_2_4;
   boot.kernelModules = [ "acpi_call" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   services.fwupd.enable = true;
-  services.flatpak.enable = true;
 
   services.zfs = {
     autoScrub.enable = true;
@@ -85,12 +87,24 @@
 
   boot.extraModprobeConfig = ''
     options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
-    options nvidia_modeset vblank_sem_control=0
   '';
 
   #  services.xserver.synaptics.enable = true;
 
   services.resolved.enable = true;
+
+  # Workaround for freeze after resume
+  systemd.services = let
+    noFreeze = { environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false"; };
+  in {
+    systemd-suspend = noFreeze;
+    systemd-hibernate = noFreeze;
+    systemd-hybrid-sleep = noFreeze;
+    systemd-suspend-then-hibernate = noFreeze;
+    nvidia-suspend = noFreeze;
+    nvidia-resume = noFreeze;
+    nvidia-hibernate = noFreeze;
+  };
 
   # Enable the GNOME 3 Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -98,6 +112,8 @@
   services.desktopManager.plasma6.enable = true;
 
   programs.dconf.enable = true;
+
+  programs.gamemode.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "de";

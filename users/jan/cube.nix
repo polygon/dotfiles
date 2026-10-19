@@ -9,7 +9,6 @@
   modules.desktop.awesome.enable = false;
 
   home.packages = with pkgs; [
-    steam
     steam-run
     reaper
     blender-bin
